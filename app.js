@@ -37,6 +37,10 @@ const TEAMSLUG={}; // slug -> display name
 function load(){ try{return JSON.parse(localStorage.getItem('rec_cart'))||[]}catch{return[]} }
 function save(){ localStorage.setItem('rec_cart',JSON.stringify(CART)); renderCart(); }
 
+/* rotas servidas por path (rewrite na Vercel) viram hash antes do roteador rodar */
+(()=>{const p=location.pathname.replace(/\/+$/,'');const map={'/admin':'#/admin','/pedido':'#/pedido'};
+  if(!location.hash&&map[p])history.replaceState(null,'','/'+map[p]);})();
+
 /* ---------------- boot ---------------- */
 fetch('data/products.json').then(r=>r.json()).then(d=>{
   DATA=d;
