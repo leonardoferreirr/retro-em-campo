@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   if (!TOKEN) return res.status(500).json({ error: 'MP_ACCESS_TOKEN não configurado' });
 
   try {
-    const { formData = {}, customer = {}, items = [], frete = 0 } = req.body || {};
+    const { formData = {}, customer = {}, items = [], frete = 0, ref: clientRef } = req.body || {};
     const digits = s => String(s || '').replace(/\D/g, '');
 
     const computed = items.reduce((s, i) => s + Number(i.price) * (Number(i.qty) || 1), 0) + Number(frete || 0);
@@ -17,7 +17,8 @@ export default async function handler(req, res) {
 
     const proto = req.headers['x-forwarded-proto'] || 'https';
     const base = `${proto}://${req.headers['host']}`;
-    const ref = 'REC-' + Date.now();
+    // número do pedido: vem do cliente (estável entre tentativas) ou é gerado aqui
+    const ref = (typeof clientRef === 'string' && /^REC-\d+$/.test(clientRef)) ? clientRef : ('REC-' + Date.now());
     const name = String(customer.recipient || '').trim().split(/\s+/);
 
     const body = {
@@ -67,7 +68,8 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${TOKEN}`,
-        'X-Idempotency-Key': ref
+        // única por tentativa: cartão recusado + retry (ou PIX) não reusa a resposta antiga
+        'X-Idempotency-Key': `${ref}-${Date.now()}`
       },
       body: JSON.stringify(body)
     });
@@ -76,6 +78,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       id: data.id,
+      ref,
       status: data.status,
       status_detail: data.status_detail
     });

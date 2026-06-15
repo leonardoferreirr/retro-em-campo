@@ -73,7 +73,7 @@ function buildNav(){
 /* ---------------- router ---------------- */
 function route(){
   if(window.__hero){clearInterval(window.__hero);window.__hero=null;}
-  const h=(location.hash||'#/').replace(/^#/,'');
+  const h=(location.hash||'#/').replace(/^#/,'').split('?')[0];
   const seg=h.split('/').filter(Boolean); // ['times','barcelona']
   window.scrollTo(0,0);
   if(seg.length===0) return viewHome();
@@ -84,7 +84,9 @@ function route(){
   if(seg[0]==='termos') return viewDoc('termos');
   if(seg[0]==='privacidade') return viewDoc('privacidade');
   if(seg[0]==='trocas') return viewDoc('trocas');
-  if(seg[0]==='sucesso') return viewSucesso();
+  if(seg[0]==='pedido') return viewPedido();
+  if(seg[0]==='admin') return viewAdmin();
+  if(seg[0]==='sucesso') return viewSucesso(seg[1]);
   if(seg[0]==='times'||seg[0]==='selecoes'){
     if(seg[1]) return viewGroup(seg[0],seg[1]);
     return viewSection(seg[0]);
@@ -410,6 +412,7 @@ function renderBrick(customer,total,frete){
   const mp=new MercadoPago(MP_PUBLIC_KEY,{locale:'pt-BR'});
   const bricks=mp.bricks();
   $('#paymentBrick').innerHTML='';
+  const orderRef='REC-'+Date.now(); // número do pedido, estável entre tentativas
   return bricks.create('payment','paymentBrick',{
     initialization:{ amount: total, payer:{ email: customer.email } },
     customization:{
@@ -419,11 +422,11 @@ function renderBrick(customer,total,frete){
       onReady:()=>{},
       onSubmit:({formData})=>fetch('/api/process-payment',{method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({formData,customer,items:CART,frete})})
+          body:JSON.stringify({formData,customer,items:CART,frete,ref:orderRef})})
         .then(r=>r.json())
         .then(res=>{
           if(res.error) throw new Error(res.error);
-          if(res.status==='approved'){ location.hash='#/sucesso'; return; }
+          if(res.status==='approved'){ location.hash='#/sucesso/'+(res.ref||orderRef); return; }
           if(res.status==='pending'||res.status==='in_process'){ showStatus(mp,res.id); return; }
           // recusado
           const pe=$('#payErr');pe.textContent='Pagamento não aprovado. Revise os dados do cartão ou tente outro meio.';pe.hidden=false;
@@ -468,22 +471,169 @@ function footer(){
   return `<footer class="foot">
     <div>© ${new Date().getFullYear()} Retrô em Campo — Camisas de futebol retrô</div>
     <div style="display:flex;gap:18px">
-      <a href="#/suporte">Suporte</a><a href="#/termos">Termos</a>
+      <a href="#/pedido">Meu pedido</a><a href="#/suporte">Suporte</a><a href="#/termos">Termos</a>
       <a href="#/privacidade">Privacidade</a><a href="#/trocas">Trocas</a></div>
   </footer>`;
 }
-function viewSucesso(){
+function viewSucesso(ref){
   CART=[]; save();
+  const num=ref?`<p class="ord-num">Pedido <strong>${ref}</strong></p>`:'';
+  const track=ref?`<a class="btn btn-ghost" href="#/pedido?ref=${encodeURIComponent(ref)}" style="display:inline-block;width:auto;padding:14px 30px;margin-right:8px">Acompanhar pedido</a>`:'';
   $('#view').innerHTML=`<div class="wrap"><div class="doc sucesso" style="text-align:center;max-width:560px;margin:0 auto;padding:30px 0">
     <div style="font-size:3rem;line-height:1">✓</div>
     <h1>Pedido confirmado!</h1>
     <p class="upd">Recebemos o seu pagamento.</p>
+    ${num}
     <p>Enviamos um e-mail com os detalhes do pedido. Em breve a sua camisa será separada e enviada para o endereço informado.</p>
     <p>Qualquer dúvida, fale com a gente no <a href="${WAPP_HREF}" target="_blank">WhatsApp</a> ou em <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
-    <p style="margin-top:26px"><a class="btn btn-dark" href="#/" style="display:inline-block;width:auto;padding:14px 30px">Voltar à loja</a></p>
+    <p style="margin-top:26px">${track}<a class="btn btn-dark" href="#/" style="display:inline-block;width:auto;padding:14px 30px">Voltar à loja</a></p>
   </div></div>${footer()}`;
   setActive('/');
 }
+/* ---------------- rastreio do cliente ---------------- */
+const CORREIOS='https://rastreamento.correios.com.br';
+function hashQuery(){const q=(location.hash.split('?')[1]||'');return Object.fromEntries(new URLSearchParams(q));}
+function fmtDate(iso){if(!iso)return'';const d=new Date(iso);return d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
+
+function orderTimeline(o){
+  const done=s=>{const order=['approved','shipped','delivered'];return order.indexOf(o.status)>=order.indexOf(s);};
+  const step=(on,title,sub)=>`<li class="${on?'on':''}"><span class="dot"></span><div><strong>${title}</strong>${sub?`<span>${sub}</span>`:''}</div></li>`;
+  const track=o.tracking?`
+    <div class="track-box">
+      <div class="track-code"><span>Código de rastreio</span><strong id="trkCode">${o.tracking}</strong></div>
+      <div class="track-actions">
+        <button class="btn btn-ghost" type="button" id="copyTrk" style="width:auto;padding:10px 18px">Copiar código</button>
+        <a class="btn btn-dark" href="${CORREIOS}" target="_blank" rel="noopener" style="width:auto;padding:10px 18px">Rastrear nos Correios</a>
+      </div>
+      <p class="track-hint">Abra o site dos Correios e cole o código acima. O prazo é de 10 a 20 dias úteis.</p>
+    </div>`:'';
+  return `
+    <ul class="otl">
+      ${step(done('approved'),'Pedido confirmado',fmtDate(o.created_iso))}
+      ${step(done('approved'),'Em separação','Estamos preparando o seu envio')}
+      ${step(done('shipped'),'Enviado',o.shipped_iso?fmtDate(o.shipped_iso):'Aguardando postagem')}
+      ${step(done('delivered'),'Entregue',o.delivered_iso?fmtDate(o.delivered_iso):'')}
+    </ul>
+    ${track}`;
+}
+
+function viewPedido(){
+  const q=hashQuery();
+  $('#view').innerHTML=`<div class="wrap"><div class="doc track-page" style="max-width:620px;margin:0 auto">
+    <div class="crumb"><a href="#/">Início</a> / Meu pedido</div>
+    <h1>Acompanhar pedido</h1>
+    <p class="upd">Informe o número do pedido e o e-mail usado na compra.</p>
+    <form id="trkForm" class="track-form">
+      <label>Número do pedido<input name="ref" placeholder="REC-..." value="${q.ref?String(q.ref).replace(/"/g,''):''}" required></label>
+      <label>E-mail da compra<input name="email" type="email" placeholder="voce@email.com" required></label>
+      <button class="btn btn-dark" type="submit">Buscar pedido</button>
+    </form>
+    <div id="trkErr" class="co-err" hidden></div>
+    <div id="trkResult"></div>
+  </div></div>${footer()}`;
+  setActive('/pedido');
+  $('#trkForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const f=e.target, ref=f.ref.value.trim(), email=f.email.value.trim();
+    const err=$('#trkErr'), out=$('#trkResult'); err.hidden=true; out.innerHTML='';
+    const btn=f.querySelector('button'); btn.disabled=true; btn.textContent='Buscando…';
+    fetch('/api/order-status',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ref,email})})
+      .then(r=>r.json().then(j=>({ok:r.ok,j})))
+      .then(({ok,j})=>{
+        btn.disabled=false; btn.textContent='Buscar pedido';
+        if(!ok){err.textContent=j.error||'Não foi possível consultar o pedido.';err.hidden=false;return;}
+        const items=(j.items||[]).map(i=>`<li>${i.qty}× ${i.title}</li>`).join('');
+        out.innerHTML=`<div class="track-card">
+          <div class="track-head"><h3>Pedido ${j.ref}</h3><span class="track-total">${BRL(j.total)}</span></div>
+          ${items?`<ul class="track-items">${items}</ul>`:''}
+          ${orderTimeline(j)}
+        </div>`;
+        const cp=$('#copyTrk'); if(cp)cp.addEventListener('click',()=>{
+          navigator.clipboard.writeText($('#trkCode').textContent.trim()).then(()=>toast('Código copiado'));
+        });
+      })
+      .catch(()=>{btn.disabled=false;btn.textContent='Buscar pedido';err.textContent='Erro de conexão. Tente de novo.';err.hidden=false;});
+  });
+}
+
+/* ---------------- painel interno (rastreio) ---------------- */
+function viewAdmin(){
+  const key=sessionStorage.getItem('rec_admin_key')||'';
+  $('#view').innerHTML=`<div class="wrap"><div class="doc admin-page">
+    <h1>Pedidos</h1>
+    ${key?'':`<form id="admLogin" class="track-form" style="max-width:360px">
+      <label>Senha do painel<input name="pwd" type="password" autocomplete="current-password" required></label>
+      <button class="btn btn-dark" type="submit">Entrar</button>
+    </form>`}
+    <div id="admErr" class="co-err" hidden></div>
+    <div id="admList"></div>
+  </div></div>${footer()}`;
+  setActive('/admin');
+  const login=$('#admLogin');
+  if(login)login.addEventListener('submit',e=>{
+    e.preventDefault();
+    sessionStorage.setItem('rec_admin_key',e.target.pwd.value);
+    viewAdmin();
+  });
+  if(key)loadAdminOrders(key);
+}
+function loadAdminOrders(key){
+  const list=$('#admList'), err=$('#admErr'); list.innerHTML='<p class="upd">Carregando pedidos…</p>';
+  fetch('/api/admin-orders',{headers:{'x-admin-key':key}})
+    .then(r=>r.json().then(j=>({ok:r.ok,status:r.status,j})))
+    .then(({ok,status,j})=>{
+      if(!ok){
+        if(status===401){sessionStorage.removeItem('rec_admin_key');err.textContent='Senha inválida.';err.hidden=false;list.innerHTML='';return viewAdmin();}
+        err.textContent=j.error||'Erro ao carregar.';err.hidden=false;list.innerHTML='';return;
+      }
+      const orders=j.orders||[];
+      if(!orders.length){list.innerHTML='<p class="upd">Nenhum pedido ainda.</p>';return;}
+      list.innerHTML=orders.map(o=>{
+        const items=(o.items||[]).map(i=>`${i.qty||1}× ${i.title}`).join(', ');
+        const c=o.customer||{};
+        const badge={approved:'Pago',shipped:'Enviado',delivered:'Entregue'}[o.status]||o.status;
+        return `<div class="adm-card" data-ref="${o.ref}">
+          <div class="adm-top">
+            <div><strong>${o.ref}</strong> <span class="adm-badge ${o.status}">${badge}</span></div>
+            <div class="adm-total">${BRL(o.total)}</div>
+          </div>
+          <div class="adm-meta">${fmtDate(o.created_iso)} · ${c.recipient||''} · ${c.email||''}</div>
+          <div class="adm-meta">${c.address||''} — ${c.city||''}/${c.state||''} · CEP ${c.cep||''} · CPF ${c.cpf||''} · ${c.phone||''}</div>
+          <div class="adm-items">${items}</div>
+          <div class="adm-actions">
+            <input class="adm-trk" placeholder="Código de rastreio" value="${o.tracking||''}">
+            <button class="btn btn-dark adm-save" type="button" style="width:auto;padding:10px 18px">${o.tracking?'Atualizar':'Salvar e avisar'}</button>
+            ${o.status!=='delivered'?'<button class="btn btn-ghost adm-deliver" type="button" style="width:auto;padding:10px 18px">Marcar entregue</button>':''}
+          </div>
+        </div>`;
+      }).join('');
+      $$('.adm-card').forEach(card=>{
+        const ref=card.dataset.ref;
+        const post=body=>fetch('/api/admin-orders',{method:'POST',
+          headers:{'Content-Type':'application/json','x-admin-key':key},
+          body:JSON.stringify({ref,...body})}).then(r=>r.json().then(j=>({ok:r.ok,j})));
+        card.querySelector('.adm-save').addEventListener('click',function(){
+          const code=card.querySelector('.adm-trk').value.trim();
+          if(!code)return toast('Cole o código de rastreio');
+          this.disabled=true;this.textContent='Salvando…';
+          post({tracking:code}).then(({ok,j})=>{
+            this.disabled=false;
+            if(!ok){toast(j.error||'Erro');this.textContent='Salvar e avisar';return;}
+            toast(j.emailed?'Rastreio salvo, cliente avisado':'Rastreio atualizado');
+            loadAdminOrders(key);
+          });
+        });
+        const del=card.querySelector('.adm-deliver');
+        if(del)del.addEventListener('click',function(){
+          this.disabled=true;
+          post({status:'delivered'}).then(({ok})=>{if(ok){toast('Marcado como entregue');loadAdminOrders(key);}else{this.disabled=false;}});
+        });
+      });
+    })
+    .catch(()=>{err.textContent='Erro de conexão.';err.hidden=false;list.innerHTML='';});
+}
+
 function viewDoc(which){
   $('#view').innerHTML=`<div class="wrap"><div class="doc">${DOCS[which]}</div></div>${footer()}`;
   setActive('/'+which);

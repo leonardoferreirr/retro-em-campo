@@ -2,6 +2,7 @@
 // Dispara e-mail com os dados de entrega quando um pagamento é aprovado.
 // Env vars: MP_ACCESS_TOKEN, RESEND_API_KEY, MP_WEBHOOK_SECRET (assinatura secreta do webhook).
 import crypto from 'node:crypto';
+import { kvReady, getOrder, saveOrder } from '../lib/kv.js';
 
 const MP_TOKEN = process.env.MP_ACCESS_TOKEN;
 const MP_WEBHOOK_SECRET = process.env.MP_WEBHOOK_SECRET;
@@ -83,6 +84,16 @@ export default async function handler(req, res) {
 
     const ref = payment.external_reference || ('MP-' + paymentId);
     const total = payment.transaction_amount;
+
+    // dedup: o MP notifica o mesmo pagamento várias vezes. Se o pedido já foi
+    // gravado e os e-mails já saíram, não reprocessa (evita e-mail duplicado).
+    if (kvReady()) {
+      try {
+        const existing = await getOrder(ref);
+        if (existing && existing.emailed) return res.status(200).json({ ok: true, dup: true });
+      } catch (e) { console.error('kv get', e); }
+    }
+
     // logo BRANCA sobre faixa PRETA: fica legível no modo claro e no escuro
     const LOGO = 'https://www.retroemcampo.com.br/assets/brand/logo-light.png';
     const shell = inner => `
@@ -138,6 +149,26 @@ export default async function handler(req, res) {
           <p style="font-size:13px;color:#666;margin-top:18px">Pedido ${esc(ref)}. Dúvidas? Responda este e-mail ou chame no WhatsApp.</p>
           <p style="font-size:13px;color:#999">Retrô em Campo</p>`);
       await sendEmail(customer.email, 'Pedido confirmado — Retrô em Campo', custHtml);
+    }
+
+    // grava o pedido no KV (fonte da verdade pro rastreio e pro painel /admin)
+    if (kvReady()) {
+      try {
+        await saveOrder({
+          ref,
+          ts: Date.now(),
+          created_iso: new Date().toISOString(),
+          status: 'approved',          // approved -> shipped (quando sai o rastreio) -> delivered
+          payment_id: String(paymentId),
+          total,
+          items,
+          customer,
+          tracking: null,
+          shipped_iso: null,
+          delivered_iso: null,
+          emailed: true
+        });
+      } catch (e) { console.error('kv save', e); }
     }
 
     return res.status(200).json({ ok: true });
