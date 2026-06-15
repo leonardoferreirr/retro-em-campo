@@ -117,7 +117,9 @@ function card(p){
 
 /* ---------------- views ---------------- */
 function viewHome(){
-  const feat=[...DATA.products].slice(0,12);
+  const pick=ss=>ss.map(s=>DATA.products.find(p=>p.slug===s)).filter(Boolean);
+  const selFeat=pick(['maradona-argentina-1994','ronaldo-9-brazil-1998','zidane-10-france-1998','baggio-10-italy-1994']);
+  const timFeat=pick(['maldini-ac-milan-1997','de-boer-ajax-1999','ronaldo-barcelona-1998-away','cantona-7-manutd-1995']);
   const slides=[
     {img:'assets/brand/hero-1.jpg',v:'assets/brand/hero-1-v.jpg',
      h:'As camisetas mais icônicas de todas',sub:'Da laranja holandesa de 88 aos mantos eternos, reunidos aqui.',cta:'Ver todas as camisetas',href:'#/todas'},
@@ -145,7 +147,10 @@ function viewHome(){
       <a class="tile" href="#/selecoes"><img src="${DATA.products.find(p=>p.section==='selecoes').img[0]}" alt=""><h3>Seleções</h3><span class="go">Ver todas →</span></a>
     </div>
     <div class="shead"><h2>Destaques</h2><span class="cnt">${DATA.products.length} modelos no acervo</span></div>
-    <div class="grid">${feat.map(card).join('')}</div>
+    <div class="fcar-head"><h3>Seleções</h3><a href="#/selecoes">Ver todas →</a></div>
+    <div class="fcar">${selFeat.map(card).join('')}</div>
+    <div class="fcar-head"><h3>Times</h3><a href="#/times">Ver todos →</a></div>
+    <div class="fcar">${timFeat.map(card).join('')}</div>
   </div>
   ${footer()}`;
   const car=$('#heroCar');
@@ -242,10 +247,12 @@ function viewProduct(slug){
     </div>
   </div>${footer()}`;
   let size=null;
-  $$('.gallery .thumbs img').forEach(t=>t.addEventListener('mouseenter',()=>{
-    $('#pmain').src=p.img[+t.dataset.i];
-    $$('.gallery .thumbs img').forEach(x=>x.classList.toggle('on',x===t));
-  }));
+  const swap=t=>{ $('#pmain').src=p.img[+t.dataset.i];
+    $$('.gallery .thumbs img').forEach(x=>x.classList.toggle('on',x===t)); };
+  $$('.gallery .thumbs img').forEach(t=>{
+    t.addEventListener('mouseenter',()=>swap(t)); // desktop: hover
+    t.addEventListener('click',()=>swap(t));      // mobile: toque
+  });
   $$('.sizes button').forEach(b=>b.addEventListener('click',()=>{
     size=b.dataset.sz; $$('.sizes button').forEach(x=>x.classList.toggle('on',x===b));
     $('#szhint').textContent=size; $('#addBtn').disabled=false;
@@ -302,6 +309,10 @@ function viewCheckout(){
     <div class="shead"><h2>Dados de entrega</h2></div>
     <div class="co">
       <form class="co-form" id="coForm" novalidate>
+        <div class="co-thumb">
+          <span class="co-thumb-imgs">${CART.slice(0,3).map(i=>`<img src="${i.thumb}" alt="${i.player}">`).join('')}</span>
+          <span class="co-thumb-txt">${CART.length===1?`${CART[0].player} · Tam ${CART[0].size}`:`${CART.reduce((s,i)=>s+i.qty,0)} itens na sacola`}</span>
+        </div>
         <p class="co-hint">Preencha em português. Esses dados são usados para enviar a sua camisa e emitir o pedido.</p>
         <label>Destinatário (nome completo)<input name="recipient" autocomplete="name" required></label>
         <div class="co-row">
