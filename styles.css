@@ -417,3 +417,14 @@ footer.foot a:hover{color:#fff}
 .adm-trk{flex:1;min-width:180px;font-family:var(--sans);font-size:.9rem;
   padding:10px 12px;border:1.5px solid var(--line);border-radius:3px;text-transform:uppercase}
 .adm-trk:focus{outline:none;border-color:var(--ink)}
+
+/* ---------------- ícones SVG inline (no lugar de emojis) ---------------- */
+.icn{width:1em;height:1em;display:inline-block;vertical-align:-0.16em;flex:none}
+.frete-note .icn{width:16px;height:16px;margin-top:1px;color:var(--ink)}
+.co-prazo .icn{vertical-align:-0.18em;margin-right:3px;color:#444}
+.co-safe .icn{vertical-align:-0.16em;margin-right:3px}
+.cart-foot .frete-bar .icn{width:1.05em;height:1.05em;color:var(--green);margin-right:2px}
+.suc-ico{display:flex;justify-content:center;margin-bottom:6px}
+.suc-ico .icn{width:60px;height:60px;color:var(--green);stroke-width:1.5}
+.sc-ico{display:flex;align-items:center;justify-content:center;flex:none;width:30px}
+.sc-ico .icn{width:28px;height:28px;color:var(--ink)}

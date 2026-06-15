@@ -1,6 +1,18 @@
 'use strict';
 const $ = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+
+/* ícones SVG inline (monocromáticos, herdam a cor do texto) — no lugar de emojis */
+const _svg=p=>`<svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICN={
+  bolt:_svg('<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>'),
+  sparkles:_svg('<path d="M12 4l1.6 4.4L18 10l-4.4 1.6L12 16l-1.6-4.4L6 10l4.4-1.6L12 4z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/>'),
+  lock:_svg('<rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>'),
+  box:_svg('<path d="M3 7.5 12 3l9 4.5v9L12 21 3 16.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>'),
+  check:_svg('<circle cx="12" cy="12" r="9"/><path d="M8.3 12.4l2.6 2.6 4.8-5.4"/>'),
+  mail:_svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7 12 13l8.5-6"/>'),
+  chat:_svg('<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l1.9-5.7A8.4 8.4 0 1 1 21 11.5z"/>')
+};
 const DIAC = new RegExp('[\\u0300-\\u036f]','g');
 const slugify = s => s.toLowerCase().normalize('NFD').replace(DIAC,'')
   .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -248,7 +260,7 @@ function viewProduct(slug){
         <div class="sz-label"><span>Tamanho</span><span id="szhint" style="color:var(--muted);font-weight:500">Selecione</span></div>
         <div class="sizes">${sizes}</div>
         <button class="btn btn-dark" id="addBtn" disabled>Adicionar ao carrinho</button>
-        <div class="frete-note">⚡ Enviamos para todo o Brasil em ${DATA.frete.prazo}. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
+        <div class="frete-note">${ICN.bolt} <span>Enviamos para todo o Brasil em ${DATA.frete.prazo}. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></span></div>
         <div class="acc">
           <details open><summary>Descrição</summary><div class="body">
             Camisa retrô ${p.player}, ${p.team}, temporada ${YR(p.year)}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
@@ -304,7 +316,7 @@ function renderCart(){
   foot.innerHTML=`
     <div class="row"><span>Subtotal</span><span>${BRL(sub)}</span></div>
     <div class="row"><span>Frete</span><span>${free?'Grátis':'Calculado no checkout'}</span></div>
-    ${!free?`<div class="frete-bar">Faltam <b>${BRL(falta)}</b> para frete grátis.</div>`:'<div class="frete-bar"><b>Você ganhou frete grátis! 🎉</b></div>'}
+    ${!free?`<div class="frete-bar">Faltam <b>${BRL(falta)}</b> para frete grátis.</div>`:'<div class="frete-bar"><b>'+ICN.sparkles+' Você ganhou frete grátis!</b></div>'}
     <div class="row tot"><span>Total</span><span>${BRL(sub)}</span></div>
     <div class="cart-parc">em até ${PARC(sub)} · entrega em ${DATA.frete.prazo}</div>
     <button class="btn btn-dark" id="checkoutBtn">Finalizar compra</button>`;
@@ -356,7 +368,7 @@ function viewCheckout(){
         <label class="co-agree"><input type="checkbox" name="agree"><span>Li e concordo com os <a href="#/termos" target="_blank">termos e condições</a> e a <a href="#/privacidade" target="_blank">política de privacidade</a>.</span></label>
         <div class="co-err" id="coErr" hidden></div>
         <button type="submit" class="btn btn-dark" id="coSubmit">Ir para o pagamento</button>
-        <div class="co-safe">🔒 Pagamento processado pelo Mercado Pago. Não armazenamos dados de cartão.</div>
+        <div class="co-safe">${ICN.lock} Pagamento processado pelo Mercado Pago. Não armazenamos dados de cartão.</div>
       </form>
       <aside class="co-summary">
         <h3>Seu pedido</h3>
@@ -365,7 +377,7 @@ function viewCheckout(){
         <div class="co-line"><span>Frete</span><span>${free?'Grátis':BRL(DATA.frete.valor)}</span></div>
         <div class="co-line co-tot"><span>Total</span><span>${BRL(sub+(free?0:DATA.frete.valor))}</span></div>
         <div class="co-parc">em até ${PARC(sub+(free?0:DATA.frete.valor))}</div>
-        <div class="co-prazo">📦 Entrega em ${DATA.frete.prazo}</div>
+        <div class="co-prazo">${ICN.box} Entrega em ${DATA.frete.prazo}</div>
       </aside>
     </div>
   </div>${footer()}`;
@@ -484,7 +496,7 @@ function viewSucesso(ref){
   const num=ref?`<p class="ord-num">Pedido <strong>${ref}</strong></p>`:'';
   const track=ref?`<a class="btn btn-ghost" href="#/pedido?ref=${encodeURIComponent(ref)}" style="display:inline-block;width:auto;padding:14px 30px;margin-right:8px">Acompanhar pedido</a>`:'';
   $('#view').innerHTML=`<div class="wrap"><div class="doc sucesso" style="text-align:center;max-width:560px;margin:0 auto;padding:30px 0">
-    <div style="font-size:3rem;line-height:1">✓</div>
+    <div class="suc-ico">${ICN.check}</div>
     <h1>Pedido confirmado!</h1>
     <p class="upd">Recebemos o seu pagamento.</p>
     ${num}
@@ -645,9 +657,9 @@ function viewDoc(which){
 const EMAIL='retroemcampo@gmail.com';
 const DOCS={
   suporte:`<h1>Suporte</h1><p class="upd">Estamos aqui para ajudar.</p>
-    <div class="support-card"><div>📧</div><div><div class="big">${EMAIL}</div>
+    <div class="support-card"><div class="sc-ico">${ICN.mail}</div><div><div class="big">${EMAIL}</div>
     <div style="color:var(--muted);font-size:.85rem">Resposta em até 24h úteis.</div></div></div>
-    <div class="support-card"><div>💬</div><div><div class="big"><a href="${WAPP_HREF}" target="_blank">WhatsApp</a></div>
+    <div class="support-card"><div class="sc-ico">${ICN.chat}</div><div><div class="big"><a href="${WAPP_HREF}" target="_blank">WhatsApp</a></div>
     <div style="color:var(--muted);font-size:.85rem">Atendimento em horário comercial.</div></div></div>
     <h2>Como podemos ajudar</h2>
     <ul><li>Dúvidas sobre tamanhos e medidas</li><li>Status e prazo do seu pedido</li>
