@@ -7,11 +7,11 @@ export default async function handler(req, res) {
   if (!TOKEN) return res.status(500).json({ error: 'MP_ACCESS_TOKEN não configurado' });
 
   try {
-    const { items = [], frete = 0 } = req.body || {};
+    const { items = [], frete = 0, customer = {} } = req.body || {};
     if (!items.length) return res.status(400).json({ error: 'sacola vazia' });
 
     const mpItems = items.map(i => ({
-      title: `${i.player} — ${i.sub} (Tam ${i.size})`.slice(0, 250),
+      title: `${i.player} ${i.sub} (Tam ${i.size})`.slice(0, 250),
       quantity: Number(i.qty) || 1,
       currency_id: 'BRL',
       unit_price: Number(i.price)
@@ -24,6 +24,11 @@ export default async function handler(req, res) {
     const host = req.headers['host'];
     const base = `${proto}://${host}`;
 
+    // dados de entrega coletados no site (em pt-BR)
+    const digits = s => String(s || '').replace(/\D/g, '');
+    const fullName = String(customer.recipient || '').trim().split(/\s+/);
+    const ref = 'REC-' + Date.now();
+
     const pref = {
       items: mpItems,
       back_urls: {
@@ -32,7 +37,25 @@ export default async function handler(req, res) {
         pending: `${base}/#/`
       },
       auto_return: 'approved',
-      statement_descriptor: 'RETROEMCAMPO'
+      statement_descriptor: 'RETROEMCAMPO',
+      external_reference: ref,
+      metadata: { customer },
+      payer: {
+        name: fullName[0] || undefined,
+        surname: fullName.slice(1).join(' ') || undefined,
+        email: customer.email || undefined,
+        phone: customer.phone ? { number: digits(customer.phone) } : undefined,
+        identification: customer.cpf ? { type: 'CPF', number: digits(customer.cpf) } : undefined,
+        address: customer.cep ? { zip_code: digits(customer.cep), street_name: customer.address } : undefined
+      },
+      shipments: customer.cep ? {
+        receiver_address: {
+          zip_code: digits(customer.cep),
+          state_name: customer.state,
+          city_name: customer.city,
+          street_name: customer.address
+        }
+      } : undefined
     };
 
     const r = await fetch('https://api.mercadopago.com/checkout/preferences', {

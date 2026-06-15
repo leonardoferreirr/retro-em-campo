@@ -60,6 +60,7 @@ function route(){
   window.scrollTo(0,0);
   if(seg.length===0) return viewHome();
   if(seg[0]==='produto') return viewProduct(seg[1]);
+  if(seg[0]==='checkout') return viewCheckout();
   if(seg[0]==='todas') return viewAll();
   if(seg[0]==='suporte') return viewDoc('suporte');
   if(seg[0]==='termos') return viewDoc('termos');
@@ -264,19 +265,73 @@ function renderCart(){
   $$('#cartItems [data-rm]').forEach(x=>x.addEventListener('click',()=>{
     CART=CART.filter(i=>i.key!==x.dataset.rm); save();
   }));
-  $('#checkoutBtn').addEventListener('click',checkout);
+  $('#checkoutBtn').addEventListener('click',()=>{ closeCart(); location.hash='#/checkout'; });
 }
-function checkout(){
+
+/* ---------------- checkout (dados de entrega) ---------------- */
+const UFS=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+const onlyDigits=s=>(s||'').replace(/\D/g,'');
+function viewCheckout(){
+  if(!CART.length){ location.hash='#/'; return; }
+  const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
+  const free=sub>=DATA.frete.gratis_acima;
+  const itens=CART.map(i=>`<div class="co-item"><span>${i.qty}× ${i.player}${i.size?' · '+i.size:''}</span><b>${BRL(i.price*i.qty)}</b></div>`).join('');
+  $('#view').innerHTML=`<div class="wrap">
+    <div class="crumb"><a href="#/">Início</a> / Finalizar compra</div>
+    <div class="shead"><h2>Dados de entrega</h2></div>
+    <div class="co">
+      <form class="co-form" id="coForm" novalidate>
+        <p class="co-hint">Preencha em português. Esses dados são usados para enviar a sua camisa e emitir o pedido.</p>
+        <label>Destinatário (nome completo)<input name="recipient" autocomplete="name" required></label>
+        <div class="co-row">
+          <label>CPF<input name="cpf" inputmode="numeric" placeholder="000.000.000-00" required></label>
+          <label>Telefone / WhatsApp<input name="phone" inputmode="tel" placeholder="(00) 00000-0000" required></label>
+        </div>
+        <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+        <div class="co-row">
+          <label>CEP<input name="cep" inputmode="numeric" placeholder="00000-000" required></label>
+          <label>Estado<select name="state" required><option value="">UF</option>${UFS.map(u=>`<option>${u}</option>`).join('')}</select></label>
+        </div>
+        <label>Cidade<input name="city" autocomplete="address-level2" required></label>
+        <label>Endereço (rua, número, complemento, bairro)<input name="address" autocomplete="street-address" required></label>
+        <div class="co-err" id="coErr" hidden></div>
+        <button type="submit" class="btn btn-dark" id="coSubmit">Ir para o pagamento</button>
+        <div class="co-safe">🔒 Pagamento processado pelo Mercado Pago. Não armazenamos dados de cartão.</div>
+      </form>
+      <aside class="co-summary">
+        <h3>Seu pedido</h3>
+        ${itens}
+        <div class="co-line"><span>Subtotal</span><span>${BRL(sub)}</span></div>
+        <div class="co-line"><span>Frete</span><span>${free?'Grátis':'Calculado no pagamento'}</span></div>
+        <div class="co-line co-tot"><span>Total</span><span>${BRL(sub)}</span></div>
+        <div class="co-parc">em até ${PARC(sub)}</div>
+      </aside>
+    </div>
+  </div>${footer()}`;
+  $('#coForm').addEventListener('submit',submitCheckout);
+  setActive('/checkout');
+}
+function submitCheckout(e){
+  e.preventDefault();
+  const f=e.target, g=n=>f.elements[n].value.trim();
+  const customer={recipient:g('recipient'),cpf:g('cpf'),phone:g('phone'),email:g('email'),
+    cep:g('cep'),state:g('state'),city:g('city'),address:g('address')};
+  const err=$('#coErr'); const fail=m=>{err.textContent=m;err.hidden=false;err.scrollIntoView({block:'center'});};
+  if(Object.values(customer).some(v=>!v)) return fail('Preencha todos os campos.');
+  if(onlyDigits(customer.cpf).length!==11) return fail('CPF inválido (11 dígitos).');
+  if(onlyDigits(customer.cep).length!==8) return fail('CEP inválido (8 dígitos).');
+  if(!/^\S+@\S+\.\S+$/.test(customer.email)) return fail('E-mail inválido.');
+  err.hidden=true;
   const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
   const frete=sub>=DATA.frete.gratis_acima?0:DATA.frete.valor;
-  const btn=$('#checkoutBtn'); btn.textContent='Gerando pagamento...'; btn.disabled=true;
+  const btn=$('#coSubmit'); btn.textContent='Gerando pagamento...'; btn.disabled=true;
   fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({items:CART,frete})})
+    body:JSON.stringify({items:CART,frete,customer})})
     .then(r=>r.json())
     .then(d=>{ if(d.init_point) location.href=d.init_point;
       else throw new Error(d.error||'sem init_point'); })
-    .catch(()=>{ btn.textContent='Finalizar compra'; btn.disabled=false;
-      toast('Checkout disponível após publicar (configurar Mercado Pago).'); });
+    .catch(()=>{ btn.textContent='Ir para o pagamento'; btn.disabled=false;
+      fail('Pagamento disponível após conectar o Mercado Pago. Tente novamente em instantes.'); });
 }
 
 /* ---------------- ui chrome ---------------- */
