@@ -230,7 +230,7 @@ function viewProduct(slug){
         <div class="sz-label"><span>Tamanho</span><span id="szhint" style="color:var(--muted);font-weight:500">Selecione</span></div>
         <div class="sizes">${sizes}</div>
         <button class="btn btn-dark" id="addBtn" disabled>Adicionar à sacola</button>
-        <div class="frete-note">⚡ Enviamos para todo o Brasil. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
+        <div class="frete-note">⚡ Enviamos para todo o Brasil em ${DATA.frete.prazo}. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
         <div class="acc">
           <details open><summary>Descrição</summary><div class="body">
             Camisa retrô ${p.player}, ${p.team}, temporada ${YR(p.year)}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
@@ -240,7 +240,7 @@ function viewProduct(slug){
             <p style="margin:10px 0 0">Medidas em cm, com tolerância de 1 a 2 cm pela elasticidade do tecido. Em dúvida entre dois tamanhos, recomendamos o maior. Dúvidas: <a href="#/suporte">suporte</a>.</p>
           </div></details>
           <details><summary>Entrega e trocas</summary><div class="body">
-            Enviamos para todo o Brasil. Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}; abaixo disso, o valor é calculado no checkout. Trocas em até 7 dias após o recebimento.
+            Enviamos para todo o Brasil, com prazo de entrega de ${DATA.frete.prazo}. Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}; abaixo disso, ${BRL(DATA.frete.valor)} fixo. Trocas em até 7 dias após o recebimento.
           </div></details>
         </div>
       </div>
@@ -288,7 +288,7 @@ function renderCart(){
     <div class="row"><span>Frete</span><span>${free?'Grátis':'Calculado no checkout'}</span></div>
     ${!free?`<div class="frete-bar">Faltam <b>${BRL(falta)}</b> para frete grátis.</div>`:'<div class="frete-bar"><b>Você ganhou frete grátis! 🎉</b></div>'}
     <div class="row tot"><span>Total</span><span>${BRL(sub)}</span></div>
-    <div class="cart-parc">em até ${PARC(sub)}</div>
+    <div class="cart-parc">em até ${PARC(sub)} · entrega em ${DATA.frete.prazo}</div>
     <button class="btn btn-dark" id="checkoutBtn">Finalizar compra</button>`;
   $$('#cartItems [data-rm]').forEach(x=>x.addEventListener('click',()=>{
     CART=CART.filter(i=>i.key!==x.dataset.rm); save();
@@ -347,6 +347,7 @@ function viewCheckout(){
         <div class="co-line"><span>Frete</span><span>${free?'Grátis':BRL(DATA.frete.valor)}</span></div>
         <div class="co-line co-tot"><span>Total</span><span>${BRL(sub+(free?0:DATA.frete.valor))}</span></div>
         <div class="co-parc">em até ${PARC(sub+(free?0:DATA.frete.valor))}</div>
+        <div class="co-prazo">📦 Entrega em ${DATA.frete.prazo}</div>
       </aside>
     </div>
   </div>${footer()}`;

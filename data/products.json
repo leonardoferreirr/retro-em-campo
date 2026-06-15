@@ -10,8 +10,9 @@
     "G1"
   ],
   "frete": {
-    "valor": 0.0,
-    "gratis_acima": 499.0
+    "valor": 22.0,
+    "gratis_acima": 499.0,
+    "prazo": "10 a 20 dias úteis"
   },
   "support_email": "retroemcampo@gmail.com",
   "products": [
@@ -1393,7 +1394,7 @@
       "year": "2003",
       "variant": null,
       "sub": "Sporting · 2003",
-      "price": 1.14,
+      "price": 189.0,
       "thumb": "assets/produtos/ronaldo-sporting-2003/1-t.webp",
       "img": [
         "assets/produtos/ronaldo-sporting-2003/1.webp",
