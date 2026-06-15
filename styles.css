@@ -451,3 +451,5 @@ footer.foot a:hover{color:#fff}
 .spin{width:14px;height:14px;border:2px solid #cfe9d6;border-top-color:var(--green);border-radius:50%;
   display:inline-block;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.pix-fail{text-align:center;padding:24px 12px;color:#444}
+.pix-fail p{margin:4px 0;font-size:.92rem}

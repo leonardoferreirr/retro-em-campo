@@ -453,7 +453,11 @@ function startPix(customer,ref){
       body:JSON.stringify({customer,items:CART,ref})})
     .then(r=>r.json().then(j=>({ok:r.ok,j})))
     .then(({ok,j})=>{
-      if(!ok||!j.qr_base64){pane.innerHTML=`<div class="co-err" style="display:block">${esc(j.error||'Não foi possível gerar o Pix. Use o cartão.')}</div>`;return;}
+      if(!ok||!j.qr_base64){
+        console.error('create-pix:',j.error||j);
+        pane.innerHTML=`<div class="pix-fail"><p>Pix indisponível no momento.</p><p>Você pode pagar pela aba <b>Cartão</b> ali em cima.</p></div>`;
+        return;
+      }
       pane.innerHTML=`
         <div class="pix-box">
           <img class="pix-qr" alt="QR Code Pix" src="data:image/png;base64,${j.qr_base64}">
