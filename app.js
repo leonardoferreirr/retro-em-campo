@@ -5,6 +5,9 @@ const DIAC = new RegExp('[\\u0300-\\u036f]','g');
 const slugify = s => s.toLowerCase().normalize('NFD').replace(DIAC,'')
   .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const BRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const CMP = p => p.price_compare || DATA.price_compare_default || 0;
+const OFF = p => { const c=CMP(p); return c>p.price ? Math.round((1-p.price/c)*100) : 0; };
+const PARC = (v,n=3) => `${n}x de ${BRL(v/n)} sem juros`;
 
 let DATA={products:[]}, CART=load();
 const TEAMSLUG={}; // slug -> display name
@@ -69,16 +72,18 @@ function setActive(h){
 /* ---------------- cards ---------------- */
 function card(p){
   const b=p.img[1]||p.img[0];
+  const c=CMP(p), off=OFF(p);
   return `<a class="card" href="#/produto/${p.slug}">
-    ${p.number?`<span class="num">${p.number}</span>`:''}
+    ${off?`<span class="tag tag-off">${off}% OFF</span>`:''}
     <span class="ph">
       <img class="a" loading="lazy" src="${p.thumb}" alt="${p.player} ${p.team}">
       <img class="b" loading="lazy" src="${b}" alt="">
     </span>
     <span class="meta">
-      <span class="pl">${p.player}</span>
-      <span class="sb">${p.sub}</span>
-      <span class="pr">${BRL(p.price)}</span>
+      <span class="pl">${p.player}${p.number?' #'+p.number:''}</span>
+      <span class="sb">${p.team}${p.year?' · '+p.year:''}</span>
+      <span class="pr">${c>p.price?`<s>${BRL(c)}</s>`:''}${BRL(p.price)}</span>
+      <span class="parc3">ou ${PARC(p.price)}</span>
     </span></a>`;
 }
 
@@ -162,7 +167,8 @@ function viewProduct(slug){
   const secTitle=p.section==='times'?'Times':'Seleções';
   const thumbs=p.img.map((s,i)=>`<img data-i="${i}" class="${i?'':'on'}" src="${s}" alt="vista ${i+1}">`).join('');
   const sizes=DATA.sizes.map(s=>`<button data-sz="${s}">${s}</button>`).join('');
-  const parc=`ou 3x de ${BRL(p.price/3)} sem juros`;
+  const parc=`ou ${PARC(p.price)}`;
+  const c=CMP(p), off=OFF(p);
   $('#view').innerHTML=`<div class="wrap">
     <div class="crumb"><a href="#/">Início</a> / <a href="#/${p.section}">${secTitle}</a> / <a href="#/${p.section}/${p.tslug}">${p.team}</a></div>
     <div class="pdp">
@@ -172,14 +178,14 @@ function viewProduct(slug){
       </div>
       <div class="pinfo">
         <div class="pteam">${p.team}${p.variant?' · '+p.variant:''}</div>
-        <h1>${p.player}${p.number?' '+p.number:''}</h1>
+        <h1>${p.player}${p.number?' #'+p.number:''}</h1>
         <div class="pyear">Temporada ${p.year||'—'}</div>
-        <div class="price">${BRL(p.price)}</div>
+        <div class="price">${c>p.price?`<s class="cmp">${BRL(c)}</s>`:''}${BRL(p.price)}${off?`<span class="offb">${off}% OFF</span>`:''}</div>
         <div class="parc">${parc}</div>
         <div class="sz-label"><span>Tamanho</span><span id="szhint" style="color:var(--muted);font-weight:500">Selecione</span></div>
         <div class="sizes">${sizes}</div>
         <button class="btn btn-dark" id="addBtn" disabled>Adicionar à sacola</button>
-        <div class="frete-note">⚡ Frete ${BRL(DATA.frete.valor)} para todo o Brasil. <b style="margin-left:4px">Grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
+        <div class="frete-note">⚡ Enviamos para todo o Brasil. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
         <div class="acc">
           <details open><summary>Descrição</summary><div class="body">
             Camisa retrô ${p.player}, ${p.team} — temporada ${p.year||''}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
@@ -188,7 +194,7 @@ function viewProduct(slug){
             Disponível em ${DATA.sizes.join(', ')}. Modelagem padrão adulto. Em dúvida entre dois tamanhos, recomendamos o maior. Dúvidas: <a href="#/suporte">suporte</a>.
           </div></details>
           <details><summary>Entrega e trocas</summary><div class="body">
-            Enviamos para todo o Brasil. Frete ${BRL(DATA.frete.valor)}, grátis acima de ${BRL(DATA.frete.gratis_acima)}. Trocas em até 7 dias após o recebimento.
+            Enviamos para todo o Brasil. Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}; abaixo disso, o valor é calculado no checkout. Trocas em até 7 dias após o recebimento.
           </div></details>
         </div>
       </div>
@@ -228,13 +234,13 @@ function renderCart(){
     <div class="ci-pr">${BRL(i.price*i.qty)}</div></div>`).join('');
   const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
   const free=sub>=DATA.frete.gratis_acima;
-  const frete=free?0:DATA.frete.valor;
   const falta=DATA.frete.gratis_acima-sub;
   foot.innerHTML=`
     <div class="row"><span>Subtotal</span><span>${BRL(sub)}</span></div>
-    <div class="row"><span>Frete</span><span>${free?'Grátis':BRL(frete)}</span></div>
+    <div class="row"><span>Frete</span><span>${free?'Grátis':'Calculado no checkout'}</span></div>
     ${!free?`<div class="frete-bar">Faltam <b>${BRL(falta)}</b> para frete grátis.</div>`:'<div class="frete-bar"><b>Você ganhou frete grátis! 🎉</b></div>'}
-    <div class="row tot"><span>Total</span><span>${BRL(sub+frete)}</span></div>
+    <div class="row tot"><span>Total</span><span>${BRL(sub)}</span></div>
+    <div class="cart-parc">em até ${PARC(sub)}</div>
     <button class="btn btn-dark" id="checkoutBtn">Finalizar compra</button>`;
   $$('#cartItems [data-rm]').forEach(x=>x.addEventListener('click',()=>{
     CART=CART.filter(i=>i.key!==x.dataset.rm); save();

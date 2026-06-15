@@ -1,6 +1,7 @@
 {
  "currency": "BRL",
  "price_default": 189.0,
+ "price_compare_default": 249.0,
  "sizes": [
   "P",
   "M",

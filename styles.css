@@ -12,8 +12,10 @@ img{display:block;max-width:100%}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 /* ---------- sidebar ---------- */
-.sidebar{position:fixed;top:0;left:0;width:var(--sb);height:100vh;background:var(--dark);
-  color:#fff;display:flex;flex-direction:column;padding:26px 0 18px;z-index:60;overflow-y:auto}
+.sidebar{position:fixed;top:0;left:0;width:320px;max-width:88vw;height:100vh;background:var(--dark);
+  color:#fff;display:flex;flex-direction:column;padding:26px 0 18px;z-index:60;overflow-y:auto;
+  transform:translateX(-100%);transition:transform .3s ease;box-shadow:10px 0 40px rgba(0,0,0,.18)}
+.sidebar.open{transform:translateX(0)}
 .brand{padding:0 24px 22px}
 .brand img{width:170px;filter:none}
 .nav{flex:1;padding:6px 12px}
@@ -36,13 +38,23 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   display:flex;flex-direction:column;gap:9px}
 .sidebar-foot a{font-size:.74rem;color:#8a8a8a;letter-spacing:.03em}
 .sidebar-foot a:hover{color:#fff}
-.sidebar-cart{display:none}
+.sidebar-cart{display:flex;justify-content:space-between;margin-top:6px;color:#fff;
+  font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
 
-/* ---------- topbar (mobile) ---------- */
-.topbar{display:none}
+/* ---------- topbar (todos os tamanhos) ---------- */
+.annbar{background:var(--acc);color:#0a0a0a;text-align:center;font-size:.7rem;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;padding:7px 12px}
+.topbar{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;
+  background:var(--dark);color:#fff;padding:0 20px;height:60px;z-index:50}
+.topbar-logo img{width:150px}
+.hamb{display:flex;flex-direction:column;gap:4px;padding:8px}
+.hamb span{width:22px;height:2px;background:#fff;display:block;transition:.2s}
+.cart-btn{font-size:.74rem;font-weight:700;letter-spacing:.08em;display:flex;gap:6px;align-items:center}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;opacity:0;visibility:hidden;transition:.25s}
+.scrim.on{opacity:1;visibility:visible}
 
 /* ---------- main ---------- */
-.main{margin-left:var(--sb);min-height:100vh}
+.main{margin-left:0;min-height:100vh}
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 .section-pad{padding:46px 0 70px}
 
@@ -108,6 +120,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   color:#dededе;color:#e4e4e4;z-index:1}
 .tag{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font-size:.62rem;
   font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;z-index:1}
+.tag-off{background:var(--green)}
+.card .pr s{color:var(--muted);font-weight:500;margin-right:5px}
+.card .parc3{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}
 
 /* group block (times/selecoes all) */
 .gblock{margin-bottom:10px}
@@ -146,6 +161,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   text-transform:uppercase;line-height:.98;margin:8px 0 4px}
 .pinfo .pyear{color:var(--muted);font-size:.95rem}
 .pinfo .price{font-size:1.7rem;font-weight:800;margin:22px 0 4px}
+.pinfo .price s.cmp{color:var(--muted);font-size:1.05rem;font-weight:500;margin-right:8px}
+.pinfo .price .offb{background:var(--green);color:#fff;font-size:.7rem;font-weight:800;
+  letter-spacing:.06em;padding:4px 8px;vertical-align:middle;margin-left:8px;text-transform:uppercase}
 .pinfo .parc{color:var(--muted);font-size:.82rem;margin-bottom:24px}
 .sz-label{font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   margin-bottom:10px;display:flex;justify-content:space-between}
@@ -188,6 +206,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .cart-foot .row.tot{font-size:1.05rem;font-weight:800;margin:12px 0 4px}
 .cart-foot .frete-bar{font-size:.76rem;color:var(--muted);margin:6px 0 16px}
 .cart-foot .frete-bar b{color:var(--green)}
+.cart-foot .cart-parc{font-size:.74rem;color:var(--muted);margin:2px 0 14px}
 
 /* legal / support */
 .doc{max-width:760px;padding-top:40px}
@@ -200,7 +219,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .support-card{display:flex;gap:16px;align-items:center;background:var(--soft);padding:22px;margin:18px 0}
 .support-card .big{font-family:var(--disp);font-size:1.3rem}
 
-footer.foot{margin-left:var(--sb);background:var(--dark);color:#9a9a9a;padding:40px;
+footer.foot{margin-left:0;background:var(--dark);color:#9a9a9a;padding:40px;
   font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px}
 footer.foot a:hover{color:#fff}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);
@@ -211,26 +230,14 @@ footer.foot a:hover{color:#fff}
 /* ---------- responsive ---------- */
 @media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){
-  .sidebar{transform:translateX(-100%);transition:transform .3s;width:300px}
-  .sidebar.open{transform:translateX(0)}
-  .sidebar-cart{display:flex;justify-content:space-between;margin-top:6px;color:#fff;
-    font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-  .topbar{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;
-    background:var(--dark);color:#fff;padding:0 16px;height:58px;z-index:50}
+  .topbar{padding:0 16px;height:58px}
   .topbar-logo img{width:140px}
-  .hamb{display:flex;flex-direction:column;gap:4px;padding:8px}
-  .hamb span{width:22px;height:2px;background:#fff;display:block}
-  .cart-btn{font-size:.74rem;font-weight:700;letter-spacing:.08em;display:flex;gap:6px;align-items:center}
-  .main,footer.foot{margin-left:0}
-  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;opacity:0;visibility:hidden;transition:.25s}
-  .scrim.on{opacity:1;visibility:visible}
   .wrap,.hero{padding-left:20px;padding-right:20px}
   .pdp{grid-template-columns:1fr;gap:26px}
   .gallery{grid-template-columns:1fr}
   .gallery .thumbs{flex-direction:row;order:2}
   .gallery .thumbs img{width:auto;flex:1}
 }
-@media(min-width:901px){.scrim{display:none}.topbar{display:none}}
 @media(max-width:620px){.grid,.tiles{grid-template-columns:repeat(2,1fr)}.cnt{display:none}}
 .cart-count{background:var(--acc);color:#000;font-size:.62rem;font-weight:800;min-width:17px;
   height:17px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px}
