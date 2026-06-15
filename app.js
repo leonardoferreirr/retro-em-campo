@@ -275,6 +275,12 @@ $('#scrimCart').addEventListener('click',closeCart);
 $('#navToggle').addEventListener('click',openNav);
 $('#scrim').addEventListener('click',closeNav);
 
+/* WhatsApp flutuante — preencha WAPP com o número (só dígitos, DDI 55) quando a conta estiver pronta */
+const WAPP=''; // ex: '5531991234567'
+(()=>{const el=$('#wapp');if(!el||!WAPP)return;
+  const msg=encodeURIComponent('Olá! Vim pela loja Retrô em Campo e quero tirar uma dúvida.');
+  el.href=`https://wa.me/${WAPP}?text=${msg}`;el.hidden=false;})();
+
 /* ---------------- footer + docs ---------------- */
 function footer(){
   return `<footer class="foot">
