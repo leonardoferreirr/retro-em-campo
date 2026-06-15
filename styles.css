@@ -49,7 +49,13 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .topbar-logo img{width:150px}
 .hamb{display:flex;flex-direction:column;gap:4px;padding:8px}
 .hamb span{width:22px;height:2px;background:#fff;display:block;transition:.2s}
-.cart-btn{font-size:.74rem;font-weight:700;letter-spacing:.08em;display:flex;gap:6px;align-items:center}
+.topbar-actions{display:flex;align-items:center;gap:18px}
+.ig-link{display:flex;align-items:center;color:#fff;opacity:.85;transition:opacity .2s}
+.ig-link:hover{opacity:1}
+.cart-btn{font-size:.74rem;font-weight:700;letter-spacing:.08em;display:flex;gap:7px;align-items:center;color:#fff}
+.cart-btn svg{display:block}
+.cart-btn:hover{opacity:.85}
+@media(max-width:560px){.cart-btn .cart-label{display:none}.topbar-actions{gap:14px}}
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;opacity:0;visibility:hidden;transition:.25s}
 .scrim.on{opacity:1;visibility:visible}
 
@@ -67,8 +73,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   background:linear-gradient(95deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.16) 32%,transparent 58%)}
 .hslide.on{opacity:1;pointer-events:auto}
 .hcopy{position:relative;z-index:1;max-width:1280px;margin:0 auto;width:100%;padding:0 40px;color:#fff}
-.hcopy h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.4rem,5.4vw,5rem);line-height:.95;
-  text-transform:uppercase;max-width:9ch}
+.hcopy h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.4rem,6.4vw,6.4rem);line-height:.94;
+  text-transform:uppercase;max-width:15ch}
 .hcopy p{margin:16px 0 26px;max-width:30ch;color:#e9e9e9;font-size:clamp(.92rem,1.4vw,1.08rem)}
 .harrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;
   display:flex;align-items:center;justify-content:center;font-size:1.8rem;line-height:1;color:#fff;

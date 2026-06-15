@@ -20,7 +20,18 @@
   <header class="topbar">
     <button class="hamb" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="#/" class="topbar-logo"><img src="assets/brand/logo-light.png" alt="Retrô em Campo"></a>
-    <button class="cart-btn" id="cartToggle" aria-label="Sacola">SACOLA<span class="cart-count" id="cartCountTop">0</span></button>
+    <div class="topbar-actions">
+      <a class="ig-link" href="https://instagram.com/retroemcampo" target="_blank" rel="noopener" aria-label="Instagram da Retrô em Campo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <button class="cart-btn" id="cartToggle" aria-label="Carrinho">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 8h12l-1 11.5a1.5 1.5 0 0 1-1.5 1.4h-9A1.5 1.5 0 0 1 4 19.5L3 8z" transform="translate(1 0)"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
+        <span class="cart-label">CARRINHO</span>
+        <span class="cart-count" id="cartCountTop">0</span>
+      </button>
+    </div>
   </header>
 
   <!-- sidebar -->
@@ -31,7 +42,7 @@
       <a href="#/suporte">Suporte</a>
       <a href="#/termos">Termos e condições</a>
       <a href="#/privacidade">Política de privacidade</a>
-      <button class="sidebar-cart" id="cartToggle2">Sacola <span class="cart-count" id="cartCountSide">0</span></button>
+      <button class="sidebar-cart" id="cartToggle2">Carrinho <span class="cart-count" id="cartCountSide">0</span></button>
     </div>
   </aside>
   <div class="scrim" id="scrim"></div>
@@ -41,7 +52,7 @@
 
   <!-- cart drawer -->
   <aside class="cart" id="cart">
-    <div class="cart-head"><span>Sua sacola</span><button id="cartClose" aria-label="Fechar">✕</button></div>
+    <div class="cart-head"><span>Seu carrinho</span><button id="cartClose" aria-label="Fechar">✕</button></div>
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot" id="cartFoot"></div>
   </aside>

@@ -240,7 +240,7 @@ function viewProduct(slug){
         <div class="parc">${parc}</div>
         <div class="sz-label"><span>Tamanho</span><span id="szhint" style="color:var(--muted);font-weight:500">Selecione</span></div>
         <div class="sizes">${sizes}</div>
-        <button class="btn btn-dark" id="addBtn" disabled>Adicionar à sacola</button>
+        <button class="btn btn-dark" id="addBtn" disabled>Adicionar ao carrinho</button>
         <div class="frete-note">⚡ Enviamos para todo o Brasil em ${DATA.frete.prazo}. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
         <div class="acc">
           <details open><summary>Descrição</summary><div class="body">
@@ -278,13 +278,13 @@ function addToCart(p,size){
   const ex=CART.find(i=>i.key===key);
   if(ex) ex.qty++; else CART.push({key,slug:p.slug,player:p.player,sub:subOf(p),size,
     price:p.price,thumb:p.thumb,qty:1});
-  save(); toast('Adicionado à sacola'); openCart();
+  save(); toast('Adicionado ao carrinho'); openCart();
 }
 function renderCart(){
   const n=CART.reduce((s,i)=>s+i.qty,0);
   $('#cartCountTop').textContent=n; $('#cartCountSide').textContent=n;
   const box=$('#cartItems'), foot=$('#cartFoot');
-  if(!CART.length){ box.innerHTML='<div class="cart-empty">Sua sacola está vazia.</div>'; foot.innerHTML=''; return; }
+  if(!CART.length){ box.innerHTML='<div class="cart-empty">Seu carrinho está vazio.</div>'; foot.innerHTML=''; return; }
   box.innerHTML=CART.map(i=>`<div class="citem">
     <img src="${i.thumb}" alt="">
     <div><div class="ci-pl">${i.player}</div><div class="ci-sb">${i.sub}</div>
@@ -331,7 +331,7 @@ function viewCheckout(){
       <form class="co-form" id="coForm" novalidate>
         <div class="co-thumb">
           <span class="co-thumb-imgs">${CART.slice(0,3).map(i=>`<img src="${i.thumb}" alt="${i.player}">`).join('')}</span>
-          <span class="co-thumb-txt">${CART.length===1?`${CART[0].player} · Tam ${CART[0].size}`:`${CART.reduce((s,i)=>s+i.qty,0)} itens na sacola`}</span>
+          <span class="co-thumb-txt">${CART.length===1?`${CART[0].player} · Tam ${CART[0].size}`:`${CART.reduce((s,i)=>s+i.qty,0)} itens no carrinho`}</span>
         </div>
         <p class="co-hint">Preencha em português. Esses dados são usados para enviar a sua camisa e emitir o pedido.</p>
         <label>Destinatário (nome completo)<input name="recipient" autocomplete="name" required></label>
@@ -528,7 +528,7 @@ const DOCS={
     política de privacidade da plataforma. Não armazenamos dados completos de cartão.</p>
     <h2>4. Seus direitos</h2><p>Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer
     momento escrevendo para <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
-    <h2>5. Cookies</h2><p>Usamos cookies para lembrar sua sacola e medir o uso do site. Você pode desativá-los
+    <h2>5. Cookies</h2><p>Usamos cookies para lembrar seu carrinho e medir o uso do site. Você pode desativá-los
     nas configurações do navegador.</p>
     <h2>6. Contato</h2><p>Encarregado de dados: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`,
   trocas:`<h1>Trocas e devoluções</h1><p class="upd">Última atualização: ${new Date().toLocaleDateString('pt-BR')}</p>
