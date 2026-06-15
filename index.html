@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retrô em Campo — Camisas de futebol retrô</title>
+<meta name="description" content="Camisas de futebol retrô icônicas. Clubes e seleções, dos anos 80 aos 2000. Retrô em Campo.">
+<link rel="icon" href="assets/brand/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- topbar mobile -->
+  <header class="topbar">
+    <button class="hamb" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="#/" class="topbar-logo"><img src="assets/brand/logo-light.png" alt="Retrô em Campo"></a>
+    <button class="cart-btn" id="cartToggle" aria-label="Sacola">SACOLA<span class="cart-count" id="cartCountTop">0</span></button>
+  </header>
+
+  <!-- sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <a href="#/" class="brand"><img src="assets/brand/logo-light.png" alt="Retrô em Campo"></a>
+    <nav class="nav" id="nav"><!-- rendered by app.js --></nav>
+    <div class="sidebar-foot">
+      <a href="#/suporte">Suporte</a>
+      <a href="#/termos">Termos e condições</a>
+      <a href="#/privacidade">Política de privacidade</a>
+      <button class="sidebar-cart" id="cartToggle2">Sacola <span class="cart-count" id="cartCountSide">0</span></button>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <!-- main -->
+  <main class="main" id="view"><!-- rendered by app.js --></main>
+
+  <!-- cart drawer -->
+  <aside class="cart" id="cart">
+    <div class="cart-head"><span>Sua sacola</span><button id="cartClose" aria-label="Fechar">✕</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot" id="cartFoot"></div>
+  </aside>
+  <div class="scrim" id="scrimCart"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
