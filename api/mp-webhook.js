@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 const MP_TOKEN = process.env.MP_ACCESS_TOKEN;
 const MP_WEBHOOK_SECRET = process.env.MP_WEBHOOK_SECRET;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM = 'Retrô em Campo <pedidos@retroemcampo.com.br>';
+const FROM = process.env.MAIL_FROM || 'Retrô em Campo <pedidos@retroemcampo.com.br>';
 const STORE_EMAIL = 'retroemcampo@gmail.com'; // onde você recebe os pedidos pra enviar
 
 const BRL = n => Number(n || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -36,12 +36,16 @@ async function mpGet(url) {
 }
 
 async function sendEmail(to, subject, html) {
-  if (!RESEND_API_KEY || !to) return;
-  await fetch('https://api.resend.com/emails', {
+  if (!RESEND_API_KEY) { console.error('resend: RESEND_API_KEY ausente'); return; }
+  if (!to) return;
+  const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${RESEND_API_KEY}` },
     body: JSON.stringify({ from: FROM, to, subject, html })
   });
+  const body = await r.text();
+  if (!r.ok) console.error('resend FAIL', r.status, 'from=', FROM, 'to=', to, body);
+  else console.log('resend OK', r.status, 'to=', to, body);
 }
 
 export default async function handler(req, res) {
