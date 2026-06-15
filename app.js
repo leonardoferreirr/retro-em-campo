@@ -118,8 +118,8 @@ function card(p){
 /* ---------------- views ---------------- */
 function viewHome(){
   const pick=ss=>ss.map(s=>DATA.products.find(p=>p.slug===s)).filter(Boolean);
-  const selFeat=pick(['maradona-argentina-1994','ronaldo-9-brazil-1998','zidane-10-france-1998','baggio-10-italy-1994']);
-  const timFeat=pick(['maldini-ac-milan-1997','de-boer-ajax-1999','ronaldo-barcelona-1998-away','cantona-7-manutd-1995']);
+  const selFeat=pick(['maradona-argentina-1994','ronaldo-9-brazil-1998','cristiano-ronaldo-17-portugal-2006','nakata-8-japan-1998']);
+  const timFeat=pick(['cantona-7-manutd-1995','ronaldo-barcelona-1998-away','matthaus-10-bayern-1997-98','de-boer-ajax-1999']);
   const slides=[
     {img:'assets/brand/hero-1.jpg',v:'assets/brand/hero-1-v.jpg',
      h:'As camisetas mais icônicas de todas',sub:'Da laranja holandesa de 88 aos mantos eternos, reunidos aqui.',cta:'Ver todas as camisetas',href:'#/todas'},
@@ -148,7 +148,7 @@ function viewHome(){
       <a class="tile" href="#/times"><img src="${DATA.products.find(p=>p.section==='times').img[0]}" alt=""><h3>Times</h3><span class="go">Ver todos →</span></a>
       <a class="tile" href="#/selecoes"><img src="${DATA.products.find(p=>p.section==='selecoes').img[0]}" alt=""><h3>Seleções</h3><span class="go">Ver todas →</span></a>
     </div>
-    <div class="shead"><h2>Destaques</h2><span class="cnt">${DATA.products.length} modelos no acervo</span></div>
+    <div class="shead"><h2>Mais pedidas</h2><span class="cnt">${DATA.products.length} modelos no acervo</span></div>
     <div class="fcar-head"><h3>Seleções</h3><a href="#/selecoes">Ver todas →</a></div>
     <div class="fcar">${selFeat.map(card).join('')}</div>
     <div class="fcar-head"><h3>Times</h3><a href="#/times">Ver todos →</a></div>
