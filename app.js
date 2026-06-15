@@ -46,6 +46,7 @@ function buildNav(){
 
 /* ---------------- router ---------------- */
 function route(){
+  if(window.__hero){clearInterval(window.__hero);window.__hero=null;}
   const h=(location.hash||'#/').replace(/^#/,'');
   const seg=h.split('/').filter(Boolean); // ['times','barcelona']
   window.scrollTo(0,0);
@@ -84,16 +85,25 @@ function card(p){
 /* ---------------- views ---------------- */
 function viewHome(){
   const feat=[...DATA.products].sort(()=>0).slice(0,8);
-  const pick=(sec)=>{const g=groupsOf(sec);const k=Object.keys(g)[0];return g[k][0];};
+  const slides=[
+    {img:'assets/brand/hero-clubes.jpg',v:'assets/brand/hero-clubes-v.jpg',
+     h:'O clássico nunca sai de moda',sub:'Os mantos que marcaram época, dos anos 80 aos 2000.',cta:'Ver times',href:'#/times'},
+    {img:'assets/brand/hero-selecoes.jpg',v:'assets/brand/hero-selecoes-v.jpg',
+     h:'O clássico nunca sai de moda',sub:'Seleções eternas, recriadas em peça.',cta:'Ver seleções',href:'#/selecoes'}
+  ];
+  const slidesHTML=slides.map((s,i)=>`
+    <a class="hslide${i?'':' on'}" href="${s.href}" data-i="${i}" style="--d:url('${s.img}');--m:url('${s.v}')">
+      <div class="hcopy">
+        <h1>${s.h}</h1><p>${s.sub}</p>
+        <span class="btn btn-light">${s.cta} <span aria-hidden="true">→</span></span>
+      </div>
+    </a>`).join('');
+  const dotsHTML=slides.map((s,i)=>`<button class="hdot${i?'':' on'}" data-i="${i}" aria-label="slide ${i+1}"></button>`).join('');
   $('#view').innerHTML=`
-  <section class="hero"><div class="hero-inner">
-    <h1>O clássico<br>nunca <em>sai de moda</em></h1>
-    <p>Camisas de futebol retrô icônicas, dos anos 80 aos 2000. Clubes e seleções que marcaram época, recriados em peça.</p>
-    <div class="hero-cta">
-      <a class="btn btn-light" href="#/times">Ver times</a>
-      <a class="btn btn-out" href="#/selecoes">Ver seleções</a>
-    </div>
-  </div></section>
+  <section class="hero-carousel" id="heroCar">
+    <div class="hslides">${slidesHTML}</div>
+    <div class="hdots">${dotsHTML}</div>
+  </section>
   <div class="wrap">
     <div class="tiles">
       <a class="tile" href="#/times"><img src="${DATA.products.find(p=>p.section==='times').img[0]}" alt=""><h3>Times</h3><span class="go">Ver todos →</span></a>
@@ -103,6 +113,16 @@ function viewHome(){
     <div class="grid">${feat.map(card).join('')}</div>
   </div>
   ${footer()}`;
+  const car=$('#heroCar');
+  if(car){
+    const sl=$$('.hslide',car), dt=$$('.hdot',car); let ci=0;
+    const show=i=>{ci=(i+sl.length)%sl.length;
+      sl.forEach((s,j)=>s.classList.toggle('on',j===ci));
+      dt.forEach((d,j)=>d.classList.toggle('on',j===ci));};
+    const reset=()=>{clearInterval(window.__hero);window.__hero=setInterval(()=>show(ci+1),5500);};
+    dt.forEach(d=>d.addEventListener('click',e=>{e.preventDefault();show(+d.dataset.i);reset();}));
+    reset();
+  }
   setActive('/');
 }
 

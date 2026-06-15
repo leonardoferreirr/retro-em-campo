@@ -46,7 +46,20 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
 .section-pad{padding:46px 0 70px}
 
-/* hero */
+/* hero carousel */
+.hero-carousel{position:relative;height:clamp(440px,60vh,660px);background:var(--dark);overflow:hidden}
+.hslides{position:absolute;inset:0}
+.hslide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transition:opacity .8s ease;
+  background-image:var(--d);background-size:cover;background-position:center right;pointer-events:none}
+.hslide.on{opacity:1;pointer-events:auto}
+.hcopy{max-width:1280px;margin:0 auto;width:100%;padding:0 40px;color:#fff}
+.hcopy h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.4rem,5.4vw,5rem);line-height:.95;
+  text-transform:uppercase;max-width:9ch}
+.hcopy p{margin:16px 0 26px;max-width:30ch;color:#e9e9e9;font-size:clamp(.92rem,1.4vw,1.08rem)}
+.hdots{position:absolute;left:0;right:0;bottom:22px;display:flex;gap:9px;justify-content:center;z-index:3}
+.hdots .hdot{width:32px;height:4px;background:rgba(255,255,255,.4);border-radius:2px;transition:.2s}
+.hdots .hdot.on{background:#fff}
+/* legacy text hero (kept) */
 .hero{background:var(--dark);color:#fff;padding:74px 40px 80px;position:relative;overflow:hidden}
 .hero-inner{max-width:1280px;margin:0 auto}
 .hero h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.6rem,6vw,5.2rem);
@@ -221,3 +234,14 @@ footer.foot a:hover{color:#fff}
 @media(max-width:620px){.grid,.tiles{grid-template-columns:repeat(2,1fr)}.cnt{display:none}}
 .cart-count{background:var(--acc);color:#000;font-size:.62rem;font-weight:800;min-width:17px;
   height:17px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px}
+
+/* hero carousel — mobile */
+@media(max-width:900px){
+  .hero-carousel{height:clamp(540px,88vh,780px)}
+  .hslide{background-image:var(--m);background-position:center top;align-items:flex-end}
+  .hslide::after{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(to top,rgba(0,0,0,.82) 4%,rgba(0,0,0,.2) 40%,transparent 62%)}
+  .hcopy{position:relative;z-index:2;padding-bottom:56px}
+  .hcopy h1{max-width:14ch}
+  .hcopy p{max-width:36ch}
+}
