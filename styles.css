@@ -59,10 +59,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .section-pad{padding:46px 0 70px}
 
 /* hero carousel */
-.hero-carousel{position:relative;aspect-ratio:16/9;background:var(--dark);overflow:hidden}
+.hero-carousel{position:relative;height:80vh;max-height:840px;background:var(--dark);overflow:hidden}
 .hslides{position:absolute;inset:0}
 .hslide{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transition:opacity .8s ease;
-  background-image:var(--d);background-size:cover;background-position:center right;pointer-events:none}
+  background-image:var(--d);background-size:cover;background-position:center top;pointer-events:none}
 .hslide::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background:linear-gradient(95deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.16) 32%,transparent 58%)}
 .hslide.on{opacity:1;pointer-events:auto}
@@ -70,6 +70,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .hcopy h1{font-family:var(--disp);font-weight:400;font-size:clamp(2.4rem,5.4vw,5rem);line-height:.95;
   text-transform:uppercase;max-width:9ch}
 .hcopy p{margin:16px 0 26px;max-width:30ch;color:#e9e9e9;font-size:clamp(.92rem,1.4vw,1.08rem)}
+.harrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;line-height:1;color:#fff;
+  background:rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.35);border-radius:50%;cursor:pointer;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,transform .2s;padding-bottom:3px}
+.harrow:hover{background:rgba(0,0,0,.55)}
+.harrow.prev{left:22px}
+.harrow.next{right:22px}
+@media(max-width:760px){.harrow{width:40px;height:40px;font-size:1.5rem}.harrow.prev{left:10px}.harrow.next{right:10px}}
 .hdots{position:absolute;left:0;right:0;bottom:22px;display:flex;gap:9px;justify-content:center;z-index:3}
 .hdots .hdot{width:32px;height:4px;background:rgba(255,255,255,.4);border-radius:2px;transition:.2s}
 .hdots .hdot.on{background:#fff}

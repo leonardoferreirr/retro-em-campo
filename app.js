@@ -139,6 +139,8 @@ function viewHome(){
   $('#view').innerHTML=`
   <section class="hero-carousel" id="heroCar">
     <div class="hslides">${slidesHTML}</div>
+    <button class="harrow prev" id="hPrev" aria-label="Banner anterior">‹</button>
+    <button class="harrow next" id="hNext" aria-label="Próximo banner">›</button>
     <div class="hdots">${dotsHTML}</div>
   </section>
   <div class="wrap">
@@ -160,7 +162,16 @@ function viewHome(){
       sl.forEach((s,j)=>s.classList.toggle('on',j===ci));
       dt.forEach((d,j)=>d.classList.toggle('on',j===ci));};
     const reset=()=>{clearInterval(window.__hero);window.__hero=setInterval(()=>show(ci+1),5500);};
-    dt.forEach(d=>d.addEventListener('click',e=>{e.preventDefault();show(+d.dataset.i);reset();}));
+    const go=i=>{show(i);reset();};
+    dt.forEach(d=>d.addEventListener('click',e=>{e.preventDefault();go(+d.dataset.i);}));
+    $('#hPrev',car).addEventListener('click',e=>{e.preventDefault();go(ci-1);});
+    $('#hNext',car).addEventListener('click',e=>{e.preventDefault();go(ci+1);});
+    // arrastar com o dedo (mobile)
+    let x0=null;
+    car.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;},{passive:true});
+    car.addEventListener('touchend',e=>{ if(x0===null)return;
+      const dx=e.changedTouches[0].clientX-x0; x0=null;
+      if(Math.abs(dx)>40) go(dx<0?ci+1:ci-1); });
     reset();
   }
   setActive('/');
