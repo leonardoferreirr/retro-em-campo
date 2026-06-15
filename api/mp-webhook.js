@@ -83,8 +83,17 @@ export default async function handler(req, res) {
 
     const ref = payment.external_reference || ('MP-' + paymentId);
     const total = payment.transaction_amount;
-    const LOGO = 'https://www.retroemcampo.com.br/assets/brand/logo-dark.png';
-    const header = `<div style="text-align:center;padding:8px 0 22px"><img src="${LOGO}" alt="Retrô em Campo" width="220" style="max-width:220px;height:auto"></div>`;
+    // logo BRANCA sobre faixa PRETA: fica legível no modo claro e no escuro
+    const LOGO = 'https://www.retroemcampo.com.br/assets/brand/logo-light.png';
+    const shell = inner => `
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2;margin:0;padding:22px 0">
+        <tr><td align="center">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:92%;background:#ffffff;border-radius:12px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;color:#111">
+            <tr><td align="center" style="background:#0a0a0a;padding:22px 0"><img src="${LOGO}" alt="Retrô em Campo" width="210" style="width:210px;max-width:60%;height:auto;display:block"></td></tr>
+            <tr><td style="padding:24px 28px 30px">${inner}</td></tr>
+          </table>
+        </td></tr>
+      </table>`;
     const itemRow = i => {
       const qty = i.qty || i.quantity || 1;
       const img = i.image || i.picture_url || '';
@@ -99,9 +108,7 @@ export default async function handler(req, res) {
     const field = (label, val) => `<tr><td style="padding:4px 12px 4px 0;color:#666;white-space:nowrap">${label}</td><td style="padding:4px 0;font-weight:600">${esc(val) || '—'}</td></tr>`;
 
     // e-mail PRA VOCÊ — pedido a separar e enviar
-    const adminHtml = `
-      <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;color:#111">
-        ${header}
+    const adminHtml = shell(`
         <h2 style="margin:0 0 4px">Pedido aprovado · ${esc(ref)}</h2>
         <p style="color:#666;margin:0 0 18px">Pagamento confirmado no Mercado Pago. Separe e envie.</p>
         <h3 style="margin:18px 0 6px">Itens</h3>
@@ -117,23 +124,19 @@ export default async function handler(req, res) {
           ${field('Estado', customer.state)}
           ${field('Cidade', customer.city)}
           ${field('Endereço', customer.address)}
-        </tbody></table>
-      </div>`;
+        </tbody></table>`);
     await sendEmail(STORE_EMAIL, `Pedido aprovado ${ref} — ${BRL(total)}`, adminHtml);
 
     // e-mail PRO CLIENTE — confirmação
     if (customer.email) {
-      const custHtml = `
-        <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;color:#111">
-          ${header}
+      const custHtml = shell(`
           <h2 style="margin:0 0 4px">Pedido confirmado!</h2>
           <p style="color:#666;margin:0 0 18px">Olá${customer.recipient ? ', ' + esc(customer.recipient.split(' ')[0]) : ''}! Recebemos o seu pagamento. Em breve a sua camisa será separada e enviada.</p>
           <h3 style="margin:18px 0 6px">Resumo</h3>
           <table style="width:100%;border-collapse:collapse;font-size:14px"><tbody>${rows}</tbody></table>
           <p style="text-align:right;font-size:16px;font-weight:800;margin:10px 0 0">Total: ${BRL(total)}</p>
           <p style="font-size:13px;color:#666;margin-top:18px">Pedido ${esc(ref)}. Dúvidas? Responda este e-mail ou chame no WhatsApp.</p>
-          <p style="font-size:13px;color:#999">Retrô em Campo</p>
-        </div>`;
+          <p style="font-size:13px;color:#999">Retrô em Campo</p>`);
       await sendEmail(customer.email, 'Pedido confirmado — Retrô em Campo', custHtml);
     }
 
