@@ -8,6 +8,10 @@ const BRL = n => n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const CMP = p => p.price_compare || DATA.price_compare_default || 0;
 const OFF = p => { const c=CMP(p); return c>p.price ? Math.round((1-p.price/c)*100) : 0; };
 const PARC = (v,n=3) => `${n}x de ${BRL(v/n)} sem juros`;
+const YR = y => { if(!y) return ''; y=String(y).trim();
+  if(y.includes('/')){const a=y.split('/');return `’${a[0].slice(-2)}/${a[a.length-1].slice(-2)}`;}
+  return `’${y.slice(-2)}`; };
+const subOf = p => `${p.team}${p.year?' · '+YR(p.year):''}${p.variant?' ('+p.variant+')':''}`;
 
 let DATA={products:[]}, CART=load();
 const TEAMSLUG={}; // slug -> display name
@@ -81,7 +85,7 @@ function card(p){
     </span>
     <span class="meta">
       <span class="pl">${p.player}${p.number?' #'+p.number:''}</span>
-      <span class="sb">${p.team}${p.year?' · '+p.year:''}</span>
+      <span class="sb">${subOf(p)}</span>
       <span class="pr">${c>p.price?`<s>${BRL(c)}</s>`:''}${BRL(p.price)}</span>
       <span class="parc3">ou ${PARC(p.price)}</span>
     </span></a>`;
@@ -179,7 +183,7 @@ function viewProduct(slug){
       <div class="pinfo">
         <div class="pteam">${p.team}${p.variant?' · '+p.variant:''}</div>
         <h1>${p.player}${p.number?' #'+p.number:''}</h1>
-        <div class="pyear">Temporada ${p.year||'—'}</div>
+        <div class="pyear">${YR(p.year)||'—'}</div>
         <div class="price">${c>p.price?`<s class="cmp">${BRL(c)}</s>`:''}${BRL(p.price)}${off?`<span class="offb">${off}% OFF</span>`:''}</div>
         <div class="parc">${parc}</div>
         <div class="sz-label"><span>Tamanho</span><span id="szhint" style="color:var(--muted);font-weight:500">Selecione</span></div>
@@ -188,7 +192,7 @@ function viewProduct(slug){
         <div class="frete-note">⚡ Enviamos para todo o Brasil. <b style="margin-left:4px">Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}.</b></div>
         <div class="acc">
           <details open><summary>Descrição</summary><div class="body">
-            Camisa retrô ${p.player}, ${p.team} — temporada ${p.year||''}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
+            Camisa retrô ${p.player}, ${p.team}, temporada ${YR(p.year)}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
           </div></details>
           <details><summary>Tamanhos e medidas</summary><div class="body">
             Disponível em ${DATA.sizes.join(', ')}. Modelagem padrão adulto. Em dúvida entre dois tamanhos, recomendamos o maior. Dúvidas: <a href="#/suporte">suporte</a>.
@@ -217,7 +221,7 @@ function viewProduct(slug){
 function addToCart(p,size){
   const key=p.slug+'_'+size;
   const ex=CART.find(i=>i.key===key);
-  if(ex) ex.qty++; else CART.push({key,slug:p.slug,player:p.player,sub:p.sub,size,
+  if(ex) ex.qty++; else CART.push({key,slug:p.slug,player:p.player,sub:subOf(p),size,
     price:p.price,thumb:p.thumb,qty:1});
   save(); toast('Adicionado à sacola'); openCart();
 }
