@@ -643,9 +643,9 @@ function viewAdmin(){
     sessionStorage.setItem('rec_admin_key',e.target.pwd.value);
     viewAdmin();
   });
-  if(key)loadAdminOrders(key);
+  if(key)loadAdminOrders(key,false);
 }
-function loadAdminOrders(key){
+function loadAdminOrders(key,showArchived){
   const list=$('#admList'), err=$('#admErr'); list.innerHTML='<p class="upd">Carregando pedidos…</p>';
   fetch('/api/admin-orders',{headers:{'x-admin-key':key}})
     .then(r=>r.json().then(j=>({ok:r.ok,status:r.status,j})))
@@ -654,16 +654,20 @@ function loadAdminOrders(key){
         if(status===401){sessionStorage.removeItem('rec_admin_key');err.textContent='Senha inválida.';err.hidden=false;list.innerHTML='';return viewAdmin();}
         err.textContent=j.error||'Erro ao carregar.';err.hidden=false;list.innerHTML='';return;
       }
-      const orders=j.orders||[];
-      if(!orders.length){list.innerHTML='<p class="upd">Nenhum pedido ainda.</p>';return;}
-      list.innerHTML=orders.map(o=>{
+      const all=j.orders||[];
+      const archCount=all.filter(o=>o.archived).length;
+      const orders=all.filter(o=>showArchived?true:!o.archived);
+      const toggle=archCount?`<button type="button" class="lnk" id="admToggleArch" style="margin-bottom:14px">${showArchived?'Ocultar arquivados':'Mostrar arquivados ('+archCount+')'}</button>`:'';
+      const wireToggle=()=>{const tg=$('#admToggleArch');if(tg)tg.addEventListener('click',()=>loadAdminOrders(key,!showArchived));};
+      if(!orders.length){list.innerHTML=toggle+`<p class="upd">${showArchived?'Nenhum pedido.':'Nenhum pedido ativo.'}</p>`;wireToggle();return;}
+      list.innerHTML=toggle+orders.map(o=>{
         const items=(o.items||[]).map(i=>`${(i.qty||1)}× ${esc(i.title)}`).join(', ');
         const c=o.customer||{};
         const badge={approved:'Pago',shipped:'Enviado',delivered:'Entregue'}[o.status]||esc(o.status);
         const st=['approved','shipped','delivered'].includes(o.status)?o.status:'';
-        return `<div class="adm-card" data-ref="${esc(o.ref)}">
+        return `<div class="adm-card${o.archived?' archived':''}" data-ref="${esc(o.ref)}" data-arch="${o.archived?1:0}">
           <div class="adm-top">
-            <div><strong>${esc(o.ref)}</strong> <span class="adm-badge ${st}">${badge}</span></div>
+            <div><strong>${esc(o.ref)}</strong> <span class="adm-badge ${st}">${badge}</span>${o.archived?' <span class="adm-badge">Arquivado</span>':''}</div>
             <div class="adm-total">${BRL(o.total)}</div>
           </div>
           <div class="adm-meta">${esc(fmtDate(o.created_iso))} · ${esc(c.recipient)} · ${esc(c.email)}</div>
@@ -673,11 +677,14 @@ function loadAdminOrders(key){
             <input class="adm-trk" placeholder="Código de rastreio" value="${esc(o.tracking)}">
             <button class="btn btn-dark adm-save" type="button" style="width:auto;padding:10px 18px">${o.tracking?'Atualizar':'Salvar e avisar'}</button>
             ${o.status!=='delivered'?'<button class="btn btn-ghost adm-deliver" type="button" style="width:auto;padding:10px 18px">Marcar entregue</button>':''}
+            <button class="btn btn-ghost adm-arch" type="button" style="width:auto;padding:10px 18px">${o.archived?'Desarquivar':'Arquivar'}</button>
+            <button class="adm-del" type="button">Excluir</button>
           </div>
         </div>`;
       }).join('');
+      wireToggle();
       $$('.adm-card').forEach(card=>{
-        const ref=card.dataset.ref;
+        const ref=card.dataset.ref, isArch=card.dataset.arch==='1';
         const post=body=>fetch('/api/admin-orders',{method:'POST',
           headers:{'Content-Type':'application/json','x-admin-key':key},
           body:JSON.stringify({ref,...body})}).then(r=>r.json().then(j=>({ok:r.ok,j})));
@@ -689,13 +696,22 @@ function loadAdminOrders(key){
             this.disabled=false;
             if(!ok){toast(j.error||'Erro');this.textContent='Salvar e avisar';return;}
             toast(j.emailed?'Rastreio salvo, cliente avisado':'Rastreio atualizado');
-            loadAdminOrders(key);
+            loadAdminOrders(key,showArchived);
           });
         });
         const del=card.querySelector('.adm-deliver');
         if(del)del.addEventListener('click',function(){
           this.disabled=true;
-          post({status:'delivered'}).then(({ok})=>{if(ok){toast('Marcado como entregue');loadAdminOrders(key);}else{this.disabled=false;}});
+          post({status:'delivered'}).then(({ok})=>{if(ok){toast('Marcado como entregue');loadAdminOrders(key,showArchived);}else{this.disabled=false;}});
+        });
+        card.querySelector('.adm-arch').addEventListener('click',function(){
+          this.disabled=true;
+          post({action:isArch?'unarchive':'archive'}).then(({ok})=>{if(ok){toast(isArch?'Desarquivado':'Arquivado');loadAdminOrders(key,showArchived);}else{this.disabled=false;}});
+        });
+        card.querySelector('.adm-del').addEventListener('click',function(){
+          if(!confirm('Excluir o pedido '+ref+'? Essa ação não pode ser desfeita.'))return;
+          this.disabled=true;
+          post({action:'delete'}).then(({ok,j})=>{if(ok){toast('Pedido excluído');loadAdminOrders(key,showArchived);}else{this.disabled=false;toast(j.error||'Erro');}});
         });
       });
     })

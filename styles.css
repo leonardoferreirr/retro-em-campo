@@ -453,3 +453,10 @@ footer.foot a:hover{color:#fff}
 @keyframes spin{to{transform:rotate(360deg)}}
 .pix-fail{text-align:center;padding:24px 12px;color:#444}
 .pix-fail p{margin:4px 0;font-size:.92rem}
+
+/* admin: estado arquivado + botão excluir */
+.adm-card.archived{opacity:.6}
+.adm-del{background:none;border:0;color:#b00020;font-family:var(--sans);font-weight:700;
+  font-size:.82rem;cursor:pointer;padding:10px 8px;text-decoration:underline}
+.adm-del:hover{color:#7d0016}
+.adm-del[disabled]{opacity:.4;cursor:not-allowed}

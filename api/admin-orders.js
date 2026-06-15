@@ -3,7 +3,7 @@
 //  POST -> { ref, tracking } grava o código de rastreio e envia o e-mail ao cliente
 //          { ref, status:'delivered' } marca como entregue
 import crypto from 'node:crypto';
-import { kvReady, listOrders, getOrder, updateOrder, rateLimit, clientIp } from '../lib/kv.js';
+import { kvReady, listOrders, getOrder, updateOrder, deleteOrder, rateLimit, clientIp } from '../lib/kv.js';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -69,11 +69,20 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const { ref, tracking, status } = req.body || {};
+      const { ref, tracking, status, action } = req.body || {};
       const cleanRef = String(ref || '').trim().toUpperCase();
       if (!cleanRef) return res.status(400).json({ error: 'ref obrigatório' });
       const order = await getOrder(cleanRef);
       if (!order) return res.status(404).json({ error: 'pedido não encontrado' });
+
+      if (action === 'delete') {
+        await deleteOrder(cleanRef);
+        return res.status(200).json({ ok: true, deleted: true });
+      }
+      if (action === 'archive' || action === 'unarchive') {
+        const updated = await updateOrder(cleanRef, { archived: action === 'archive' });
+        return res.status(200).json({ ok: true, order: updated });
+      }
 
       if (status === 'delivered') {
         const updated = await updateOrder(cleanRef, { status: 'delivered', delivered_iso: new Date().toISOString() });
