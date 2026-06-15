@@ -1,6 +1,8 @@
 'use strict';
 const $ = (s,r=document)=>r.querySelector(s);
 const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+/* escapa texto antes de injetar via innerHTML (anti-XSS) */
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 /* ícones SVG inline (monocromáticos, herdam a cor do texto) — no lugar de emojis */
 const _svg=p=>`<svg class="icn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
@@ -493,7 +495,7 @@ function footer(){
 }
 function viewSucesso(ref){
   CART=[]; save();
-  const num=ref?`<p class="ord-num">Pedido <strong>${ref}</strong></p>`:'';
+  const num=ref?`<p class="ord-num">Pedido <strong>${esc(ref)}</strong></p>`:'';
   const track=ref?`<a class="btn btn-ghost" href="#/pedido?ref=${encodeURIComponent(ref)}" style="display:inline-block;width:auto;padding:14px 30px;margin-right:8px">Acompanhar pedido</a>`:'';
   $('#view').innerHTML=`<div class="wrap"><div class="doc sucesso" style="text-align:center;max-width:560px;margin:0 auto;padding:30px 0">
     <div class="suc-ico">${ICN.check}</div>
@@ -516,7 +518,7 @@ function orderTimeline(o){
   const step=(on,title,sub)=>`<li class="${on?'on':''}"><span class="dot"></span><div><strong>${title}</strong>${sub?`<span>${sub}</span>`:''}</div></li>`;
   const track=o.tracking?`
     <div class="track-box">
-      <div class="track-code"><span>Código de rastreio</span><strong id="trkCode">${o.tracking}</strong></div>
+      <div class="track-code"><span>Código de rastreio</span><strong id="trkCode">${esc(o.tracking)}</strong></div>
       <div class="track-actions">
         <button class="btn btn-ghost" type="button" id="copyTrk" style="width:auto;padding:10px 18px">Copiar código</button>
         <a class="btn btn-dark" href="${CORREIOS}" target="_blank" rel="noopener" style="width:auto;padding:10px 18px">Rastrear nos Correios</a>
@@ -540,7 +542,7 @@ function viewPedido(){
     <h1>Acompanhar pedido</h1>
     <p class="upd">Informe o número do pedido e o e-mail usado na compra.</p>
     <form id="trkForm" class="track-form">
-      <label>Número do pedido<input name="ref" placeholder="REC-..." value="${q.ref?String(q.ref).replace(/"/g,''):''}" required></label>
+      <label>Número do pedido<input name="ref" placeholder="REC-..." value="${esc(q.ref)}" required></label>
       <label>E-mail da compra<input name="email" type="email" placeholder="voce@email.com" required></label>
       <button class="btn btn-dark" type="submit">Buscar pedido</button>
     </form>
@@ -559,9 +561,9 @@ function viewPedido(){
       .then(({ok,j})=>{
         btn.disabled=false; btn.textContent='Buscar pedido';
         if(!ok){err.textContent=j.error||'Não foi possível consultar o pedido.';err.hidden=false;return;}
-        const items=(j.items||[]).map(i=>`<li>${i.qty}× ${i.title}</li>`).join('');
+        const items=(j.items||[]).map(i=>`<li>${(i.qty||1)}× ${esc(i.title)}</li>`).join('');
         out.innerHTML=`<div class="track-card">
-          <div class="track-head"><h3>Pedido ${j.ref}</h3><span class="track-total">${BRL(j.total)}</span></div>
+          <div class="track-head"><h3>Pedido ${esc(j.ref)}</h3><span class="track-total">${BRL(j.total)}</span></div>
           ${items?`<ul class="track-items">${items}</ul>`:''}
           ${orderTimeline(j)}
         </div>`;
@@ -606,19 +608,20 @@ function loadAdminOrders(key){
       const orders=j.orders||[];
       if(!orders.length){list.innerHTML='<p class="upd">Nenhum pedido ainda.</p>';return;}
       list.innerHTML=orders.map(o=>{
-        const items=(o.items||[]).map(i=>`${i.qty||1}× ${i.title}`).join(', ');
+        const items=(o.items||[]).map(i=>`${(i.qty||1)}× ${esc(i.title)}`).join(', ');
         const c=o.customer||{};
-        const badge={approved:'Pago',shipped:'Enviado',delivered:'Entregue'}[o.status]||o.status;
-        return `<div class="adm-card" data-ref="${o.ref}">
+        const badge={approved:'Pago',shipped:'Enviado',delivered:'Entregue'}[o.status]||esc(o.status);
+        const st=['approved','shipped','delivered'].includes(o.status)?o.status:'';
+        return `<div class="adm-card" data-ref="${esc(o.ref)}">
           <div class="adm-top">
-            <div><strong>${o.ref}</strong> <span class="adm-badge ${o.status}">${badge}</span></div>
+            <div><strong>${esc(o.ref)}</strong> <span class="adm-badge ${st}">${badge}</span></div>
             <div class="adm-total">${BRL(o.total)}</div>
           </div>
-          <div class="adm-meta">${fmtDate(o.created_iso)} · ${c.recipient||''} · ${c.email||''}</div>
-          <div class="adm-meta">${c.address||''} — ${c.city||''}/${c.state||''} · CEP ${c.cep||''} · CPF ${c.cpf||''} · ${c.phone||''}</div>
+          <div class="adm-meta">${esc(fmtDate(o.created_iso))} · ${esc(c.recipient)} · ${esc(c.email)}</div>
+          <div class="adm-meta">${esc(c.address)} — ${esc(c.city)}/${esc(c.state)} · CEP ${esc(c.cep)} · CPF ${esc(c.cpf)} · ${esc(c.phone)}</div>
           <div class="adm-items">${items}</div>
           <div class="adm-actions">
-            <input class="adm-trk" placeholder="Código de rastreio" value="${o.tracking||''}">
+            <input class="adm-trk" placeholder="Código de rastreio" value="${esc(o.tracking)}">
             <button class="btn btn-dark adm-save" type="button" style="width:auto;padding:10px 18px">${o.tracking?'Atualizar':'Salvar e avisar'}</button>
             ${o.status!=='delivered'?'<button class="btn btn-ghost adm-deliver" type="button" style="width:auto;padding:10px 18px">Marcar entregue</button>':''}
           </div>

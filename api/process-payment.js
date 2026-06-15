@@ -8,15 +8,39 @@ export default async function handler(req, res) {
   if (!TOKEN) return res.status(500).json({ error: 'MP_ACCESS_TOKEN não configurado' });
 
   try {
-    const { formData = {}, customer = {}, items = [], frete = 0, ref: clientRef } = req.body || {};
+    const { formData = {}, customer = {}, items = [], ref: clientRef } = req.body || {};
     const digits = s => String(s || '').replace(/\D/g, '');
-
-    const computed = items.reduce((s, i) => s + Number(i.price) * (Number(i.qty) || 1), 0) + Number(frete || 0);
-    const amount = Number(formData.transaction_amount || computed);
-    if (!amount || amount <= 0) return res.status(400).json({ error: 'valor inválido' });
 
     const proto = req.headers['x-forwarded-proto'] || 'https';
     const base = `${proto}://${req.headers['host']}`;
+
+    if (!Array.isArray(items) || !items.length) return res.status(400).json({ error: 'sacola vazia' });
+
+    // PREÇO AUTORITATIVO NO SERVIDOR: nunca confiar no preço enviado pelo navegador.
+    // Busca o catálogo real e recalcula tudo por slug (bloqueia adulteração de valor).
+    const catRes = await fetch(`${base}/data/products.json`);
+    if (!catRes.ok) return res.status(503).json({ error: 'catálogo indisponível, tente de novo' });
+    const catalog = await catRes.json();
+    const bySlug = Object.fromEntries((catalog.products || []).map(p => [p.slug, p]));
+
+    let subtotal = 0;
+    const safeItems = [];
+    for (const i of items) {
+      const p = bySlug[i.slug];
+      if (!p || !(Number(p.price) > 0)) return res.status(400).json({ error: 'produto inválido na sacola' });
+      const qty = Math.max(1, Math.min(20, parseInt(i.qty, 10) || 1));
+      const unit = Number(p.price);
+      subtotal += unit * qty;
+      // tudo derivado do catálogo (slug é a única coisa em que confiamos do cliente)
+      safeItems.push({ slug: p.slug, player: p.player, sub: i.sub || p.sub, size: i.size, price: unit, qty, thumb: p.thumb });
+    }
+    const frete = subtotal >= Number(catalog.frete.gratis_acima) ? 0 : Number(catalog.frete.valor);
+    const amount = Math.round((subtotal + frete) * 100) / 100;
+    if (!(amount > 0)) return res.status(400).json({ error: 'valor inválido' });
+
+    // se o navegador alegou um total menor que o real, é adulteração — recusa
+    const claimed = Number(formData.transaction_amount);
+    if (claimed && claimed + 0.5 < amount) return res.status(400).json({ error: 'valor divergente, recarregue a página' });
     // número do pedido: vem do cliente (estável entre tentativas) ou é gerado aqui
     const ref = (typeof clientRef === 'string' && /^REC-\d+$/.test(clientRef)) ? clientRef : ('REC-' + Date.now());
     const name = String(customer.recipient || '').trim().split(/\s+/);
@@ -24,7 +48,7 @@ export default async function handler(req, res) {
     const body = {
       transaction_amount: amount,
       token: formData.token,                         // ausente em PIX
-      description: (items.map(i => i.player).join(', ') || 'Retrô em Campo').slice(0, 200),
+      description: (safeItems.map(i => i.player).join(', ') || 'Retrô em Campo').slice(0, 200),
       installments: Number(formData.installments) || 1,
       payment_method_id: formData.payment_method_id,
       issuer_id: formData.issuer_id,
@@ -32,10 +56,10 @@ export default async function handler(req, res) {
       notification_url: `${base}/api/mp-webhook`,
       metadata: {
         customer,
-        order_items: items.map(i => ({
+        order_items: safeItems.map(i => ({
           title: `${i.player || ''} ${i.sub || ''}`.trim(),
-          qty: Number(i.qty) || 1,
-          unit_price: Number(i.price),
+          qty: i.qty,
+          unit_price: i.price,
           image: i.thumb ? (/^https?:/.test(i.thumb) ? i.thumb : `${base}/${i.thumb}`) : ''
         }))
       },
@@ -47,10 +71,10 @@ export default async function handler(req, res) {
           (customer.cpf ? { type: 'CPF', number: digits(customer.cpf) } : undefined)
       },
       additional_info: {
-        items: items.map(i => ({
+        items: safeItems.map(i => ({
           title: `${i.player} ${i.sub || ''}`.trim().slice(0, 250),
-          quantity: Number(i.qty) || 1,
-          unit_price: Number(i.price)
+          quantity: i.qty,
+          unit_price: i.price
         })),
         shipments: {
           receiver_address: {
