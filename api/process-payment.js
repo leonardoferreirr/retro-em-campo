@@ -29,7 +29,15 @@ export default async function handler(req, res) {
       issuer_id: formData.issuer_id,
       external_reference: ref,
       notification_url: `${base}/api/mp-webhook`,
-      metadata: { customer },
+      metadata: {
+        customer,
+        order_items: items.map(i => ({
+          title: `${i.player || ''} ${i.sub || ''}`.trim(),
+          qty: Number(i.qty) || 1,
+          unit_price: Number(i.price),
+          image: i.thumb ? (/^https?:/.test(i.thumb) ? i.thumb : `${base}/${i.thumb}`) : ''
+        }))
+      },
       payer: {
         email: (formData.payer && formData.payer.email) || customer.email,
         first_name: name[0] || undefined,

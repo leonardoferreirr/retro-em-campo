@@ -64,7 +64,8 @@ export default async function handler(req, res) {
 
     // dados de entrega: pagamento direto (Bricks) traz no metadata; Checkout Pro via preference
     let customer = (payment.metadata && payment.metadata.customer) || {};
-    let items = (payment.additional_info && payment.additional_info.items) || [];
+    let items = (payment.metadata && payment.metadata.order_items)
+      || (payment.additional_info && payment.additional_info.items) || [];
     if (!customer.recipient) {
       try {
         const orderId = payment.order && payment.order.id;
@@ -82,16 +83,25 @@ export default async function handler(req, res) {
 
     const ref = payment.external_reference || ('MP-' + paymentId);
     const total = payment.transaction_amount;
-    const rows = items.map(i =>
-      `<tr><td style="padding:6px 0;border-bottom:1px solid #eee">${esc(i.title)}</td>
-       <td style="padding:6px 0;border-bottom:1px solid #eee;text-align:center">${i.quantity}</td>
-       <td style="padding:6px 0;border-bottom:1px solid #eee;text-align:right">${BRL(i.unit_price)}</td></tr>`).join('');
-
+    const LOGO = 'https://www.retroemcampo.com.br/assets/brand/logo-dark.png';
+    const header = `<div style="text-align:center;padding:8px 0 22px"><img src="${LOGO}" alt="Retrô em Campo" width="220" style="max-width:220px;height:auto"></div>`;
+    const itemRow = i => {
+      const qty = i.qty || i.quantity || 1;
+      const img = i.image || i.picture_url || '';
+      const thumb = img ? `<img src="${esc(img)}" alt="" width="48" style="width:48px;height:64px;object-fit:cover;border-radius:6px;vertical-align:middle;margin-right:10px">` : '';
+      return `<tr>
+        <td style="padding:8px 0;border-bottom:1px solid #eee">${thumb}<span style="vertical-align:middle">${esc(i.title)}</span></td>
+        <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:center">${qty}</td>
+        <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${BRL(i.unit_price)}</td>
+      </tr>`;
+    };
+    const rows = items.map(itemRow).join('');
     const field = (label, val) => `<tr><td style="padding:4px 12px 4px 0;color:#666;white-space:nowrap">${label}</td><td style="padding:4px 0;font-weight:600">${esc(val) || '—'}</td></tr>`;
 
     // e-mail PRA VOCÊ — pedido a separar e enviar
     const adminHtml = `
       <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;color:#111">
+        ${header}
         <h2 style="margin:0 0 4px">Pedido aprovado · ${esc(ref)}</h2>
         <p style="color:#666;margin:0 0 18px">Pagamento confirmado no Mercado Pago. Separe e envie.</p>
         <h3 style="margin:18px 0 6px">Itens</h3>
@@ -115,6 +125,7 @@ export default async function handler(req, res) {
     if (customer.email) {
       const custHtml = `
         <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:auto;color:#111">
+          ${header}
           <h2 style="margin:0 0 4px">Pedido confirmado!</h2>
           <p style="color:#666;margin:0 0 18px">Olá${customer.recipient ? ', ' + esc(customer.recipient.split(' ')[0]) : ''}! Recebemos o seu pagamento. Em breve a sua camisa será separada e enviada.</p>
           <h3 style="margin:18px 0 6px">Resumo</h3>
