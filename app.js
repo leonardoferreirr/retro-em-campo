@@ -43,12 +43,13 @@ function buildNav(){
       <div class="sub">${subs}</div></div>`;
   };
   $('#nav').innerHTML =
-    `<a href="#/">Início</a>` + mk('times','Times') + mk('selecoes','Seleções');
+    `<a href="#/">Início</a><a href="#/todas">Todas as camisetas</a>`
+    + mk('times','Times') + mk('selecoes','Seleções');
   $$('#nav .grp>button').forEach(b=>b.addEventListener('click',()=>{
     b.parentElement.classList.toggle('open');
     location.hash=b.dataset.go; closeNav();
   }));
-  $$('#nav .sub a').forEach(a=>a.addEventListener('click',closeNav));
+  $$('#nav > a, #nav .sub a').forEach(a=>a.addEventListener('click',closeNav));
 }
 
 /* ---------------- router ---------------- */
@@ -59,6 +60,7 @@ function route(){
   window.scrollTo(0,0);
   if(seg.length===0) return viewHome();
   if(seg[0]==='produto') return viewProduct(seg[1]);
+  if(seg[0]==='todas') return viewAll();
   if(seg[0]==='suporte') return viewDoc('suporte');
   if(seg[0]==='termos') return viewDoc('termos');
   if(seg[0]==='privacidade') return viewDoc('privacidade');
@@ -96,10 +98,12 @@ function card(p){
 function viewHome(){
   const feat=[...DATA.products].slice(0,12);
   const slides=[
-    {img:'assets/brand/hero-clubes.jpg',v:'assets/brand/hero-clubes-v.jpg',
-     h:'O clássico nunca sai de moda',sub:'Os mantos que marcaram época, dos anos 80 aos 2000.',cta:'Ver times',href:'#/times'},
-    {img:'assets/brand/hero-selecoes.jpg',v:'assets/brand/hero-selecoes-v.jpg',
-     h:'O clássico nunca sai de moda',sub:'Seleções eternas, recriadas em peça.',cta:'Ver seleções',href:'#/selecoes'}
+    {img:'assets/brand/hero-1.jpg',v:'assets/brand/hero-1-v.jpg',
+     h:'As camisetas mais icônicas de todas',sub:'Da laranja holandesa de 88 aos mantos eternos, reunidos aqui.',cta:'Ver todas as camisetas',href:'#/todas'},
+    {img:'assets/brand/hero-2.jpg',v:'assets/brand/hero-2-v.jpg',
+     h:'As seleções que pararam o mundo',sub:'Rivalidades eternas, recriadas em peça.',cta:'Ver seleções',href:'#/selecoes'},
+    {img:'assets/brand/hero-3.jpg',v:'assets/brand/hero-3-v.jpg',
+     h:'Clube no peito, história nas cores',sub:'Os mantos que marcaram época nos maiores clubes.',cta:'Ver times',href:'#/times'}
   ];
   const slidesHTML=slides.map((s,i)=>`
     <a class="hslide${i?'':' on'}" href="${s.href}" data-i="${i}" style="--d:url('${s.img}');--m:url('${s.v}')">
@@ -134,6 +138,16 @@ function viewHome(){
     reset();
   }
   setActive('/');
+}
+
+function viewAll(){
+  const items=DATA.products;
+  $('#view').innerHTML=`<div class="wrap">
+    <div class="crumb"><a href="#/">Início</a> / Todas as camisetas</div>
+    <div class="shead"><h2>Todas as camisetas</h2><span class="cnt">${items.length} modelos no acervo</span></div>
+    <div class="grid">${items.map(card).join('')}</div>
+  </div>${footer()}`;
+  setActive('/todas');
 }
 
 function viewSection(section){
