@@ -11,7 +11,7 @@
   ],
   "frete": {
     "valor": 22.0,
-    "gratis_acima": 0.0,
+    "gratis_acima": 499.0,
     "prazo": "10 a 20 dias úteis"
   },
   "support_email": "retroemcampo@gmail.com",

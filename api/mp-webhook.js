@@ -22,7 +22,8 @@ function validSignature(req) {
     const parts = Object.fromEntries(sig.split(',').map(p => p.split('=').map(x => x.trim())));
     const ts = parts.ts, v1 = parts.v1;
     if (!ts || !v1) return false;
-    const dataId = String(req.query['data.id'] || (req.body && req.body.data && req.body.data.id) || '').toLowerCase();
+    // 'data.id' nas notificações de pagamento; 'id' nas de merchant_order
+    const dataId = String(req.query['data.id'] || req.query.id || (req.body && req.body.data && req.body.data.id) || '').toLowerCase();
     const manifest = `id:${dataId};request-id:${reqId};ts:${ts};`;
     const hmac = crypto.createHmac('sha256', MP_WEBHOOK_SECRET).update(manifest).digest('hex');
     const a = Buffer.from(hmac), b = Buffer.from(v1);
