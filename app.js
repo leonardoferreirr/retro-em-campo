@@ -83,6 +83,7 @@ function route(){
   if(seg[0]==='suporte') return viewDoc('suporte');
   if(seg[0]==='termos') return viewDoc('termos');
   if(seg[0]==='privacidade') return viewDoc('privacidade');
+  if(seg[0]==='trocas') return viewDoc('trocas');
   if(seg[0]==='times'||seg[0]==='selecoes'){
     if(seg[1]) return viewGroup(seg[0],seg[1]);
     return viewSection(seg[0]);
@@ -313,6 +314,7 @@ function viewCheckout(){
         </div>
         <label>Cidade<input name="city" autocomplete="address-level2" required></label>
         <label>Endereço (rua, número, complemento, bairro)<input name="address" autocomplete="street-address" required></label>
+        <label class="co-agree"><input type="checkbox" name="agree"><span>Li e concordo com os <a href="#/termos" target="_blank">termos e condições</a> e a <a href="#/privacidade" target="_blank">política de privacidade</a>.</span></label>
         <div class="co-err" id="coErr" hidden></div>
         <button type="submit" class="btn btn-dark" id="coSubmit">Ir para o pagamento</button>
         <div class="co-safe">🔒 Pagamento processado pelo Mercado Pago. Não armazenamos dados de cartão.</div>
@@ -340,6 +342,7 @@ function submitCheckout(e){
   if(onlyDigits(customer.cpf).length!==11) return fail('CPF inválido (11 dígitos).');
   if(onlyDigits(customer.cep).length!==8) return fail('CEP inválido (8 dígitos).');
   if(!/^\S+@\S+\.\S+$/.test(customer.email)) return fail('E-mail inválido.');
+  if(!f.elements['agree'].checked) return fail('É preciso aceitar os termos e condições para continuar.');
   err.hidden=true;
   const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
   const frete=sub>=DATA.frete.gratis_acima?0:DATA.frete.valor;
@@ -368,11 +371,11 @@ $('#scrimCart').addEventListener('click',closeCart);
 $('#navToggle').addEventListener('click',openNav);
 $('#scrim').addEventListener('click',closeNav);
 
-/* WhatsApp flutuante — preencha WAPP com o número (só dígitos, DDI 55) quando a conta estiver pronta */
-const WAPP=''; // ex: '5531991234567'
-(()=>{const el=$('#wapp');if(!el||!WAPP)return;
-  const msg=encodeURIComponent('Olá! Vim pela loja Retrô em Campo e quero tirar uma dúvida.');
-  el.href=`https://wa.me/${WAPP}?text=${msg}`;el.hidden=false;})();
+/* WhatsApp flutuante */
+const WAPP='5534936180691';
+const WAPP_MSG='Oi! Vim pelo site da Retrô em Campo e gostaria de tirar uma dúvida.';
+const WAPP_HREF=`https://wa.me/${WAPP}?text=${encodeURIComponent(WAPP_MSG)}`;
+(()=>{const el=$('#wapp');if(!el||!WAPP)return;el.href=WAPP_HREF;el.hidden=false;})();
 
 /* ---------------- footer + docs ---------------- */
 function footer(){
@@ -380,7 +383,7 @@ function footer(){
     <div>© ${new Date().getFullYear()} Retrô em Campo — Camisas de futebol retrô</div>
     <div style="display:flex;gap:18px">
       <a href="#/suporte">Suporte</a><a href="#/termos">Termos</a>
-      <a href="#/privacidade">Privacidade</a></div>
+      <a href="#/privacidade">Privacidade</a><a href="#/trocas">Trocas</a></div>
   </footer>`;
 }
 function viewDoc(which){
@@ -392,6 +395,8 @@ const DOCS={
   suporte:`<h1>Suporte</h1><p class="upd">Estamos aqui para ajudar.</p>
     <div class="support-card"><div>📧</div><div><div class="big">${EMAIL}</div>
     <div style="color:var(--muted);font-size:.85rem">Resposta em até 24h úteis.</div></div></div>
+    <div class="support-card"><div>💬</div><div><div class="big"><a href="${WAPP_HREF}" target="_blank">WhatsApp</a></div>
+    <div style="color:var(--muted);font-size:.85rem">Atendimento em horário comercial.</div></div></div>
     <h2>Como podemos ajudar</h2>
     <ul><li>Dúvidas sobre tamanhos e medidas</li><li>Status e prazo do seu pedido</li>
     <li>Trocas e devoluções (até 7 dias após o recebimento)</li><li>Disponibilidade de modelos</li></ul>
@@ -428,5 +433,19 @@ const DOCS={
     momento escrevendo para <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
     <h2>5. Cookies</h2><p>Usamos cookies para lembrar sua sacola e medir o uso do site. Você pode desativá-los
     nas configurações do navegador.</p>
-    <h2>6. Contato</h2><p>Encarregado de dados: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`
+    <h2>6. Contato</h2><p>Encarregado de dados: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`,
+  trocas:`<h1>Trocas e devoluções</h1><p class="upd">Última atualização: ${new Date().toLocaleDateString('pt-BR')}</p>
+    <p>Queremos que você fique satisfeito com a sua camisa. Veja como funcionam as trocas e devoluções.</p>
+    <h2>1. Direito de arrependimento</h2><p>Conforme o artigo 49 do Código de Defesa do Consumidor, em compras
+    feitas pela internet você pode desistir da compra em até 7 dias corridos após o recebimento, sem precisar
+    justificar. A devolução do valor pago é integral, incluindo o frete.</p>
+    <h2>2. Troca por tamanho ou defeito</h2><p>Para trocar o tamanho ou em caso de defeito, você tem até 7 dias
+    corridos após o recebimento. A peça deve estar sem uso, sem lavagem, com a etiqueta e na embalagem original.</p>
+    <h2>3. Como solicitar</h2><p>Escreva para <a href="mailto:${EMAIL}">${EMAIL}</a> ou chame no
+    <a href="${WAPP_HREF}" target="_blank">WhatsApp</a> com o número do pedido e o e-mail da compra. Em até 24h
+    úteis enviamos as instruções e o endereço de devolução.</p>
+    <h2>4. Prazos de reembolso</h2><p>Após recebermos e conferirmos a peça, o estorno é solicitado em até 5 dias
+    úteis. O prazo de crédito depende do meio de pagamento: cartão pode levar até duas faturas; Pix e boleto são
+    devolvidos na conta informada.</p>
+    <h2>5. Contato</h2><p>Dúvidas: <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>`
 };

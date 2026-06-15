@@ -214,6 +214,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .co-form input,.co-form select{font-family:inherit;font-size:.95rem;font-weight:400;text-transform:none;
   letter-spacing:0;color:var(--ink);padding:12px 13px;border:1.5px solid var(--line);border-radius:3px;background:#fff}
 .co-form input:focus,.co-form select:focus{outline:none;border-color:var(--ink)}
+.co-agree{flex-direction:row!important;align-items:flex-start;gap:9px!important;font-size:.84rem!important;
+  font-weight:400!important;text-transform:none!important;letter-spacing:0!important;color:#444;cursor:pointer}
+.co-agree input{width:18px;height:18px;flex:0 0 18px;margin-top:1px;accent-color:var(--ink);cursor:pointer}
+.co-agree a{font-weight:600;text-decoration:underline}
 .co-err{background:#fdecec;color:#b00020;font-size:.84rem;font-weight:600;padding:11px 13px;border-radius:4px}
 .co-form .btn-dark{margin-top:6px}
 .co-safe{font-size:.76rem;color:var(--muted);text-align:center;margin-top:2px}
