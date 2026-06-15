@@ -296,9 +296,18 @@ function renderCart(){
   $('#checkoutBtn').addEventListener('click',()=>{ closeCart(); location.hash='#/checkout'; });
 }
 
-/* ---------------- checkout (dados de entrega) ---------------- */
+/* ---------------- checkout (dados de entrega + pagamento embedado) ---------------- */
 const UFS=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 const onlyDigits=s=>(s||'').replace(/\D/g,'');
+const MP_PUBLIC_KEY='APP_USR-1766da7e-bc7f-43a1-9466-67e246b1dba7';
+let MP_SDK=null, brickCtrl=null;
+function loadMPSDK(){
+  if(window.MercadoPago) return Promise.resolve();
+  if(MP_SDK) return MP_SDK;
+  MP_SDK=new Promise((res,rej)=>{const s=document.createElement('script');
+    s.src='https://sdk.mercadopago.com/js/v2';s.onload=res;s.onerror=rej;document.head.appendChild(s);});
+  return MP_SDK;
+}
 function viewCheckout(){
   if(!CART.length){ location.hash='#/'; return; }
   const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
@@ -335,9 +344,9 @@ function viewCheckout(){
         <h3>Seu pedido</h3>
         ${itens}
         <div class="co-line"><span>Subtotal</span><span>${BRL(sub)}</span></div>
-        <div class="co-line"><span>Frete</span><span>${free?'Grátis':'Calculado no pagamento'}</span></div>
-        <div class="co-line co-tot"><span>Total</span><span>${BRL(sub)}</span></div>
-        <div class="co-parc">em até ${PARC(sub)}</div>
+        <div class="co-line"><span>Frete</span><span>${free?'Grátis':BRL(DATA.frete.valor)}</span></div>
+        <div class="co-line co-tot"><span>Total</span><span>${BRL(sub+(free?0:DATA.frete.valor))}</span></div>
+        <div class="co-parc">em até ${PARC(sub+(free?0:DATA.frete.valor))}</div>
       </aside>
     </div>
   </div>${footer()}`;
@@ -358,14 +367,66 @@ function submitCheckout(e){
   err.hidden=true;
   const sub=CART.reduce((s,i)=>s+i.price*i.qty,0);
   const frete=sub>=DATA.frete.gratis_acima?0:DATA.frete.valor;
-  const btn=$('#coSubmit'); btn.textContent='Gerando pagamento...'; btn.disabled=true;
-  fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({items:CART,frete,customer})})
-    .then(r=>r.json())
-    .then(d=>{ if(d.init_point) location.href=d.init_point;
-      else throw new Error(d.error||'sem init_point'); })
-    .catch(()=>{ btn.textContent='Ir para o pagamento'; btn.disabled=false;
-      fail('Pagamento disponível após conectar o Mercado Pago. Tente novamente em instantes.'); });
+  enterPayment(customer,sub,frete);
+}
+
+/* mostra o formulário de pagamento embedado (Mercado Pago Bricks) */
+function enterPayment(customer,sub,frete){
+  const total=sub+frete;
+  const f=$('#coForm');
+  $$('#coForm input,#coForm select').forEach(el=>el.setAttribute('disabled',''));
+  const btn=$('#coSubmit'); if(btn)btn.hidden=true;
+  const safe=$('.co-safe'); if(safe)safe.hidden=true;
+  let pay=$('#payStep');
+  if(!pay){ pay=document.createElement('div'); pay.id='payStep'; f.appendChild(pay); }
+  pay.innerHTML=`<div class="pay-head"><h3>Pagamento</h3><button type="button" class="lnk" id="editShip">editar dados</button></div>
+    <div id="paymentBrick" class="brick-box"><div class="brick-loading">Carregando formas de pagamento…</div></div>
+    <div class="co-err" id="payErr" hidden></div>`;
+  $('#editShip').addEventListener('click',()=>{
+    if(brickCtrl&&brickCtrl.unmount){try{brickCtrl.unmount()}catch{}} brickCtrl=null;
+    pay.remove();
+    $$('#coForm input,#coForm select').forEach(el=>el.removeAttribute('disabled'));
+    if(btn)btn.hidden=false; if(safe)safe.hidden=false;
+  });
+  pay.scrollIntoView({behavior:'smooth',block:'start'});
+  loadMPSDK().then(()=>renderBrick(customer,total,frete))
+    .catch(()=>{const pe=$('#payErr');pe.textContent='Não foi possível carregar o pagamento. Recarregue a página e tente de novo.';pe.hidden=false;});
+}
+
+function renderBrick(customer,total,frete){
+  const mp=new MercadoPago(MP_PUBLIC_KEY,{locale:'pt-BR'});
+  const bricks=mp.bricks();
+  $('#paymentBrick').innerHTML='';
+  return bricks.create('payment','paymentBrick',{
+    initialization:{ amount: total, payer:{ email: customer.email } },
+    customization:{
+      paymentMethods:{ creditCard:'all', debitCard:'all', bankTransfer:'all', maxInstallments:3 }
+    },
+    callbacks:{
+      onReady:()=>{},
+      onSubmit:({formData})=>fetch('/api/process-payment',{method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({formData,customer,items:CART,frete})})
+        .then(r=>r.json())
+        .then(res=>{
+          if(res.error) throw new Error(res.error);
+          if(res.status==='approved'){ location.hash='#/sucesso'; return; }
+          if(res.status==='pending'||res.status==='in_process'){ showStatus(mp,res.id); return; }
+          // recusado
+          const pe=$('#payErr');pe.textContent='Pagamento não aprovado. Revise os dados do cartão ou tente outro meio.';pe.hidden=false;
+          throw new Error(res.status_detail||'rejected');
+        }),
+      onError:(err)=>{ console.error('brick error',err); }
+    }
+  }).then(c=>{brickCtrl=c;});
+}
+
+/* PIX/boleto pendente: tela de status do Mercado Pago (mostra QR do PIX) */
+function showStatus(mp,paymentId){
+  const f=$('#coForm'); if(f) f.style.display='none';
+  const host=$('.co'); if(!host) return;
+  let box=$('#statusBrick'); if(!box){box=document.createElement('div');box.id='statusBrick';box.style.gridColumn='1 / -1';host.prepend(box);}
+  mp.bricks().create('statusScreen','statusBrick',{ initialization:{ paymentId } });
 }
 
 /* ---------------- ui chrome ---------------- */

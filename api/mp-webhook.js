@@ -58,20 +58,23 @@ export default async function handler(req, res) {
     const payment = await mpGet(`https://api.mercadopago.com/v1/payments/${paymentId}`);
     if (payment.status !== 'approved') return res.status(200).json({ ok: true, status: payment.status });
 
-    // os dados de entrega vão no metadata da preferência; recupera via merchant_order -> preference
-    let customer = {}, items = [];
-    try {
-      const orderId = payment.order && payment.order.id;
-      if (orderId) {
-        const mo = await mpGet(`https://api.mercadopago.com/merchant_orders/${orderId}`);
-        items = mo.items || [];
-        if (mo.preference_id) {
-          const pref = await mpGet(`https://api.mercadopago.com/checkout/preferences/${mo.preference_id}`);
-          customer = (pref.metadata && pref.metadata.customer) || {};
-          if (!items.length) items = pref.items || [];
+    // dados de entrega: pagamento direto (Bricks) traz no metadata; Checkout Pro via preference
+    let customer = (payment.metadata && payment.metadata.customer) || {};
+    let items = (payment.additional_info && payment.additional_info.items) || [];
+    if (!customer.recipient) {
+      try {
+        const orderId = payment.order && payment.order.id;
+        if (orderId) {
+          const mo = await mpGet(`https://api.mercadopago.com/merchant_orders/${orderId}`);
+          if (!items.length) items = mo.items || [];
+          if (mo.preference_id) {
+            const pref = await mpGet(`https://api.mercadopago.com/checkout/preferences/${mo.preference_id}`);
+            customer = (pref.metadata && pref.metadata.customer) || customer;
+            if (!items.length) items = pref.items || [];
+          }
         }
-      }
-    } catch { /* segue com o que tiver do payment */ }
+      } catch { /* segue com o que tiver do payment */ }
+    }
 
     const ref = payment.external_reference || ('MP-' + paymentId);
     const total = payment.transaction_amount;
