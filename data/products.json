@@ -1402,6 +1402,22 @@
         "assets/produtos/ronaldo-sporting-2003/3.webp",
         "assets/produtos/ronaldo-sporting-2003/4.webp"
       ]
+    },
+    {
+      "id": 73,
+      "slug": "teste-pagamento",
+      "player": "Teste de Pagamento",
+      "number": "00",
+      "team": "Teste",
+      "section": "selecoes",
+      "year": null,
+      "variant": null,
+      "sub": "Item de teste",
+      "price": 1.04,
+      "thumb": "assets/produtos/maradona-argentina-1994/1-t.webp",
+      "img": [
+        "assets/produtos/maradona-argentina-1994/1.webp"
+      ]
     }
   ]
 }
