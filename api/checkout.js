@@ -32,10 +32,11 @@ export default async function handler(req, res) {
     const pref = {
       items: mpItems,
       back_urls: {
-        success: `${base}/#/suporte`,
+        success: `${base}/#/sucesso`,
         failure: `${base}/#/`,
-        pending: `${base}/#/`
+        pending: `${base}/#/sucesso`
       },
+      notification_url: `${base}/api/mp-webhook`,
       auto_return: 'approved',
       statement_descriptor: 'RETROEMCAMPO',
       external_reference: ref,

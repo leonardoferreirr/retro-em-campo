@@ -84,6 +84,7 @@ function route(){
   if(seg[0]==='termos') return viewDoc('termos');
   if(seg[0]==='privacidade') return viewDoc('privacidade');
   if(seg[0]==='trocas') return viewDoc('trocas');
+  if(seg[0]==='sucesso') return viewSucesso();
   if(seg[0]==='times'||seg[0]==='selecoes'){
     if(seg[1]) return viewGroup(seg[0],seg[1]);
     return viewSection(seg[0]);
@@ -385,6 +386,18 @@ function footer(){
       <a href="#/suporte">Suporte</a><a href="#/termos">Termos</a>
       <a href="#/privacidade">Privacidade</a><a href="#/trocas">Trocas</a></div>
   </footer>`;
+}
+function viewSucesso(){
+  CART=[]; save();
+  $('#view').innerHTML=`<div class="wrap"><div class="doc sucesso" style="text-align:center;max-width:560px;margin:0 auto;padding:30px 0">
+    <div style="font-size:3rem;line-height:1">✓</div>
+    <h1>Pedido confirmado!</h1>
+    <p class="upd">Recebemos o seu pagamento.</p>
+    <p>Enviamos um e-mail com os detalhes do pedido. Em breve a sua camisa será separada e enviada para o endereço informado.</p>
+    <p>Qualquer dúvida, fale com a gente no <a href="${WAPP_HREF}" target="_blank">WhatsApp</a> ou em <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
+    <p style="margin-top:26px"><a class="btn btn-dark" href="#/" style="display:inline-block;width:auto;padding:14px 30px">Voltar à loja</a></p>
+  </div></div>${footer()}`;
+  setActive('/');
 }
 function viewDoc(which){
   $('#view').innerHTML=`<div class="wrap"><div class="doc">${DOCS[which]}</div></div>${footer()}`;
