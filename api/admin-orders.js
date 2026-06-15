@@ -3,7 +3,7 @@
 //  POST -> { ref, tracking } grava o código de rastreio e envia o e-mail ao cliente
 //          { ref, status:'delivered' } marca como entregue
 import crypto from 'node:crypto';
-import { kvReady, listOrders, getOrder, updateOrder } from '../lib/kv.js';
+import { kvReady, listOrders, getOrder, updateOrder, rateLimit, clientIp } from '../lib/kv.js';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -57,6 +57,9 @@ function trackingEmail(order) {
 export default async function handler(req, res) {
   if (!ADMIN_PASSWORD) return res.status(500).json({ error: 'ADMIN_PASSWORD não configurado na Vercel' });
   if (!kvReady()) return res.status(503).json({ error: 'KV indisponível' });
+  // trava força-bruta na senha: 30 req/min por IP
+  const rl = await rateLimit(`rl:adm:${clientIp(req)}`, 30, 60);
+  if (!rl.ok) return res.status(429).json({ error: 'muitas tentativas, aguarde um minuto' });
   if (!authorized(req)) return res.status(401).json({ error: 'senha inválida' });
 
   try {

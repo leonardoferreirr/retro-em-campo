@@ -2,6 +2,7 @@
 // Recebe o token do cartão e cria o pagamento na API do Mercado Pago. (PIX é o create-pix.js.)
 // Env var: MP_ACCESS_TOKEN.
 import { priceOrder, orderMetadata } from '../lib/pricing.js';
+import { rateLimit, clientIp } from '../lib/kv.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
@@ -10,6 +11,9 @@ export default async function handler(req, res) {
   if (!TOKEN) return res.status(500).json({ error: 'MP_ACCESS_TOKEN não configurado' });
 
   try {
+    const rl = await rateLimit(`rl:pay:${clientIp(req)}`, 20, 60);
+    if (!rl.ok) return res.status(429).json({ error: 'muitas tentativas, aguarde um minuto' });
+
     const { formData = {}, customer = {}, items = [], ref: clientRef } = req.body || {};
     const digits = s => String(s || '').replace(/\D/g, '');
 

@@ -1,6 +1,7 @@
 // Vercel serverless function — cria um pagamento PIX e devolve o QR Code (imagem + copia-e-cola)
 // pra exibir direto no site, sem o fluxo de e-mail do brick. Env var: MP_ACCESS_TOKEN.
 import { priceOrder, orderMetadata } from '../lib/pricing.js';
+import { rateLimit, clientIp } from '../lib/kv.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
@@ -9,6 +10,9 @@ export default async function handler(req, res) {
   if (!TOKEN) return res.status(500).json({ error: 'MP_ACCESS_TOKEN não configurado' });
 
   try {
+    const rl = await rateLimit(`rl:pix:${clientIp(req)}`, 15, 60);
+    if (!rl.ok) return res.status(429).json({ error: 'muitas tentativas, aguarde um minuto' });
+
     const { customer = {}, items = [], ref: clientRef } = req.body || {};
     const digits = s => String(s || '').replace(/\D/g, '');
     if (!customer.email) return res.status(400).json({ error: 'e-mail obrigatório para o PIX' });

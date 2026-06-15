@@ -1,12 +1,15 @@
 // Consulta pública de pedido — o cliente informa número do pedido + e-mail da compra.
 // Retorna só dados não sensíveis (sem CPF, telefone ou endereço).
-import { kvReady, getOrder } from '../lib/kv.js';
+import { kvReady, getOrder, rateLimit, clientIp } from '../lib/kv.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
   if (!kvReady()) return res.status(503).json({ error: 'indisponível no momento' });
 
   try {
+    const rl = await rateLimit(`rl:ord:${clientIp(req)}`, 20, 60);
+    if (!rl.ok) return res.status(429).json({ error: 'muitas tentativas, aguarde um minuto' });
+
     const { ref = '', email = '' } = req.body || {};
     const cleanRef = String(ref).trim().toUpperCase();
     const cleanEmail = String(email).trim().toLowerCase();

@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     });
     if (!r.ok) return res.status(502).json({ error: 'erro ao consultar' });
     const data = await r.json();
-    return res.status(200).json({ status: data.status, ref: data.external_reference || null });
+    return res.status(200).json({ status: data.status });
   } catch (e) {
     return res.status(500).json({ error: String(e && e.message || e) });
   }
