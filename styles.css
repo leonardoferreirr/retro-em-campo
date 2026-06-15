@@ -176,9 +176,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 
 /* index tiles (home entries) */
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px}
-.tile{position:relative;aspect-ratio:821/1100;background:var(--dark);color:#fff;overflow:hidden;
+.tile{position:relative;aspect-ratio:5/4;background:var(--dark);color:#fff;overflow:hidden;
   display:flex;align-items:flex-end;padding:28px}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transition:.5s}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.5;transition:.5s}
 .tile:hover img{opacity:.62;transform:scale(1.04)}
 .tile h3{position:relative;font-family:var(--disp);font-weight:400;font-size:2rem;
   text-transform:uppercase}
@@ -334,7 +334,13 @@ footer.foot a:hover{color:#fff}
   .gallery .thumbs::-webkit-scrollbar{display:none}
   .gallery .thumbs img{width:60px;flex:0 0 60px}
 }
-@media(max-width:620px){.grid,.tiles{grid-template-columns:repeat(2,1fr)}.cnt{display:none}}
+@media(max-width:620px){
+  .grid,.tiles{grid-template-columns:repeat(2,1fr)}.cnt{display:none}
+  .tiles{margin-left:-20px;margin-right:-20px}
+  .tile{aspect-ratio:821/1100;padding:16px;flex-direction:column;align-items:flex-start;justify-content:flex-end}
+  .tile h3{font-size:1.5rem}
+  .tile .go{margin-left:0;align-self:flex-start;margin-top:6px;font-size:.72rem}
+}
 .cart-count{background:var(--acc);color:#000;font-size:.62rem;font-weight:800;min-width:17px;
   height:17px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px}
 

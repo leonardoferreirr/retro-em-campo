@@ -118,6 +118,7 @@ function card(p){
 /* ---------------- views ---------------- */
 function viewHome(){
   const pick=ss=>ss.map(s=>DATA.products.find(p=>p.slug===s)).filter(Boolean);
+  const tileImg=s=>{const p=DATA.products.find(x=>x.slug===s);return p?p.img[0]:'';};
   const selFeat=pick(['maradona-argentina-1994','ronaldo-9-brazil-1998','cristiano-ronaldo-17-portugal-2006','nakata-8-japan-1998']);
   const timFeat=pick(['cantona-7-manutd-1995','ronaldo-barcelona-1998-away','matthaus-10-bayern-1997-98','de-boer-ajax-1999']);
   const slides=[
@@ -145,8 +146,8 @@ function viewHome(){
   </section>
   <div class="wrap">
     <div class="tiles">
-      <a class="tile" href="#/times"><img src="${DATA.products.find(p=>p.section==='times').img[0]}" alt=""><h3>Times</h3><span class="go">Ver todos →</span></a>
-      <a class="tile" href="#/selecoes"><img src="${DATA.products.find(p=>p.section==='selecoes').img[0]}" alt=""><h3>Seleções</h3><span class="go">Ver todas →</span></a>
+      <a class="tile" href="#/times"><img src="${tileImg('delpiero-10-juventus-1997-98')}" alt=""><h3>Times</h3><span class="go">Ver todos →</span></a>
+      <a class="tile" href="#/selecoes"><img src="${tileImg('beckham-7-england-1998')}" alt=""><h3>Seleções</h3><span class="go">Ver todas →</span></a>
     </div>
     <div class="shead"><h2>Mais pedidas</h2><span class="cnt">${DATA.products.length} modelos no acervo</span></div>
     <div class="fcar-head"><h3>Seleções</h3><a href="#/selecoes">Ver todas →</a></div>
