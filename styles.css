@@ -428,3 +428,26 @@ footer.foot a:hover{color:#fff}
 .suc-ico .icn{width:60px;height:60px;color:var(--green);stroke-width:1.5}
 .sc-ico{display:flex;align-items:center;justify-content:center;flex:none;width:30px}
 .sc-ico .icn{width:28px;height:28px;color:var(--ink)}
+
+/* ---------------- pagamento: abas Pix / Cartão ---------------- */
+.pay-tabs{display:flex;gap:8px;margin:6px 0 16px}
+.pay-tab{flex:1;padding:12px;border:1.5px solid var(--line);background:#fff;border-radius:6px;
+  font-family:var(--sans);font-weight:700;font-size:.9rem;color:var(--muted);cursor:pointer;transition:.15s}
+.pay-tab:hover{border-color:var(--ink);color:var(--ink)}
+.pay-tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* PIX */
+.pix-box{text-align:center;padding:6px 0}
+.pix-qr{width:220px;height:220px;display:block;margin:0 auto 4px;border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff}
+.pix-amt{font-size:1.05rem;margin:6px 0 2px}
+.pix-amt b{font-weight:800}
+.pix-hint{font-size:.82rem;color:var(--muted);max-width:340px;margin:0 auto 14px}
+.pix-cc{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.pix-cc input{flex:1;min-width:0;font-family:var(--sans);font-size:.8rem;color:#444;
+  padding:11px 12px;border:1.5px solid var(--line);border-radius:6px;background:var(--soft)}
+.pix-cc .btn{width:auto;padding:11px 18px;white-space:nowrap}
+.pix-wait{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;
+  font-size:.85rem;font-weight:600;color:var(--green)}
+.spin{width:14px;height:14px;border:2px solid #cfe9d6;border-top-color:var(--green);border-radius:50%;
+  display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}

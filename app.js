@@ -91,6 +91,7 @@ function buildNav(){
 /* ---------------- router ---------------- */
 function route(){
   if(window.__hero){clearInterval(window.__hero);window.__hero=null;}
+  if(typeof stopPixPoll==='function')stopPixPoll();
   const h=(location.hash||'#/').replace(/^#/,'').split('?')[0];
   const seg=h.split('/').filter(Boolean); // ['times','barcelona']
   window.scrollTo(0,0);
@@ -332,7 +333,7 @@ function renderCart(){
 const UFS=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 const onlyDigits=s=>(s||'').replace(/\D/g,'');
 const MP_PUBLIC_KEY='APP_USR-1766da7e-bc7f-43a1-9466-67e246b1dba7';
-let MP_SDK=null, brickCtrl=null;
+let MP_SDK=null, brickCtrl=null, pixPoll=null;
 function loadMPSDK(){
   if(window.MercadoPago) return Promise.resolve();
   if(MP_SDK) return MP_SDK;
@@ -410,57 +411,101 @@ function enterPayment(customer,sub,frete){
   $$('#coForm input,#coForm select').forEach(el=>el.setAttribute('disabled',''));
   const btn=$('#coSubmit'); if(btn)btn.hidden=true;
   const safe=$('.co-safe'); if(safe)safe.hidden=true;
+  const orderRef='REC-'+Date.now(); // número do pedido, estável entre tentativas
   let pay=$('#payStep');
   if(!pay){ pay=document.createElement('div'); pay.id='payStep'; f.appendChild(pay); }
-  pay.innerHTML=`<div class="pay-head"><h3>Pagamento</h3><button type="button" class="lnk" id="editShip">editar dados</button></div>
-    <div id="paymentBrick" class="brick-box"><div class="brick-loading">Carregando formas de pagamento…</div></div>
+  pay.innerHTML=`
+    <div class="pay-head"><h3>Pagamento</h3><button type="button" class="lnk" id="editShip">editar dados</button></div>
+    <div class="pay-tabs">
+      <button type="button" class="pay-tab on" data-tab="pix">Pix</button>
+      <button type="button" class="pay-tab" data-tab="card">Cartão</button>
+    </div>
+    <div id="panePix" class="pay-pane"></div>
+    <div id="paneCard" class="pay-pane" hidden><div id="paymentBrick" class="brick-box"><div class="brick-loading">Carregando…</div></div></div>
     <div class="co-err" id="payErr" hidden></div>`;
   $('#editShip').addEventListener('click',()=>{
+    stopPixPoll();
     if(brickCtrl&&brickCtrl.unmount){try{brickCtrl.unmount()}catch{}} brickCtrl=null;
     pay.remove();
     $$('#coForm input,#coForm select').forEach(el=>el.removeAttribute('disabled'));
     if(btn)btn.hidden=false; if(safe)safe.hidden=false;
   });
+  let cardLoaded=false;
+  const tabs=$$('.pay-tab',pay);
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.toggle('on',x===t));
+    const isPix=t.dataset.tab==='pix';
+    $('#panePix').hidden=!isPix; $('#paneCard').hidden=isPix;
+    if(!isPix && !cardLoaded){ cardLoaded=true;
+      loadMPSDK().then(()=>renderBrick(customer,total,frete,orderRef))
+        .catch(()=>{const pe=$('#payErr');pe.textContent='Não foi possível carregar o cartão. Recarregue e tente de novo.';pe.hidden=false;});
+    }
+  }));
   pay.scrollIntoView({behavior:'smooth',block:'start'});
-  loadMPSDK().then(()=>renderBrick(customer,total,frete))
-    .catch(()=>{const pe=$('#payErr');pe.textContent='Não foi possível carregar o pagamento. Recarregue a página e tente de novo.';pe.hidden=false;});
+  startPix(customer,orderRef); // PIX é o padrão (mais usado no Brasil)
 }
 
-function renderBrick(customer,total,frete){
+/* PIX próprio: gera o QR Code direto na tela (imagem + copia e cola), sem fluxo de e-mail */
+function startPix(customer,ref){
+  const pane=$('#panePix');
+  pane.innerHTML='<div class="brick-loading">Gerando o seu código Pix…</div>';
+  fetch('/api/create-pix',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({customer,items:CART,ref})})
+    .then(r=>r.json().then(j=>({ok:r.ok,j})))
+    .then(({ok,j})=>{
+      if(!ok||!j.qr_base64){pane.innerHTML=`<div class="co-err" style="display:block">${esc(j.error||'Não foi possível gerar o Pix. Use o cartão.')}</div>`;return;}
+      pane.innerHTML=`
+        <div class="pix-box">
+          <img class="pix-qr" alt="QR Code Pix" src="data:image/png;base64,${j.qr_base64}">
+          <p class="pix-amt">Pague <b>${BRL(j.amount)}</b> com o Pix</p>
+          <p class="pix-hint">Abra o app do seu banco, escaneie o QR Code ou use o copia e cola. A confirmação é automática.</p>
+          <div class="pix-cc"><input id="pixCode" readonly value="${esc(j.qr_code)}"><button type="button" class="btn btn-dark" id="pixCopy">Copiar</button></div>
+          <div class="pix-wait"><span class="spin"></span> Aguardando o pagamento…</div>
+        </div>`;
+      $('#pixCopy').addEventListener('click',()=>{navigator.clipboard.writeText(j.qr_code).then(()=>toast('Código copiado'));});
+      pollPix(j.id,ref);
+    })
+    .catch(()=>{pane.innerHTML='<div class="co-err" style="display:block">Erro de conexão ao gerar o Pix. Tente de novo.</div>';});
+}
+
+function pollPix(id,ref){
+  stopPixPoll();
+  let tries=0;
+  pixPoll=setInterval(()=>{
+    if(++tries>150){stopPixPoll();return;} // ~10 min
+    fetch('/api/payment-status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})})
+      .then(r=>r.json()).then(j=>{ if(j.status==='approved'){ stopPixPoll(); location.hash='#/sucesso/'+(j.ref||ref); } })
+      .catch(()=>{});
+  },4000);
+}
+function stopPixPoll(){ if(pixPoll){clearInterval(pixPoll);pixPoll=null;} }
+
+function renderBrick(customer,total,frete,orderRef){
   const mp=new MercadoPago(MP_PUBLIC_KEY,{locale:'pt-BR'});
   const bricks=mp.bricks();
   $('#paymentBrick').innerHTML='';
-  const orderRef='REC-'+Date.now(); // número do pedido, estável entre tentativas
   return bricks.create('payment','paymentBrick',{
     initialization:{ amount: total, payer:{ email: customer.email } },
-    customization:{
-      paymentMethods:{ creditCard:'all', debitCard:'all', bankTransfer:'all', maxInstallments:3 }
-    },
+    customization:{ paymentMethods:{ creditCard:'all', debitCard:'all', maxInstallments:3 } },
     callbacks:{
       onReady:()=>{},
       onSubmit:({formData})=>fetch('/api/process-payment',{method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({formData,customer,items:CART,frete,ref:orderRef})})
+          body:JSON.stringify({formData,customer,items:CART,ref:orderRef})})
         .then(r=>r.json())
         .then(res=>{
           if(res.error) throw new Error(res.error);
           if(res.status==='approved'){ location.hash='#/sucesso/'+(res.ref||orderRef); return; }
-          if(res.status==='pending'||res.status==='in_process'){ showStatus(mp,res.id); return; }
-          // recusado
-          const pe=$('#payErr');pe.textContent='Pagamento não aprovado. Revise os dados do cartão ou tente outro meio.';pe.hidden=false;
+          if(res.status==='pending'||res.status==='in_process'){
+            const pe=$('#payErr');pe.textContent='Pagamento em processamento. Você receberá a confirmação por e-mail.';pe.hidden=false;
+            pollPix(res.id,res.ref||orderRef); return;
+          }
+          const pe=$('#payErr');pe.textContent='Pagamento não aprovado. Revise os dados do cartão ou tente o Pix.';pe.hidden=false;
           throw new Error(res.status_detail||'rejected');
         }),
       onError:(err)=>{ console.error('brick error',err); }
     }
   }).then(c=>{brickCtrl=c;});
-}
-
-/* PIX/boleto pendente: tela de status do Mercado Pago (mostra QR do PIX) */
-function showStatus(mp,paymentId){
-  const f=$('#coForm'); if(f) f.style.display='none';
-  const host=$('.co'); if(!host) return;
-  let box=$('#statusBrick'); if(!box){box=document.createElement('div');box.id='statusBrick';box.style.gridColumn='1 / -1';host.prepend(box);}
-  mp.bricks().create('statusScreen','statusBrick',{ initialization:{ paymentId } });
 }
 
 /* ---------------- ui chrome ---------------- */
