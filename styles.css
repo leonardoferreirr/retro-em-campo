@@ -103,26 +103,39 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .crumb a:hover{color:var(--ink)}
 
 /* product grid */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-.card{background:var(--bg);position:relative;display:block;overflow:hidden}
-.card .ph{position:relative;aspect-ratio:3/4;background:var(--soft);overflow:hidden}
-.card .ph img{width:100%;height:100%;object-fit:cover;transition:opacity .4s,transform .6s}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{position:relative;display:block;overflow:hidden;border-radius:9px;background:var(--soft);aspect-ratio:3/4}
+.card .ph{position:absolute;inset:0;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:opacity .45s,transform .8s}
 .card .ph .b{position:absolute;inset:0;opacity:0}
 .card:hover .ph .a{opacity:0}
 .card:hover .ph .b{opacity:1}
-.card:hover .ph img{transform:scale(1.03)}
-.card .meta{padding:14px 6px 26px}
-.card .pl{font-family:var(--disp);font-weight:400;font-size:1.18rem;text-transform:uppercase;
-  letter-spacing:.01em;line-height:1}
-.card .sb{color:var(--muted);font-size:.78rem;margin-top:5px}
-.card .pr{font-weight:700;font-size:.9rem;margin-top:9px}
-.card .num{position:absolute;top:10px;right:12px;font-family:var(--disp);font-size:1.5rem;
-  color:#dededе;color:#e4e4e4;z-index:1}
-.tag{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font-size:.62rem;
-  font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;z-index:1}
-.tag-off{background:var(--green)}
-.card .pr s{color:var(--muted);font-weight:500;margin-right:5px}
-.card .parc3{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}
+.card:hover .ph img{transform:scale(1.04)}
+
+/* tag glass branca, texto verde */
+.tag{position:absolute;top:11px;left:11px;z-index:2;font-size:.62rem;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;padding:6px 9px;border-radius:7px;color:var(--green);
+  background:rgba(255,255,255,.74);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 2px 10px rgba(0,0,0,.14)}
+
+/* painel glass com infos + preço */
+.cinfo{position:absolute;left:8px;right:8px;bottom:8px;z-index:2;display:flex;flex-direction:column;
+  gap:4px;padding:11px 13px;border-radius:9px;
+  background:rgba(12,12,12,.4);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 8px 22px rgba(0,0,0,.2)}
+.cinfo .ci-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cinfo .ci-pl{font-family:var(--disp);font-weight:400;font-size:1.15rem;line-height:.98;color:#fff;
+  text-transform:uppercase;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cinfo .ci-sb{font-size:.74rem;color:rgba(255,255,255,.82);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cinfo .ci-pr{display:flex;align-items:baseline;gap:8px;margin-top:3px}
+.cinfo .ci-pr s{font-size:.74rem;color:rgba(255,255,255,.6)}
+.cinfo .ci-pr b{font-size:1.08rem;font-weight:800;color:#fff}
+@media(max-width:620px){
+  .cinfo{padding:9px 10px;left:6px;right:6px;bottom:6px}
+  .cinfo .ci-pl{font-size:1rem}
+  .cinfo .ci-sb{font-size:.68rem}
+  .cinfo .ci-pr b{font-size:.96rem}
+}
 
 /* group block (times/selecoes all) */
 .gblock{margin-bottom:10px}

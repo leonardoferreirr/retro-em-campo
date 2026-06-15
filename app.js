@@ -78,22 +78,23 @@ function card(p){
   const b=p.img[1]||p.img[0];
   const c=CMP(p), off=OFF(p);
   return `<a class="card" href="#/produto/${p.slug}">
-    ${off?`<span class="tag tag-off">${off}% OFF</span>`:''}
     <span class="ph">
       <img class="a" loading="lazy" src="${p.thumb}" alt="${p.player} ${p.team}">
       <img class="b" loading="lazy" src="${b}" alt="">
     </span>
-    <span class="meta">
-      <span class="pl">${p.player}${p.number?' #'+p.number:''}</span>
-      <span class="sb">${subOf(p)}</span>
-      <span class="pr">${c>p.price?`<s>${BRL(c)}</s>`:''}${BRL(p.price)}</span>
-      <span class="parc3">ou ${PARC(p.price)}</span>
+    ${off?`<span class="tag">${off}% OFF</span>`:''}
+    <span class="cinfo">
+      <span class="ci-txt">
+        <span class="ci-pl">${p.player}${p.number?' #'+p.number:''}</span>
+        <span class="ci-sb">${subOf(p)}</span>
+      </span>
+      <span class="ci-pr">${c>p.price?`<s>${BRL(c)}</s>`:''}<b>${BRL(p.price)}</b></span>
     </span></a>`;
 }
 
 /* ---------------- views ---------------- */
 function viewHome(){
-  const feat=[...DATA.products].sort(()=>0).slice(0,8);
+  const feat=[...DATA.products].slice(0,12);
   const slides=[
     {img:'assets/brand/hero-clubes.jpg',v:'assets/brand/hero-clubes-v.jpg',
      h:'O clássico nunca sai de moda',sub:'Os mantos que marcaram época, dos anos 80 aos 2000.',cta:'Ver times',href:'#/times'},
