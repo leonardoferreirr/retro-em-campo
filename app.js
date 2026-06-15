@@ -13,6 +13,24 @@ const YR = y => { if(!y) return ''; y=String(y).trim();
   return `’${y.slice(-2)}`; };
 const subOf = p => `${p.team}${p.year?' · '+YR(p.year):''}${p.variant?' ('+p.variant+')':''}`;
 
+// tabela de medidas (Adult Men Player Version) — S..2XL = P,M,G,GG,G1
+const SIZE_CHART = {
+  cols: ['P','M','G','GG','G1'],
+  rows: [
+    ['Comprimento','70','72','74','76','78'],
+    ['Largura (axila a axila)','46','48','50','52','54'],
+    ['Ombro','40,5','41,9','43,3','44,7','46,1'],
+    ['Manga','24','24,8','25,6','26,4','27,2'],
+    ['Altura (cm)','160-165','165-170','170-175','175-185','185-190'],
+    ['Peso (kg)','55-60','60-70','70-80','80-92,5','90-95']
+  ]
+};
+function sizeTable(){
+  const head=`<tr><th></th>${SIZE_CHART.cols.map(c=>`<th>${c}</th>`).join('')}</tr>`;
+  const body=SIZE_CHART.rows.map(r=>`<tr><th>${r[0]}</th>${r.slice(1).map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');
+  return `<table class="sztable"><thead>${head}</thead><tbody>${body}</tbody></table>`;
+}
+
 let DATA={products:[]}, CART=load();
 const TEAMSLUG={}; // slug -> display name
 
@@ -211,7 +229,8 @@ function viewProduct(slug){
             Camisa retrô ${p.player}, ${p.team}, temporada ${YR(p.year)}${p.variant?' ('+p.variant+')':''}. Tecido leve e respirável, escudo e patrocínios fiéis à época. Edição colecionável.
           </div></details>
           <details><summary>Tamanhos e medidas</summary><div class="body">
-            Disponível em ${DATA.sizes.join(', ')}. Modelagem padrão adulto. Em dúvida entre dois tamanhos, recomendamos o maior. Dúvidas: <a href="#/suporte">suporte</a>.
+            ${sizeTable()}
+            <p style="margin:10px 0 0">Medidas em cm, com tolerância de 1 a 2 cm pela elasticidade do tecido. Em dúvida entre dois tamanhos, recomendamos o maior. Dúvidas: <a href="#/suporte">suporte</a>.</p>
           </div></details>
           <details><summary>Entrega e trocas</summary><div class="body">
             Enviamos para todo o Brasil. Frete grátis acima de ${BRL(DATA.frete.gratis_acima)}; abaixo disso, o valor é calculado no checkout. Trocas em até 7 dias após o recebimento.

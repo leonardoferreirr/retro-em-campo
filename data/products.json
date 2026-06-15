@@ -1,1408 +1,1406 @@
 {
- "currency": "BRL",
- "price_default": 189.0,
- "price_compare_default": 249.0,
- "sizes": [
-  "P",
-  "M",
-  "G",
-  "GG",
-  "G1",
-  "G2",
-  "G3"
- ],
- "frete": {
-  "valor": 22.0,
-  "gratis_acima": 499.0
- },
- "support_email": "retroemcampo@gmail.com",
- "products": [
-  {
-   "id": 0,
-   "slug": "maradona-argentina-1994",
-   "player": "Maradona",
-   "number": "10",
-   "team": "Argentina",
-   "section": "selecoes",
-   "year": "1994",
-   "variant": null,
-   "sub": "Argentina · 1994",
-   "price": 189.0,
-   "thumb": "assets/produtos/maradona-argentina-1994/1-t.webp",
-   "img": [
-    "assets/produtos/maradona-argentina-1994/1.webp",
-    "assets/produtos/maradona-argentina-1994/2.webp",
-    "assets/produtos/maradona-argentina-1994/3.webp",
-    "assets/produtos/maradona-argentina-1994/4.webp"
-   ]
-  },
-  {
-   "id": 1,
-   "slug": "messi-19-argentina-2006-away",
-   "player": "Messi",
-   "number": "19",
-   "team": "Argentina",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": "Visitante",
-   "sub": "Argentina · 2006 (Visitante)",
-   "price": 189.0,
-   "thumb": "assets/produtos/messi-19-argentina-2006-away/1-t.webp",
-   "img": [
-    "assets/produtos/messi-19-argentina-2006-away/1.webp",
-    "assets/produtos/messi-19-argentina-2006-away/2.webp",
-    "assets/produtos/messi-19-argentina-2006-away/3.webp",
-    "assets/produtos/messi-19-argentina-2006-away/4.webp"
-   ]
-  },
-  {
-   "id": 2,
-   "slug": "messi-19-argentina-2006-home",
-   "player": "Messi",
-   "number": "19",
-   "team": "Argentina",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": "Casa",
-   "sub": "Argentina · 2006 (Casa)",
-   "price": 189.0,
-   "thumb": "assets/produtos/messi-19-argentina-2006-home/1-t.webp",
-   "img": [
-    "assets/produtos/messi-19-argentina-2006-home/1.webp",
-    "assets/produtos/messi-19-argentina-2006-home/2.webp",
-    "assets/produtos/messi-19-argentina-2006-home/3.webp",
-    "assets/produtos/messi-19-argentina-2006-home/4.webp"
-   ]
-  },
-  {
-   "id": 3,
-   "slug": "henry-14-arsenal-2002-03",
-   "player": "Henry",
-   "number": "14",
-   "team": "Arsenal",
-   "section": "times",
-   "year": "2002/03",
-   "variant": null,
-   "sub": "Arsenal · 2002/03",
-   "price": 189.0,
-   "thumb": "assets/produtos/henry-14-arsenal-2002-03/1-t.webp",
-   "img": [
-    "assets/produtos/henry-14-arsenal-2002-03/1.webp",
-    "assets/produtos/henry-14-arsenal-2002-03/2.webp",
-    "assets/produtos/henry-14-arsenal-2002-03/3.webp",
-    "assets/produtos/henry-14-arsenal-2002-03/4.webp"
-   ]
-  },
-  {
-   "id": 4,
-   "slug": "neymar-11-barcelona-2014-15",
-   "player": "Neymar",
-   "number": "11",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "2014/15",
-   "variant": null,
-   "sub": "Barcelona · 2014/15",
-   "price": 189.0,
-   "thumb": "assets/produtos/neymar-11-barcelona-2014-15/1-t.webp",
-   "img": [
-    "assets/produtos/neymar-11-barcelona-2014-15/1.webp",
-    "assets/produtos/neymar-11-barcelona-2014-15/2.webp",
-    "assets/produtos/neymar-11-barcelona-2014-15/3.webp",
-    "assets/produtos/neymar-11-barcelona-2014-15/4.webp"
-   ]
-  },
-  {
-   "id": 5,
-   "slug": "ronaldinho-10-barcelona-2004-05",
-   "player": "Ronaldinho",
-   "number": "10",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "2004/05",
-   "variant": null,
-   "sub": "Barcelona · 2004/05",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldinho-10-barcelona-2004-05/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldinho-10-barcelona-2004-05/1.webp",
-    "assets/produtos/ronaldinho-10-barcelona-2004-05/2.webp",
-    "assets/produtos/ronaldinho-10-barcelona-2004-05/3.webp",
-    "assets/produtos/ronaldinho-10-barcelona-2004-05/4.webp"
-   ]
-  },
-  {
-   "id": 6,
-   "slug": "kaka-8-brazil-2006",
-   "player": "Kaká",
-   "number": "8",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Brasil · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/kaka-8-brazil-2006/1-t.webp",
-   "img": [
-    "assets/produtos/kaka-8-brazil-2006/1.webp",
-    "assets/produtos/kaka-8-brazil-2006/2.webp",
-    "assets/produtos/kaka-8-brazil-2006/3.webp",
-    "assets/produtos/kaka-8-brazil-2006/4.webp"
-   ]
-  },
-  {
-   "id": 7,
-   "slug": "rivaldo-10-brazil-1998",
-   "player": "Rivaldo",
-   "number": "10",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Brasil · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/rivaldo-10-brazil-1998/1-t.webp",
-   "img": [
-    "assets/produtos/rivaldo-10-brazil-1998/1.webp",
-    "assets/produtos/rivaldo-10-brazil-1998/2.webp",
-    "assets/produtos/rivaldo-10-brazil-1998/3.webp",
-    "assets/produtos/rivaldo-10-brazil-1998/4.webp"
-   ]
-  },
-  {
-   "id": 8,
-   "slug": "roberto-carlos-6-brazil-1998",
-   "player": "Roberto Carlos",
-   "number": "6",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Brasil · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/roberto-carlos-6-brazil-1998/1-t.webp",
-   "img": [
-    "assets/produtos/roberto-carlos-6-brazil-1998/1.webp",
-    "assets/produtos/roberto-carlos-6-brazil-1998/2.webp",
-    "assets/produtos/roberto-carlos-6-brazil-1998/3.webp",
-    "assets/produtos/roberto-carlos-6-brazil-1998/4.webp"
-   ]
-  },
-  {
-   "id": 9,
-   "slug": "ronaldinho-10-brazil-2006",
-   "player": "Ronaldinho",
-   "number": "10",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Brasil · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldinho-10-brazil-2006/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldinho-10-brazil-2006/1.webp",
-    "assets/produtos/ronaldinho-10-brazil-2006/2.webp",
-    "assets/produtos/ronaldinho-10-brazil-2006/3.webp",
-    "assets/produtos/ronaldinho-10-brazil-2006/4.webp"
-   ]
-  },
-  {
-   "id": 10,
-   "slug": "ronaldo-9-brazil-1998",
-   "player": "Ronaldo",
-   "number": "9",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Brasil · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-9-brazil-1998/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-9-brazil-1998/1.webp",
-    "assets/produtos/ronaldo-9-brazil-1998/2.webp",
-    "assets/produtos/ronaldo-9-brazil-1998/3.webp",
-    "assets/produtos/ronaldo-9-brazil-1998/4.webp"
-   ]
-  },
-  {
-   "id": 11,
-   "slug": "ronaldo-9-brazil-2002",
-   "player": "Ronaldo",
-   "number": "9",
-   "team": "Brasil",
-   "section": "selecoes",
-   "year": "2002",
-   "variant": null,
-   "sub": "Brasil · 2002",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-9-brazil-2002/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-9-brazil-2002/1.webp",
-    "assets/produtos/ronaldo-9-brazil-2002/2.webp",
-    "assets/produtos/ronaldo-9-brazil-2002/3.webp",
-    "assets/produtos/ronaldo-9-brazil-2002/4.webp"
-   ]
-  },
-  {
-   "id": 12,
-   "slug": "beckham-7-england-1998",
-   "player": "Beckham",
-   "number": "7",
-   "team": "Inglaterra",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Inglaterra · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/beckham-7-england-1998/1-t.webp",
-   "img": [
-    "assets/produtos/beckham-7-england-1998/1.webp",
-    "assets/produtos/beckham-7-england-1998/2.webp",
-    "assets/produtos/beckham-7-england-1998/3.webp",
-    "assets/produtos/beckham-7-england-1998/4.webp"
-   ]
-  },
-  {
-   "id": 13,
-   "slug": "owen-20-england-1998",
-   "player": "Owen",
-   "number": "20",
-   "team": "Inglaterra",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Inglaterra · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/owen-20-england-1998/1-t.webp",
-   "img": [
-    "assets/produtos/owen-20-england-1998/1.webp",
-    "assets/produtos/owen-20-england-1998/2.webp",
-    "assets/produtos/owen-20-england-1998/3.webp",
-    "assets/produtos/owen-20-england-1998/4.webp"
-   ]
-  },
-  {
-   "id": 14,
-   "slug": "henry-12-france-1998",
-   "player": "Henry",
-   "number": "12",
-   "team": "França",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "França · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/henry-12-france-1998/1-t.webp",
-   "img": [
-    "assets/produtos/henry-12-france-1998/1.webp",
-    "assets/produtos/henry-12-france-1998/2.webp",
-    "assets/produtos/henry-12-france-1998/3.webp",
-    "assets/produtos/henry-12-france-1998/4.webp"
-   ]
-  },
-  {
-   "id": 15,
-   "slug": "zidane-10-franca-2006",
-   "player": "Zidane",
-   "number": "10",
-   "team": "França",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "França · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/zidane-10-franca-2006/1-t.webp",
-   "img": [
-    "assets/produtos/zidane-10-franca-2006/1.webp",
-    "assets/produtos/zidane-10-franca-2006/2.webp",
-    "assets/produtos/zidane-10-franca-2006/3.webp",
-    "assets/produtos/zidane-10-franca-2006/4.webp"
-   ]
-  },
-  {
-   "id": 16,
-   "slug": "zidane-10-france-1998",
-   "player": "Zidane",
-   "number": "10",
-   "team": "França",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "França · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/zidane-10-france-1998/1-t.webp",
-   "img": [
-    "assets/produtos/zidane-10-france-1998/1.webp",
-    "assets/produtos/zidane-10-france-1998/2.webp",
-    "assets/produtos/zidane-10-france-1998/3.webp",
-    "assets/produtos/zidane-10-france-1998/4.webp"
-   ]
-  },
-  {
-   "id": 17,
-   "slug": "ballack-13-germany-2006",
-   "player": "Ballack",
-   "number": "13",
-   "team": "Alemanha",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Alemanha · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/ballack-13-germany-2006/1-t.webp",
-   "img": [
-    "assets/produtos/ballack-13-germany-2006/1.webp",
-    "assets/produtos/ballack-13-germany-2006/2.webp",
-    "assets/produtos/ballack-13-germany-2006/3.webp",
-    "assets/produtos/ballack-13-germany-2006/4.webp"
-   ]
-  },
-  {
-   "id": 18,
-   "slug": "klose-11-germany-2014-away",
-   "player": "Klose",
-   "number": "11",
-   "team": "Alemanha",
-   "section": "selecoes",
-   "year": "2014",
-   "variant": "Visitante",
-   "sub": "Alemanha · 2014 (Visitante)",
-   "price": 189.0,
-   "thumb": "assets/produtos/klose-11-germany-2014-away/1-t.webp",
-   "img": [
-    "assets/produtos/klose-11-germany-2014-away/1.webp",
-    "assets/produtos/klose-11-germany-2014-away/2.webp",
-    "assets/produtos/klose-11-germany-2014-away/3.webp",
-    "assets/produtos/klose-11-germany-2014-away/4.webp"
-   ]
-  },
-  {
-   "id": 19,
-   "slug": "matthaus-10-germany-1990",
-   "player": "Matthäus",
-   "number": "10",
-   "team": "Alemanha",
-   "section": "selecoes",
-   "year": "1990",
-   "variant": null,
-   "sub": "Alemanha · 1990",
-   "price": 189.0,
-   "thumb": "assets/produtos/matthaus-10-germany-1990/1-t.webp",
-   "img": [
-    "assets/produtos/matthaus-10-germany-1990/1.webp",
-    "assets/produtos/matthaus-10-germany-1990/2.webp",
-    "assets/produtos/matthaus-10-germany-1990/3.webp",
-    "assets/produtos/matthaus-10-germany-1990/4.webp"
-   ]
-  },
-  {
-   "id": 20,
-   "slug": "ronaldo-10-inter-milan-1996",
-   "player": "Ronaldo",
-   "number": "10",
-   "team": "Inter de Milão",
-   "section": "times",
-   "year": "1996",
-   "variant": null,
-   "sub": "Inter de Milão · 1996",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-10-inter-milan-1996/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-10-inter-milan-1996/1.webp",
-    "assets/produtos/ronaldo-10-inter-milan-1996/2.webp",
-    "assets/produtos/ronaldo-10-inter-milan-1996/3.webp",
-    "assets/produtos/ronaldo-10-inter-milan-1996/4.webp"
-   ]
-  },
-  {
-   "id": 21,
-   "slug": "baggio-10-italy-1994",
-   "player": "Baggio",
-   "number": "10",
-   "team": "Itália",
-   "section": "selecoes",
-   "year": "1994",
-   "variant": null,
-   "sub": "Itália · 1994",
-   "price": 189.0,
-   "thumb": "assets/produtos/baggio-10-italy-1994/1-t.webp",
-   "img": [
-    "assets/produtos/baggio-10-italy-1994/1.webp",
-    "assets/produtos/baggio-10-italy-1994/2.webp",
-    "assets/produtos/baggio-10-italy-1994/3.webp",
-    "assets/produtos/baggio-10-italy-1994/4.webp"
-   ]
-  },
-  {
-   "id": 22,
-   "slug": "cannavaro-5-italy-2006",
-   "player": "Cannavaro",
-   "number": "5",
-   "team": "Itália",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Itália · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/cannavaro-5-italy-2006/1-t.webp",
-   "img": [
-    "assets/produtos/cannavaro-5-italy-2006/1.webp",
-    "assets/produtos/cannavaro-5-italy-2006/2.webp",
-    "assets/produtos/cannavaro-5-italy-2006/3.webp",
-    "assets/produtos/cannavaro-5-italy-2006/4.webp"
-   ]
-  },
-  {
-   "id": 23,
-   "slug": "del-piero-7-italy-2006",
-   "player": "Del Piero",
-   "number": "7",
-   "team": "Itália",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Itália · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/del-piero-7-italy-2006/1-t.webp",
-   "img": [
-    "assets/produtos/del-piero-7-italy-2006/1.webp",
-    "assets/produtos/del-piero-7-italy-2006/2.webp",
-    "assets/produtos/del-piero-7-italy-2006/3.webp",
-    "assets/produtos/del-piero-7-italy-2006/4.webp"
-   ]
-  },
-  {
-   "id": 24,
-   "slug": "totti-10-italy-2006",
-   "player": "Totti",
-   "number": "10",
-   "team": "Itália",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Itália · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/totti-10-italy-2006/1-t.webp",
-   "img": [
-    "assets/produtos/totti-10-italy-2006/1.webp",
-    "assets/produtos/totti-10-italy-2006/2.webp",
-    "assets/produtos/totti-10-italy-2006/3.webp",
-    "assets/produtos/totti-10-italy-2006/4.webp"
-   ]
-  },
-  {
-   "id": 25,
-   "slug": "nakata-8-japan-1998",
-   "player": "Nakata",
-   "number": "8",
-   "team": "Japão",
-   "section": "selecoes",
-   "year": "1998",
-   "variant": null,
-   "sub": "Japão · 1998",
-   "price": 189.0,
-   "thumb": "assets/produtos/nakata-8-japan-1998/1-t.webp",
-   "img": [
-    "assets/produtos/nakata-8-japan-1998/1.webp",
-    "assets/produtos/nakata-8-japan-1998/2.webp",
-    "assets/produtos/nakata-8-japan-1998/3.webp",
-    "assets/produtos/nakata-8-japan-1998/4.webp"
-   ]
-  },
-  {
-   "id": 26,
-   "slug": "cantona-7-manutd-1995",
-   "player": "Cantona",
-   "number": "7",
-   "team": "Manchester United",
-   "section": "times",
-   "year": "1995",
-   "variant": null,
-   "sub": "Manchester United · 1995",
-   "price": 189.0,
-   "thumb": "assets/produtos/cantona-7-manutd-1995/1-t.webp",
-   "img": [
-    "assets/produtos/cantona-7-manutd-1995/1.webp",
-    "assets/produtos/cantona-7-manutd-1995/2.webp",
-    "assets/produtos/cantona-7-manutd-1995/3.webp",
-    "assets/produtos/cantona-7-manutd-1995/4.webp"
-   ]
-  },
-  {
-   "id": 27,
-   "slug": "gullit-10-netherlands-1988",
-   "player": "Gullit",
-   "number": "10",
-   "team": "Holanda",
-   "section": "selecoes",
-   "year": "1988",
-   "variant": null,
-   "sub": "Holanda · 1988",
-   "price": 189.0,
-   "thumb": "assets/produtos/gullit-10-netherlands-1988/1-t.webp",
-   "img": [
-    "assets/produtos/gullit-10-netherlands-1988/1.webp",
-    "assets/produtos/gullit-10-netherlands-1988/2.webp",
-    "assets/produtos/gullit-10-netherlands-1988/3.webp",
-    "assets/produtos/gullit-10-netherlands-1988/4.webp"
-   ]
-  },
-  {
-   "id": 28,
-   "slug": "robben-11-netherlands-2014",
-   "player": "Robben",
-   "number": "11",
-   "team": "Holanda",
-   "section": "selecoes",
-   "year": "2014",
-   "variant": null,
-   "sub": "Holanda · 2014",
-   "price": 189.0,
-   "thumb": "assets/produtos/robben-11-netherlands-2014/1-t.webp",
-   "img": [
-    "assets/produtos/robben-11-netherlands-2014/1.webp",
-    "assets/produtos/robben-11-netherlands-2014/2.webp",
-    "assets/produtos/robben-11-netherlands-2014/3.webp",
-    "assets/produtos/robben-11-netherlands-2014/4.webp"
-   ]
-  },
-  {
-   "id": 29,
-   "slug": "van-persie-9-netherlands-2014",
-   "player": "Van Persie",
-   "number": "9",
-   "team": "Holanda",
-   "section": "selecoes",
-   "year": "2014",
-   "variant": null,
-   "sub": "Holanda · 2014",
-   "price": 189.0,
-   "thumb": "assets/produtos/van-persie-9-netherlands-2014/1-t.webp",
-   "img": [
-    "assets/produtos/van-persie-9-netherlands-2014/1.webp",
-    "assets/produtos/van-persie-9-netherlands-2014/2.webp",
-    "assets/produtos/van-persie-9-netherlands-2014/3.webp",
-    "assets/produtos/van-persie-9-netherlands-2014/4.webp"
-   ]
-  },
-  {
-   "id": 30,
-   "slug": "okocha-10-nigeria-1994",
-   "player": "Okocha",
-   "number": "10",
-   "team": "Nigéria",
-   "section": "selecoes",
-   "year": "1994",
-   "variant": null,
-   "sub": "Nigéria · 1994",
-   "price": 189.0,
-   "thumb": "assets/produtos/okocha-10-nigeria-1994/1-t.webp",
-   "img": [
-    "assets/produtos/okocha-10-nigeria-1994/1.webp",
-    "assets/produtos/okocha-10-nigeria-1994/2.webp",
-    "assets/produtos/okocha-10-nigeria-1994/3.webp",
-    "assets/produtos/okocha-10-nigeria-1994/4.webp"
-   ]
-  },
-  {
-   "id": 31,
-   "slug": "cristiano-ronaldo-17-portugal-2004",
-   "player": "Cristiano Ronaldo",
-   "number": "17",
-   "team": "Portugal",
-   "section": "selecoes",
-   "year": "2004",
-   "variant": null,
-   "sub": "Portugal · 2004",
-   "price": 189.0,
-   "thumb": "assets/produtos/cristiano-ronaldo-17-portugal-2004/1-t.webp",
-   "img": [
-    "assets/produtos/cristiano-ronaldo-17-portugal-2004/1.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2004/2.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2004/3.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2004/4.webp"
-   ]
-  },
-  {
-   "id": 32,
-   "slug": "cristiano-ronaldo-17-portugal-2006",
-   "player": "Cristiano Ronaldo",
-   "number": "17",
-   "team": "Portugal",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Portugal · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/cristiano-ronaldo-17-portugal-2006/1-t.webp",
-   "img": [
-    "assets/produtos/cristiano-ronaldo-17-portugal-2006/1.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2006/2.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2006/3.webp",
-    "assets/produtos/cristiano-ronaldo-17-portugal-2006/4.webp"
-   ]
-  },
-  {
-   "id": 33,
-   "slug": "figo-7-portugal-2004",
-   "player": "Figo",
-   "number": "7",
-   "team": "Portugal",
-   "section": "selecoes",
-   "year": "2004",
-   "variant": null,
-   "sub": "Portugal · 2004",
-   "price": 189.0,
-   "thumb": "assets/produtos/figo-7-portugal-2004/1-t.webp",
-   "img": [
-    "assets/produtos/figo-7-portugal-2004/1.webp",
-    "assets/produtos/figo-7-portugal-2004/2.webp",
-    "assets/produtos/figo-7-portugal-2004/3.webp",
-    "assets/produtos/figo-7-portugal-2004/4.webp"
-   ]
-  },
-  {
-   "id": 34,
-   "slug": "figo-7-portugal-2006",
-   "player": "Figo",
-   "number": "7",
-   "team": "Portugal",
-   "section": "selecoes",
-   "year": "2006",
-   "variant": null,
-   "sub": "Portugal · 2006",
-   "price": 189.0,
-   "thumb": "assets/produtos/figo-7-portugal-2006/1-t.webp",
-   "img": [
-    "assets/produtos/figo-7-portugal-2006/1.webp",
-    "assets/produtos/figo-7-portugal-2006/2.webp",
-    "assets/produtos/figo-7-portugal-2006/3.webp",
-    "assets/produtos/figo-7-portugal-2006/4.webp"
-   ]
-  },
-  {
-   "id": 35,
-   "slug": "iniesta-6-spain-2010",
-   "player": "Iniesta",
-   "number": "6",
-   "team": "Espanha",
-   "section": "selecoes",
-   "year": "2010",
-   "variant": null,
-   "sub": "Espanha · 2010",
-   "price": 189.0,
-   "thumb": "assets/produtos/iniesta-6-spain-2010/1-t.webp",
-   "img": [
-    "assets/produtos/iniesta-6-spain-2010/1.webp",
-    "assets/produtos/iniesta-6-spain-2010/2.webp",
-    "assets/produtos/iniesta-6-spain-2010/3.webp",
-    "assets/produtos/iniesta-6-spain-2010/4.webp"
-   ]
-  },
-  {
-   "id": 36,
-   "slug": "raul-10-spain-1996",
-   "player": "Raúl",
-   "number": "10",
-   "team": "Espanha",
-   "section": "selecoes",
-   "year": "1996",
-   "variant": null,
-   "sub": "Espanha · 1996",
-   "price": 189.0,
-   "thumb": "assets/produtos/raul-10-spain-1996/1-t.webp",
-   "img": [
-    "assets/produtos/raul-10-spain-1996/1.webp",
-    "assets/produtos/raul-10-spain-1996/2.webp",
-    "assets/produtos/raul-10-spain-1996/3.webp",
-    "assets/produtos/raul-10-spain-1996/4.webp"
-   ]
-  },
-  {
-   "id": 37,
-   "slug": "torres-9-spain-2008",
-   "player": "Torres",
-   "number": "9",
-   "team": "Espanha",
-   "section": "selecoes",
-   "year": "2008",
-   "variant": null,
-   "sub": "Espanha · 2008",
-   "price": 189.0,
-   "thumb": "assets/produtos/torres-9-spain-2008/1-t.webp",
-   "img": [
-    "assets/produtos/torres-9-spain-2008/1.webp",
-    "assets/produtos/torres-9-spain-2008/2.webp",
-    "assets/produtos/torres-9-spain-2008/3.webp",
-    "assets/produtos/torres-9-spain-2008/4.webp"
-   ]
-  },
-  {
-   "id": 38,
-   "slug": "torres-spain-2011",
-   "player": "Torres",
-   "number": "9",
-   "team": "Espanha",
-   "section": "selecoes",
-   "year": "2011",
-   "variant": null,
-   "sub": "Espanha · 2011",
-   "price": 189.0,
-   "thumb": "assets/produtos/torres-spain-2011/1-t.webp",
-   "img": [
-    "assets/produtos/torres-spain-2011/1.webp",
-    "assets/produtos/torres-spain-2011/2.webp",
-    "assets/produtos/torres-spain-2011/3.webp",
-    "assets/produtos/torres-spain-2011/4.webp"
-   ]
-  },
-  {
-   "id": 39,
-   "slug": "villa-7-spain-2010",
-   "player": "Villa",
-   "number": "7",
-   "team": "Espanha",
-   "section": "selecoes",
-   "year": "2010",
-   "variant": null,
-   "sub": "Espanha · 2010",
-   "price": 189.0,
-   "thumb": "assets/produtos/villa-7-spain-2010/1-t.webp",
-   "img": [
-    "assets/produtos/villa-7-spain-2010/1.webp",
-    "assets/produtos/villa-7-spain-2010/2.webp",
-    "assets/produtos/villa-7-spain-2010/3.webp",
-    "assets/produtos/villa-7-spain-2010/4.webp"
-   ]
-  },
-  {
-   "id": 40,
-   "slug": "gattuso-8-acmilan-2008-09",
-   "player": "Gattuso",
-   "number": "8",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/gattuso-8-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/gattuso-8-acmilan-2008-09/1.webp",
-    "assets/produtos/gattuso-8-acmilan-2008-09/2.webp",
-    "assets/produtos/gattuso-8-acmilan-2008-09/3.webp",
-    "assets/produtos/gattuso-8-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 41,
-   "slug": "kaka-22-acmilan-2013-14",
-   "player": "Kaká",
-   "number": "22",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2013/14",
-   "variant": null,
-   "sub": "AC Milan · 2013/14",
-   "price": 189.0,
-   "thumb": "assets/produtos/kaka-22-acmilan-2013-14/1-t.webp",
-   "img": [
-    "assets/produtos/kaka-22-acmilan-2013-14/1.webp",
-    "assets/produtos/kaka-22-acmilan-2013-14/2.webp",
-    "assets/produtos/kaka-22-acmilan-2013-14/3.webp",
-    "assets/produtos/kaka-22-acmilan-2013-14/4.webp"
-   ]
-  },
-  {
-   "id": 42,
-   "slug": "maldini-ac-milan-1997",
-   "player": "Maldini",
-   "number": "3",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "1997",
-   "variant": null,
-   "sub": "AC Milan · 1997",
-   "price": 189.0,
-   "thumb": "assets/produtos/maldini-ac-milan-1997/1-t.webp",
-   "img": [
-    "assets/produtos/maldini-ac-milan-1997/1.webp",
-    "assets/produtos/maldini-ac-milan-1997/2.webp",
-    "assets/produtos/maldini-ac-milan-1997/3.webp",
-    "assets/produtos/maldini-ac-milan-1997/4.webp"
-   ]
-  },
-  {
-   "id": 43,
-   "slug": "maldini-ac-milan-2007",
-   "player": "Maldini",
-   "number": "3",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2007",
-   "variant": null,
-   "sub": "AC Milan · 2007",
-   "price": 189.0,
-   "thumb": "assets/produtos/maldini-ac-milan-2007/1-t.webp",
-   "img": [
-    "assets/produtos/maldini-ac-milan-2007/1.webp",
-    "assets/produtos/maldini-ac-milan-2007/2.webp",
-    "assets/produtos/maldini-ac-milan-2007/3.webp",
-    "assets/produtos/maldini-ac-milan-2007/4.webp"
-   ]
-  },
-  {
-   "id": 44,
-   "slug": "pirlo-21-acmilan-2008-09",
-   "player": "Pirlo",
-   "number": "21",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/pirlo-21-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/pirlo-21-acmilan-2008-09/1.webp",
-    "assets/produtos/pirlo-21-acmilan-2008-09/2.webp",
-    "assets/produtos/pirlo-21-acmilan-2008-09/3.webp",
-    "assets/produtos/pirlo-21-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 45,
-   "slug": "ronaldinho-80-acmilan-2008-09",
-   "player": "Ronaldinho",
-   "number": "80",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldinho-80-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldinho-80-acmilan-2008-09/1.webp",
-    "assets/produtos/ronaldinho-80-acmilan-2008-09/2.webp",
-    "assets/produtos/ronaldinho-80-acmilan-2008-09/3.webp",
-    "assets/produtos/ronaldinho-80-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 46,
-   "slug": "ronaldo-99-acmilan-2008-09",
-   "player": "Ronaldo",
-   "number": "99",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-99-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-99-acmilan-2008-09/1.webp",
-    "assets/produtos/ronaldo-99-acmilan-2008-09/2.webp",
-    "assets/produtos/ronaldo-99-acmilan-2008-09/3.webp",
-    "assets/produtos/ronaldo-99-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 47,
-   "slug": "seedorf-10-acmilan-2008-09",
-   "player": "Seedorf",
-   "number": "10",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/seedorf-10-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/seedorf-10-acmilan-2008-09/1.webp",
-    "assets/produtos/seedorf-10-acmilan-2008-09/2.webp",
-    "assets/produtos/seedorf-10-acmilan-2008-09/3.webp",
-    "assets/produtos/seedorf-10-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 48,
-   "slug": "shevchenko-7-acmilan-2008-09",
-   "player": "Shevchenko",
-   "number": "7",
-   "team": "AC Milan",
-   "section": "times",
-   "year": "2008/09",
-   "variant": null,
-   "sub": "AC Milan · 2008/09",
-   "price": 189.0,
-   "thumb": "assets/produtos/shevchenko-7-acmilan-2008-09/1-t.webp",
-   "img": [
-    "assets/produtos/shevchenko-7-acmilan-2008-09/1.webp",
-    "assets/produtos/shevchenko-7-acmilan-2008-09/2.webp",
-    "assets/produtos/shevchenko-7-acmilan-2008-09/3.webp",
-    "assets/produtos/shevchenko-7-acmilan-2008-09/4.webp"
-   ]
-  },
-  {
-   "id": 49,
-   "slug": "de-boer-ajax-1999",
-   "player": "De Boer",
-   "number": "4",
-   "team": "Ajax",
-   "section": "times",
-   "year": "1999",
-   "variant": null,
-   "sub": "Ajax · 1999",
-   "price": 189.0,
-   "thumb": "assets/produtos/de-boer-ajax-1999/1-t.webp",
-   "img": [
-    "assets/produtos/de-boer-ajax-1999/1.webp",
-    "assets/produtos/de-boer-ajax-1999/2.webp",
-    "assets/produtos/de-boer-ajax-1999/3.webp",
-    "assets/produtos/de-boer-ajax-1999/4.webp"
-   ]
-  },
-  {
-   "id": 50,
-   "slug": "henry-arsenal-2005",
-   "player": "Henry",
-   "number": "14",
-   "team": "Arsenal",
-   "section": "times",
-   "year": "2005",
-   "variant": null,
-   "sub": "Arsenal · 2005",
-   "price": 189.0,
-   "thumb": "assets/produtos/henry-arsenal-2005/1-t.webp",
-   "img": [
-    "assets/produtos/henry-arsenal-2005/1.webp",
-    "assets/produtos/henry-arsenal-2005/2.webp",
-    "assets/produtos/henry-arsenal-2005/3.webp",
-    "assets/produtos/henry-arsenal-2005/4.webp"
-   ]
-  },
-  {
-   "id": 51,
-   "slug": "messi-10-barcelona-2009",
-   "player": "Messi",
-   "number": "10",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "2009",
-   "variant": null,
-   "sub": "Barcelona · 2009",
-   "price": 189.0,
-   "thumb": "assets/produtos/messi-10-barcelona-2009/1-t.webp",
-   "img": [
-    "assets/produtos/messi-10-barcelona-2009/1.webp",
-    "assets/produtos/messi-10-barcelona-2009/2.webp",
-    "assets/produtos/messi-10-barcelona-2009/3.webp",
-    "assets/produtos/messi-10-barcelona-2009/4.webp"
-   ]
-  },
-  {
-   "id": 52,
-   "slug": "messi-barcelona-2018",
-   "player": "Messi",
-   "number": "10",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "2018",
-   "variant": null,
-   "sub": "Barcelona · 2018",
-   "price": 189.0,
-   "thumb": "assets/produtos/messi-barcelona-2018/1-t.webp",
-   "img": [
-    "assets/produtos/messi-barcelona-2018/1.webp",
-    "assets/produtos/messi-barcelona-2018/2.webp",
-    "assets/produtos/messi-barcelona-2018/3.webp",
-    "assets/produtos/messi-barcelona-2018/4.webp"
-   ]
-  },
-  {
-   "id": 53,
-   "slug": "neymar-barcelona-2015",
-   "player": "Neymar",
-   "number": "11",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "2015",
-   "variant": null,
-   "sub": "Barcelona · 2015",
-   "price": 189.0,
-   "thumb": "assets/produtos/neymar-barcelona-2015/1-t.webp",
-   "img": [
-    "assets/produtos/neymar-barcelona-2015/1.webp",
-    "assets/produtos/neymar-barcelona-2015/2.webp",
-    "assets/produtos/neymar-barcelona-2015/3.webp",
-    "assets/produtos/neymar-barcelona-2015/4.webp"
-   ]
-  },
-  {
-   "id": 54,
-   "slug": "rivaldo-barcelona-1999",
-   "player": "Rivaldo",
-   "number": "10",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "1999",
-   "variant": null,
-   "sub": "Barcelona · 1999",
-   "price": 189.0,
-   "thumb": "assets/produtos/rivaldo-barcelona-1999/1-t.webp",
-   "img": [
-    "assets/produtos/rivaldo-barcelona-1999/1.webp",
-    "assets/produtos/rivaldo-barcelona-1999/2.webp",
-    "assets/produtos/rivaldo-barcelona-1999/3.webp",
-    "assets/produtos/rivaldo-barcelona-1999/4.webp"
-   ]
-  },
-  {
-   "id": 55,
-   "slug": "ronaldo-barcelona-1997",
-   "player": "Ronaldo",
-   "number": "9",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "1997",
-   "variant": null,
-   "sub": "Barcelona · 1997",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-barcelona-1997/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-barcelona-1997/1.webp",
-    "assets/produtos/ronaldo-barcelona-1997/2.webp",
-    "assets/produtos/ronaldo-barcelona-1997/3.webp",
-    "assets/produtos/ronaldo-barcelona-1997/4.webp"
-   ]
-  },
-  {
-   "id": 56,
-   "slug": "ronaldo-barcelona-1998-away",
-   "player": "Ronaldo",
-   "number": "9",
-   "team": "Barcelona",
-   "section": "times",
-   "year": "1998",
-   "variant": "Visitante",
-   "sub": "Barcelona · 1998 (Visitante)",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-barcelona-1998-away/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-barcelona-1998-away/1.webp",
-    "assets/produtos/ronaldo-barcelona-1998-away/2.webp",
-    "assets/produtos/ronaldo-barcelona-1998-away/3.webp",
-    "assets/produtos/ronaldo-barcelona-1998-away/4.webp"
-   ]
-  },
-  {
-   "id": 57,
-   "slug": "matthaus-10-bayern-1997-98",
-   "player": "Matthäus",
-   "number": "10",
-   "team": "Bayern de Munique",
-   "section": "times",
-   "year": "1997/98",
-   "variant": null,
-   "sub": "Bayern de Munique · 1997/98",
-   "price": 189.0,
-   "thumb": "assets/produtos/matthaus-10-bayern-1997-98/1-t.webp",
-   "img": [
-    "assets/produtos/matthaus-10-bayern-1997-98/1.webp",
-    "assets/produtos/matthaus-10-bayern-1997-98/2.webp",
-    "assets/produtos/matthaus-10-bayern-1997-98/3.webp",
-    "assets/produtos/matthaus-10-bayern-1997-98/4.webp"
-   ]
-  },
-  {
-   "id": 58,
-   "slug": "drogba-chelsea-2010",
-   "player": "Drogba",
-   "number": "11",
-   "team": "Chelsea",
-   "section": "times",
-   "year": "2010",
-   "variant": null,
-   "sub": "Chelsea · 2010",
-   "price": 189.0,
-   "thumb": "assets/produtos/drogba-chelsea-2010/1-t.webp",
-   "img": [
-    "assets/produtos/drogba-chelsea-2010/1.webp",
-    "assets/produtos/drogba-chelsea-2010/2.webp",
-    "assets/produtos/drogba-chelsea-2010/3.webp",
-    "assets/produtos/drogba-chelsea-2010/4.webp"
-   ]
-  },
-  {
-   "id": 59,
-   "slug": "hazard-chelsea-2013",
-   "player": "Hazard",
-   "number": "17",
-   "team": "Chelsea",
-   "section": "times",
-   "year": "2013",
-   "variant": null,
-   "sub": "Chelsea · 2013",
-   "price": 189.0,
-   "thumb": "assets/produtos/hazard-chelsea-2013/1-t.webp",
-   "img": [
-    "assets/produtos/hazard-chelsea-2013/1.webp",
-    "assets/produtos/hazard-chelsea-2013/2.webp",
-    "assets/produtos/hazard-chelsea-2013/3.webp",
-    "assets/produtos/hazard-chelsea-2013/4.webp"
-   ]
-  },
-  {
-   "id": 60,
-   "slug": "ibrahimovic-inter-milan-2008",
-   "player": "Ibrahimović",
-   "number": "8",
-   "team": "Inter de Milão",
-   "section": "times",
-   "year": "2008",
-   "variant": null,
-   "sub": "Inter de Milão · 2008",
-   "price": 189.0,
-   "thumb": "assets/produtos/ibrahimovic-inter-milan-2008/1-t.webp",
-   "img": [
-    "assets/produtos/ibrahimovic-inter-milan-2008/1.webp",
-    "assets/produtos/ibrahimovic-inter-milan-2008/2.webp",
-    "assets/produtos/ibrahimovic-inter-milan-2008/3.webp",
-    "assets/produtos/ibrahimovic-inter-milan-2008/4.webp"
-   ]
-  },
-  {
-   "id": 61,
-   "slug": "delpiero-10-juventus-1997-98",
-   "player": "Del Piero",
-   "number": "10",
-   "team": "Juventus",
-   "section": "times",
-   "year": "1997/98",
-   "variant": null,
-   "sub": "Juventus · 1997/98",
-   "price": 189.0,
-   "thumb": "assets/produtos/delpiero-10-juventus-1997-98/1-t.webp",
-   "img": [
-    "assets/produtos/delpiero-10-juventus-1997-98/1.webp",
-    "assets/produtos/delpiero-10-juventus-1997-98/2.webp",
-    "assets/produtos/delpiero-10-juventus-1997-98/3.webp",
-    "assets/produtos/delpiero-10-juventus-1997-98/4.webp"
-   ]
-  },
-  {
-   "id": 62,
-   "slug": "pogba-10-juventus-2015-16",
-   "player": "Pogba",
-   "number": "10",
-   "team": "Juventus",
-   "section": "times",
-   "year": "2015/16",
-   "variant": null,
-   "sub": "Juventus · 2015/16",
-   "price": 189.0,
-   "thumb": "assets/produtos/pogba-10-juventus-2015-16/1-t.webp",
-   "img": [
-    "assets/produtos/pogba-10-juventus-2015-16/1.webp",
-    "assets/produtos/pogba-10-juventus-2015-16/2.webp",
-    "assets/produtos/pogba-10-juventus-2015-16/3.webp",
-    "assets/produtos/pogba-10-juventus-2015-16/4.webp"
-   ]
-  },
-  {
-   "id": 63,
-   "slug": "gerrard-liverpool-2010-11",
-   "player": "Gerrard",
-   "number": "8",
-   "team": "Liverpool",
-   "section": "times",
-   "year": "2010/11",
-   "variant": null,
-   "sub": "Liverpool · 2010/11",
-   "price": 189.0,
-   "thumb": "assets/produtos/gerrard-liverpool-2010-11/1-t.webp",
-   "img": [
-    "assets/produtos/gerrard-liverpool-2010-11/1.webp",
-    "assets/produtos/gerrard-liverpool-2010-11/2.webp",
-    "assets/produtos/gerrard-liverpool-2010-11/3.webp",
-    "assets/produtos/gerrard-liverpool-2010-11/4.webp"
-   ]
-  },
-  {
-   "id": 64,
-   "slug": "beckham-7-manutd-2002",
-   "player": "Beckham",
-   "number": "7",
-   "team": "Manchester United",
-   "section": "times",
-   "year": "2002",
-   "variant": null,
-   "sub": "Manchester United · 2002",
-   "price": 189.0,
-   "thumb": "assets/produtos/beckham-7-manutd-2002/1-t.webp",
-   "img": [
-    "assets/produtos/beckham-7-manutd-2002/1.webp",
-    "assets/produtos/beckham-7-manutd-2002/2.webp",
-    "assets/produtos/beckham-7-manutd-2002/3.webp",
-    "assets/produtos/beckham-7-manutd-2002/4.webp"
-   ]
-  },
-  {
-   "id": 65,
-   "slug": "ronaldo-7-manutd-2008",
-   "player": "Ronaldo",
-   "number": "7",
-   "team": "Manchester United",
-   "section": "times",
-   "year": "2008",
-   "variant": null,
-   "sub": "Manchester United · 2008",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-7-manutd-2008/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-7-manutd-2008/1.webp",
-    "assets/produtos/ronaldo-7-manutd-2008/2.webp",
-    "assets/produtos/ronaldo-7-manutd-2008/3.webp",
-    "assets/produtos/ronaldo-7-manutd-2008/4.webp"
-   ]
-  },
-  {
-   "id": 66,
-   "slug": "ronaldo-7-manutd-2008-away",
-   "player": "Ronaldo",
-   "number": "7",
-   "team": "Manchester United",
-   "section": "times",
-   "year": "2008",
-   "variant": "Visitante",
-   "sub": "Manchester United · 2008 (Visitante)",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-7-manutd-2008-away/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-7-manutd-2008-away/1.webp",
-    "assets/produtos/ronaldo-7-manutd-2008-away/2.webp",
-    "assets/produtos/ronaldo-7-manutd-2008-away/3.webp",
-    "assets/produtos/ronaldo-7-manutd-2008-away/4.webp"
-   ]
-  },
-  {
-   "id": 67,
-   "slug": "shearer-newcastle-2000",
-   "player": "Shearer",
-   "number": "9",
-   "team": "Newcastle",
-   "section": "times",
-   "year": "2000",
-   "variant": null,
-   "sub": "Newcastle · 2000",
-   "price": 189.0,
-   "thumb": "assets/produtos/shearer-newcastle-2000/1-t.webp",
-   "img": [
-    "assets/produtos/shearer-newcastle-2000/1.webp",
-    "assets/produtos/shearer-newcastle-2000/2.webp",
-    "assets/produtos/shearer-newcastle-2000/3.webp",
-    "assets/produtos/shearer-newcastle-2000/4.webp"
-   ]
-  },
-  {
-   "id": 68,
-   "slug": "neymar-10-psg-2018-19-away",
-   "player": "Neymar",
-   "number": "10",
-   "team": "PSG",
-   "section": "times",
-   "year": "2018/19",
-   "variant": "Visitante",
-   "sub": "PSG · 2018/19 (Visitante)",
-   "price": 189.0,
-   "thumb": "assets/produtos/neymar-10-psg-2018-19-away/1-t.webp",
-   "img": [
-    "assets/produtos/neymar-10-psg-2018-19-away/1.webp",
-    "assets/produtos/neymar-10-psg-2018-19-away/2.webp",
-    "assets/produtos/neymar-10-psg-2018-19-away/3.webp",
-    "assets/produtos/neymar-10-psg-2018-19-away/4.webp"
-   ]
-  },
-  {
-   "id": 69,
-   "slug": "casillas-real-madrid-2011",
-   "player": "Casillas",
-   "number": "1",
-   "team": "Real Madrid",
-   "section": "times",
-   "year": "2011",
-   "variant": null,
-   "sub": "Real Madrid · 2011",
-   "price": 189.0,
-   "thumb": "assets/produtos/casillas-real-madrid-2011/1-t.webp",
-   "img": [
-    "assets/produtos/casillas-real-madrid-2011/1.webp",
-    "assets/produtos/casillas-real-madrid-2011/2.webp",
-    "assets/produtos/casillas-real-madrid-2011/3.webp",
-    "assets/produtos/casillas-real-madrid-2011/4.webp"
-   ]
-  },
-  {
-   "id": 70,
-   "slug": "kaka-8-real-madrid-2011-12",
-   "player": "Kaká",
-   "number": "8",
-   "team": "Real Madrid",
-   "section": "times",
-   "year": "2011/12",
-   "variant": null,
-   "sub": "Real Madrid · 2011/12",
-   "price": 189.0,
-   "thumb": "assets/produtos/kaka-8-real-madrid-2011-12/1-t.webp",
-   "img": [
-    "assets/produtos/kaka-8-real-madrid-2011-12/1.webp",
-    "assets/produtos/kaka-8-real-madrid-2011-12/2.webp",
-    "assets/produtos/kaka-8-real-madrid-2011-12/3.webp",
-    "assets/produtos/kaka-8-real-madrid-2011-12/4.webp"
-   ]
-  },
-  {
-   "id": 71,
-   "slug": "neymar-santos-2012",
-   "player": "Neymar",
-   "number": "11",
-   "team": "Santos",
-   "section": "times",
-   "year": "2012",
-   "variant": null,
-   "sub": "Santos · 2012",
-   "price": 189.0,
-   "thumb": "assets/produtos/neymar-santos-2012/1-t.webp",
-   "img": [
-    "assets/produtos/neymar-santos-2012/1.webp",
-    "assets/produtos/neymar-santos-2012/2.webp",
-    "assets/produtos/neymar-santos-2012/3.webp",
-    "assets/produtos/neymar-santos-2012/4.webp"
-   ]
-  },
-  {
-   "id": 72,
-   "slug": "ronaldo-sporting-2003",
-   "player": "Ronaldo",
-   "number": "28",
-   "team": "Sporting",
-   "section": "times",
-   "year": "2003",
-   "variant": null,
-   "sub": "Sporting · 2003",
-   "price": 189.0,
-   "thumb": "assets/produtos/ronaldo-sporting-2003/1-t.webp",
-   "img": [
-    "assets/produtos/ronaldo-sporting-2003/1.webp",
-    "assets/produtos/ronaldo-sporting-2003/2.webp",
-    "assets/produtos/ronaldo-sporting-2003/3.webp",
-    "assets/produtos/ronaldo-sporting-2003/4.webp"
-   ]
-  }
- ]
+  "currency": "BRL",
+  "price_default": 189.0,
+  "price_compare_default": 249.0,
+  "sizes": [
+    "P",
+    "M",
+    "G",
+    "GG",
+    "G1"
+  ],
+  "frete": {
+    "valor": 22.0,
+    "gratis_acima": 499.0
+  },
+  "support_email": "retroemcampo@gmail.com",
+  "products": [
+    {
+      "id": 0,
+      "slug": "maradona-argentina-1994",
+      "player": "Maradona",
+      "number": "10",
+      "team": "Argentina",
+      "section": "selecoes",
+      "year": "1994",
+      "variant": null,
+      "sub": "Argentina · 1994",
+      "price": 189.0,
+      "thumb": "assets/produtos/maradona-argentina-1994/1-t.webp",
+      "img": [
+        "assets/produtos/maradona-argentina-1994/1.webp",
+        "assets/produtos/maradona-argentina-1994/2.webp",
+        "assets/produtos/maradona-argentina-1994/3.webp",
+        "assets/produtos/maradona-argentina-1994/4.webp"
+      ]
+    },
+    {
+      "id": 1,
+      "slug": "messi-19-argentina-2006-away",
+      "player": "Messi",
+      "number": "19",
+      "team": "Argentina",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": "Visitante",
+      "sub": "Argentina · 2006 (Visitante)",
+      "price": 189.0,
+      "thumb": "assets/produtos/messi-19-argentina-2006-away/1-t.webp",
+      "img": [
+        "assets/produtos/messi-19-argentina-2006-away/1.webp",
+        "assets/produtos/messi-19-argentina-2006-away/2.webp",
+        "assets/produtos/messi-19-argentina-2006-away/3.webp",
+        "assets/produtos/messi-19-argentina-2006-away/4.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "slug": "messi-19-argentina-2006-home",
+      "player": "Messi",
+      "number": "19",
+      "team": "Argentina",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": "Casa",
+      "sub": "Argentina · 2006 (Casa)",
+      "price": 189.0,
+      "thumb": "assets/produtos/messi-19-argentina-2006-home/1-t.webp",
+      "img": [
+        "assets/produtos/messi-19-argentina-2006-home/1.webp",
+        "assets/produtos/messi-19-argentina-2006-home/2.webp",
+        "assets/produtos/messi-19-argentina-2006-home/3.webp",
+        "assets/produtos/messi-19-argentina-2006-home/4.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "slug": "henry-14-arsenal-2002-03",
+      "player": "Henry",
+      "number": "14",
+      "team": "Arsenal",
+      "section": "times",
+      "year": "2002/03",
+      "variant": null,
+      "sub": "Arsenal · 2002/03",
+      "price": 189.0,
+      "thumb": "assets/produtos/henry-14-arsenal-2002-03/1-t.webp",
+      "img": [
+        "assets/produtos/henry-14-arsenal-2002-03/1.webp",
+        "assets/produtos/henry-14-arsenal-2002-03/2.webp",
+        "assets/produtos/henry-14-arsenal-2002-03/3.webp",
+        "assets/produtos/henry-14-arsenal-2002-03/4.webp"
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "neymar-11-barcelona-2014-15",
+      "player": "Neymar",
+      "number": "11",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "2014/15",
+      "variant": null,
+      "sub": "Barcelona · 2014/15",
+      "price": 189.0,
+      "thumb": "assets/produtos/neymar-11-barcelona-2014-15/1-t.webp",
+      "img": [
+        "assets/produtos/neymar-11-barcelona-2014-15/1.webp",
+        "assets/produtos/neymar-11-barcelona-2014-15/2.webp",
+        "assets/produtos/neymar-11-barcelona-2014-15/3.webp",
+        "assets/produtos/neymar-11-barcelona-2014-15/4.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "slug": "ronaldinho-10-barcelona-2004-05",
+      "player": "Ronaldinho",
+      "number": "10",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "2004/05",
+      "variant": null,
+      "sub": "Barcelona · 2004/05",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldinho-10-barcelona-2004-05/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldinho-10-barcelona-2004-05/1.webp",
+        "assets/produtos/ronaldinho-10-barcelona-2004-05/2.webp",
+        "assets/produtos/ronaldinho-10-barcelona-2004-05/3.webp",
+        "assets/produtos/ronaldinho-10-barcelona-2004-05/4.webp"
+      ]
+    },
+    {
+      "id": 6,
+      "slug": "kaka-8-brazil-2006",
+      "player": "Kaká",
+      "number": "8",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Brasil · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/kaka-8-brazil-2006/1-t.webp",
+      "img": [
+        "assets/produtos/kaka-8-brazil-2006/1.webp",
+        "assets/produtos/kaka-8-brazil-2006/2.webp",
+        "assets/produtos/kaka-8-brazil-2006/3.webp",
+        "assets/produtos/kaka-8-brazil-2006/4.webp"
+      ]
+    },
+    {
+      "id": 7,
+      "slug": "rivaldo-10-brazil-1998",
+      "player": "Rivaldo",
+      "number": "10",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Brasil · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/rivaldo-10-brazil-1998/1-t.webp",
+      "img": [
+        "assets/produtos/rivaldo-10-brazil-1998/1.webp",
+        "assets/produtos/rivaldo-10-brazil-1998/2.webp",
+        "assets/produtos/rivaldo-10-brazil-1998/3.webp",
+        "assets/produtos/rivaldo-10-brazil-1998/4.webp"
+      ]
+    },
+    {
+      "id": 8,
+      "slug": "roberto-carlos-6-brazil-1998",
+      "player": "Roberto Carlos",
+      "number": "6",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Brasil · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/roberto-carlos-6-brazil-1998/1-t.webp",
+      "img": [
+        "assets/produtos/roberto-carlos-6-brazil-1998/1.webp",
+        "assets/produtos/roberto-carlos-6-brazil-1998/2.webp",
+        "assets/produtos/roberto-carlos-6-brazil-1998/3.webp",
+        "assets/produtos/roberto-carlos-6-brazil-1998/4.webp"
+      ]
+    },
+    {
+      "id": 9,
+      "slug": "ronaldinho-10-brazil-2006",
+      "player": "Ronaldinho",
+      "number": "10",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Brasil · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldinho-10-brazil-2006/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldinho-10-brazil-2006/1.webp",
+        "assets/produtos/ronaldinho-10-brazil-2006/2.webp",
+        "assets/produtos/ronaldinho-10-brazil-2006/3.webp",
+        "assets/produtos/ronaldinho-10-brazil-2006/4.webp"
+      ]
+    },
+    {
+      "id": 10,
+      "slug": "ronaldo-9-brazil-1998",
+      "player": "Ronaldo",
+      "number": "9",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Brasil · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-9-brazil-1998/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-9-brazil-1998/1.webp",
+        "assets/produtos/ronaldo-9-brazil-1998/2.webp",
+        "assets/produtos/ronaldo-9-brazil-1998/3.webp",
+        "assets/produtos/ronaldo-9-brazil-1998/4.webp"
+      ]
+    },
+    {
+      "id": 11,
+      "slug": "ronaldo-9-brazil-2002",
+      "player": "Ronaldo",
+      "number": "9",
+      "team": "Brasil",
+      "section": "selecoes",
+      "year": "2002",
+      "variant": null,
+      "sub": "Brasil · 2002",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-9-brazil-2002/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-9-brazil-2002/1.webp",
+        "assets/produtos/ronaldo-9-brazil-2002/2.webp",
+        "assets/produtos/ronaldo-9-brazil-2002/3.webp",
+        "assets/produtos/ronaldo-9-brazil-2002/4.webp"
+      ]
+    },
+    {
+      "id": 12,
+      "slug": "beckham-7-england-1998",
+      "player": "Beckham",
+      "number": "7",
+      "team": "Inglaterra",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Inglaterra · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/beckham-7-england-1998/1-t.webp",
+      "img": [
+        "assets/produtos/beckham-7-england-1998/1.webp",
+        "assets/produtos/beckham-7-england-1998/2.webp",
+        "assets/produtos/beckham-7-england-1998/3.webp",
+        "assets/produtos/beckham-7-england-1998/4.webp"
+      ]
+    },
+    {
+      "id": 13,
+      "slug": "owen-20-england-1998",
+      "player": "Owen",
+      "number": "20",
+      "team": "Inglaterra",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Inglaterra · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/owen-20-england-1998/1-t.webp",
+      "img": [
+        "assets/produtos/owen-20-england-1998/1.webp",
+        "assets/produtos/owen-20-england-1998/2.webp",
+        "assets/produtos/owen-20-england-1998/3.webp",
+        "assets/produtos/owen-20-england-1998/4.webp"
+      ]
+    },
+    {
+      "id": 14,
+      "slug": "henry-12-france-1998",
+      "player": "Henry",
+      "number": "12",
+      "team": "França",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "França · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/henry-12-france-1998/1-t.webp",
+      "img": [
+        "assets/produtos/henry-12-france-1998/1.webp",
+        "assets/produtos/henry-12-france-1998/2.webp",
+        "assets/produtos/henry-12-france-1998/3.webp",
+        "assets/produtos/henry-12-france-1998/4.webp"
+      ]
+    },
+    {
+      "id": 15,
+      "slug": "zidane-10-franca-2006",
+      "player": "Zidane",
+      "number": "10",
+      "team": "França",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "França · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/zidane-10-franca-2006/1-t.webp",
+      "img": [
+        "assets/produtos/zidane-10-franca-2006/1.webp",
+        "assets/produtos/zidane-10-franca-2006/2.webp",
+        "assets/produtos/zidane-10-franca-2006/3.webp",
+        "assets/produtos/zidane-10-franca-2006/4.webp"
+      ]
+    },
+    {
+      "id": 16,
+      "slug": "zidane-10-france-1998",
+      "player": "Zidane",
+      "number": "10",
+      "team": "França",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "França · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/zidane-10-france-1998/1-t.webp",
+      "img": [
+        "assets/produtos/zidane-10-france-1998/1.webp",
+        "assets/produtos/zidane-10-france-1998/2.webp",
+        "assets/produtos/zidane-10-france-1998/3.webp",
+        "assets/produtos/zidane-10-france-1998/4.webp"
+      ]
+    },
+    {
+      "id": 17,
+      "slug": "ballack-13-germany-2006",
+      "player": "Ballack",
+      "number": "13",
+      "team": "Alemanha",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Alemanha · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/ballack-13-germany-2006/1-t.webp",
+      "img": [
+        "assets/produtos/ballack-13-germany-2006/1.webp",
+        "assets/produtos/ballack-13-germany-2006/2.webp",
+        "assets/produtos/ballack-13-germany-2006/3.webp",
+        "assets/produtos/ballack-13-germany-2006/4.webp"
+      ]
+    },
+    {
+      "id": 18,
+      "slug": "klose-11-germany-2014-away",
+      "player": "Klose",
+      "number": "11",
+      "team": "Alemanha",
+      "section": "selecoes",
+      "year": "2014",
+      "variant": "Visitante",
+      "sub": "Alemanha · 2014 (Visitante)",
+      "price": 189.0,
+      "thumb": "assets/produtos/klose-11-germany-2014-away/1-t.webp",
+      "img": [
+        "assets/produtos/klose-11-germany-2014-away/1.webp",
+        "assets/produtos/klose-11-germany-2014-away/2.webp",
+        "assets/produtos/klose-11-germany-2014-away/3.webp",
+        "assets/produtos/klose-11-germany-2014-away/4.webp"
+      ]
+    },
+    {
+      "id": 19,
+      "slug": "matthaus-10-germany-1990",
+      "player": "Matthäus",
+      "number": "10",
+      "team": "Alemanha",
+      "section": "selecoes",
+      "year": "1990",
+      "variant": null,
+      "sub": "Alemanha · 1990",
+      "price": 189.0,
+      "thumb": "assets/produtos/matthaus-10-germany-1990/1-t.webp",
+      "img": [
+        "assets/produtos/matthaus-10-germany-1990/1.webp",
+        "assets/produtos/matthaus-10-germany-1990/2.webp",
+        "assets/produtos/matthaus-10-germany-1990/3.webp",
+        "assets/produtos/matthaus-10-germany-1990/4.webp"
+      ]
+    },
+    {
+      "id": 20,
+      "slug": "ronaldo-10-inter-milan-1996",
+      "player": "Ronaldo",
+      "number": "10",
+      "team": "Inter de Milão",
+      "section": "times",
+      "year": "1996",
+      "variant": null,
+      "sub": "Inter de Milão · 1996",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-10-inter-milan-1996/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-10-inter-milan-1996/1.webp",
+        "assets/produtos/ronaldo-10-inter-milan-1996/2.webp",
+        "assets/produtos/ronaldo-10-inter-milan-1996/3.webp",
+        "assets/produtos/ronaldo-10-inter-milan-1996/4.webp"
+      ]
+    },
+    {
+      "id": 21,
+      "slug": "baggio-10-italy-1994",
+      "player": "Baggio",
+      "number": "10",
+      "team": "Itália",
+      "section": "selecoes",
+      "year": "1994",
+      "variant": null,
+      "sub": "Itália · 1994",
+      "price": 189.0,
+      "thumb": "assets/produtos/baggio-10-italy-1994/1-t.webp",
+      "img": [
+        "assets/produtos/baggio-10-italy-1994/1.webp",
+        "assets/produtos/baggio-10-italy-1994/2.webp",
+        "assets/produtos/baggio-10-italy-1994/3.webp",
+        "assets/produtos/baggio-10-italy-1994/4.webp"
+      ]
+    },
+    {
+      "id": 22,
+      "slug": "cannavaro-5-italy-2006",
+      "player": "Cannavaro",
+      "number": "5",
+      "team": "Itália",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Itália · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/cannavaro-5-italy-2006/1-t.webp",
+      "img": [
+        "assets/produtos/cannavaro-5-italy-2006/1.webp",
+        "assets/produtos/cannavaro-5-italy-2006/2.webp",
+        "assets/produtos/cannavaro-5-italy-2006/3.webp",
+        "assets/produtos/cannavaro-5-italy-2006/4.webp"
+      ]
+    },
+    {
+      "id": 23,
+      "slug": "del-piero-7-italy-2006",
+      "player": "Del Piero",
+      "number": "7",
+      "team": "Itália",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Itália · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/del-piero-7-italy-2006/1-t.webp",
+      "img": [
+        "assets/produtos/del-piero-7-italy-2006/1.webp",
+        "assets/produtos/del-piero-7-italy-2006/2.webp",
+        "assets/produtos/del-piero-7-italy-2006/3.webp",
+        "assets/produtos/del-piero-7-italy-2006/4.webp"
+      ]
+    },
+    {
+      "id": 24,
+      "slug": "totti-10-italy-2006",
+      "player": "Totti",
+      "number": "10",
+      "team": "Itália",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Itália · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/totti-10-italy-2006/1-t.webp",
+      "img": [
+        "assets/produtos/totti-10-italy-2006/1.webp",
+        "assets/produtos/totti-10-italy-2006/2.webp",
+        "assets/produtos/totti-10-italy-2006/3.webp",
+        "assets/produtos/totti-10-italy-2006/4.webp"
+      ]
+    },
+    {
+      "id": 25,
+      "slug": "nakata-8-japan-1998",
+      "player": "Nakata",
+      "number": "8",
+      "team": "Japão",
+      "section": "selecoes",
+      "year": "1998",
+      "variant": null,
+      "sub": "Japão · 1998",
+      "price": 189.0,
+      "thumb": "assets/produtos/nakata-8-japan-1998/1-t.webp",
+      "img": [
+        "assets/produtos/nakata-8-japan-1998/1.webp",
+        "assets/produtos/nakata-8-japan-1998/2.webp",
+        "assets/produtos/nakata-8-japan-1998/3.webp",
+        "assets/produtos/nakata-8-japan-1998/4.webp"
+      ]
+    },
+    {
+      "id": 26,
+      "slug": "cantona-7-manutd-1995",
+      "player": "Cantona",
+      "number": "7",
+      "team": "Manchester United",
+      "section": "times",
+      "year": "1995",
+      "variant": null,
+      "sub": "Manchester United · 1995",
+      "price": 189.0,
+      "thumb": "assets/produtos/cantona-7-manutd-1995/1-t.webp",
+      "img": [
+        "assets/produtos/cantona-7-manutd-1995/1.webp",
+        "assets/produtos/cantona-7-manutd-1995/2.webp",
+        "assets/produtos/cantona-7-manutd-1995/3.webp",
+        "assets/produtos/cantona-7-manutd-1995/4.webp"
+      ]
+    },
+    {
+      "id": 27,
+      "slug": "gullit-10-netherlands-1988",
+      "player": "Gullit",
+      "number": "10",
+      "team": "Holanda",
+      "section": "selecoes",
+      "year": "1988",
+      "variant": null,
+      "sub": "Holanda · 1988",
+      "price": 189.0,
+      "thumb": "assets/produtos/gullit-10-netherlands-1988/1-t.webp",
+      "img": [
+        "assets/produtos/gullit-10-netherlands-1988/1.webp",
+        "assets/produtos/gullit-10-netherlands-1988/2.webp",
+        "assets/produtos/gullit-10-netherlands-1988/3.webp",
+        "assets/produtos/gullit-10-netherlands-1988/4.webp"
+      ]
+    },
+    {
+      "id": 28,
+      "slug": "robben-11-netherlands-2014",
+      "player": "Robben",
+      "number": "11",
+      "team": "Holanda",
+      "section": "selecoes",
+      "year": "2014",
+      "variant": null,
+      "sub": "Holanda · 2014",
+      "price": 189.0,
+      "thumb": "assets/produtos/robben-11-netherlands-2014/1-t.webp",
+      "img": [
+        "assets/produtos/robben-11-netherlands-2014/1.webp",
+        "assets/produtos/robben-11-netherlands-2014/2.webp",
+        "assets/produtos/robben-11-netherlands-2014/3.webp",
+        "assets/produtos/robben-11-netherlands-2014/4.webp"
+      ]
+    },
+    {
+      "id": 29,
+      "slug": "van-persie-9-netherlands-2014",
+      "player": "Van Persie",
+      "number": "9",
+      "team": "Holanda",
+      "section": "selecoes",
+      "year": "2014",
+      "variant": null,
+      "sub": "Holanda · 2014",
+      "price": 189.0,
+      "thumb": "assets/produtos/van-persie-9-netherlands-2014/1-t.webp",
+      "img": [
+        "assets/produtos/van-persie-9-netherlands-2014/1.webp",
+        "assets/produtos/van-persie-9-netherlands-2014/2.webp",
+        "assets/produtos/van-persie-9-netherlands-2014/3.webp",
+        "assets/produtos/van-persie-9-netherlands-2014/4.webp"
+      ]
+    },
+    {
+      "id": 30,
+      "slug": "okocha-10-nigeria-1994",
+      "player": "Okocha",
+      "number": "10",
+      "team": "Nigéria",
+      "section": "selecoes",
+      "year": "1994",
+      "variant": null,
+      "sub": "Nigéria · 1994",
+      "price": 189.0,
+      "thumb": "assets/produtos/okocha-10-nigeria-1994/1-t.webp",
+      "img": [
+        "assets/produtos/okocha-10-nigeria-1994/1.webp",
+        "assets/produtos/okocha-10-nigeria-1994/2.webp",
+        "assets/produtos/okocha-10-nigeria-1994/3.webp",
+        "assets/produtos/okocha-10-nigeria-1994/4.webp"
+      ]
+    },
+    {
+      "id": 31,
+      "slug": "cristiano-ronaldo-17-portugal-2004",
+      "player": "Cristiano Ronaldo",
+      "number": "17",
+      "team": "Portugal",
+      "section": "selecoes",
+      "year": "2004",
+      "variant": null,
+      "sub": "Portugal · 2004",
+      "price": 189.0,
+      "thumb": "assets/produtos/cristiano-ronaldo-17-portugal-2004/1-t.webp",
+      "img": [
+        "assets/produtos/cristiano-ronaldo-17-portugal-2004/1.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2004/2.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2004/3.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2004/4.webp"
+      ]
+    },
+    {
+      "id": 32,
+      "slug": "cristiano-ronaldo-17-portugal-2006",
+      "player": "Cristiano Ronaldo",
+      "number": "17",
+      "team": "Portugal",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Portugal · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/cristiano-ronaldo-17-portugal-2006/1-t.webp",
+      "img": [
+        "assets/produtos/cristiano-ronaldo-17-portugal-2006/1.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2006/2.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2006/3.webp",
+        "assets/produtos/cristiano-ronaldo-17-portugal-2006/4.webp"
+      ]
+    },
+    {
+      "id": 33,
+      "slug": "figo-7-portugal-2004",
+      "player": "Figo",
+      "number": "7",
+      "team": "Portugal",
+      "section": "selecoes",
+      "year": "2004",
+      "variant": null,
+      "sub": "Portugal · 2004",
+      "price": 189.0,
+      "thumb": "assets/produtos/figo-7-portugal-2004/1-t.webp",
+      "img": [
+        "assets/produtos/figo-7-portugal-2004/1.webp",
+        "assets/produtos/figo-7-portugal-2004/2.webp",
+        "assets/produtos/figo-7-portugal-2004/3.webp",
+        "assets/produtos/figo-7-portugal-2004/4.webp"
+      ]
+    },
+    {
+      "id": 34,
+      "slug": "figo-7-portugal-2006",
+      "player": "Figo",
+      "number": "7",
+      "team": "Portugal",
+      "section": "selecoes",
+      "year": "2006",
+      "variant": null,
+      "sub": "Portugal · 2006",
+      "price": 189.0,
+      "thumb": "assets/produtos/figo-7-portugal-2006/1-t.webp",
+      "img": [
+        "assets/produtos/figo-7-portugal-2006/1.webp",
+        "assets/produtos/figo-7-portugal-2006/2.webp",
+        "assets/produtos/figo-7-portugal-2006/3.webp",
+        "assets/produtos/figo-7-portugal-2006/4.webp"
+      ]
+    },
+    {
+      "id": 35,
+      "slug": "iniesta-6-spain-2010",
+      "player": "Iniesta",
+      "number": "6",
+      "team": "Espanha",
+      "section": "selecoes",
+      "year": "2010",
+      "variant": null,
+      "sub": "Espanha · 2010",
+      "price": 189.0,
+      "thumb": "assets/produtos/iniesta-6-spain-2010/1-t.webp",
+      "img": [
+        "assets/produtos/iniesta-6-spain-2010/1.webp",
+        "assets/produtos/iniesta-6-spain-2010/2.webp",
+        "assets/produtos/iniesta-6-spain-2010/3.webp",
+        "assets/produtos/iniesta-6-spain-2010/4.webp"
+      ]
+    },
+    {
+      "id": 36,
+      "slug": "raul-10-spain-1996",
+      "player": "Raúl",
+      "number": "10",
+      "team": "Espanha",
+      "section": "selecoes",
+      "year": "1996",
+      "variant": null,
+      "sub": "Espanha · 1996",
+      "price": 189.0,
+      "thumb": "assets/produtos/raul-10-spain-1996/1-t.webp",
+      "img": [
+        "assets/produtos/raul-10-spain-1996/1.webp",
+        "assets/produtos/raul-10-spain-1996/2.webp",
+        "assets/produtos/raul-10-spain-1996/3.webp",
+        "assets/produtos/raul-10-spain-1996/4.webp"
+      ]
+    },
+    {
+      "id": 37,
+      "slug": "torres-9-spain-2008",
+      "player": "Torres",
+      "number": "9",
+      "team": "Espanha",
+      "section": "selecoes",
+      "year": "2008",
+      "variant": null,
+      "sub": "Espanha · 2008",
+      "price": 189.0,
+      "thumb": "assets/produtos/torres-9-spain-2008/1-t.webp",
+      "img": [
+        "assets/produtos/torres-9-spain-2008/1.webp",
+        "assets/produtos/torres-9-spain-2008/2.webp",
+        "assets/produtos/torres-9-spain-2008/3.webp",
+        "assets/produtos/torres-9-spain-2008/4.webp"
+      ]
+    },
+    {
+      "id": 38,
+      "slug": "torres-spain-2011",
+      "player": "Torres",
+      "number": "9",
+      "team": "Espanha",
+      "section": "selecoes",
+      "year": "2011",
+      "variant": null,
+      "sub": "Espanha · 2011",
+      "price": 189.0,
+      "thumb": "assets/produtos/torres-spain-2011/1-t.webp",
+      "img": [
+        "assets/produtos/torres-spain-2011/1.webp",
+        "assets/produtos/torres-spain-2011/2.webp",
+        "assets/produtos/torres-spain-2011/3.webp",
+        "assets/produtos/torres-spain-2011/4.webp"
+      ]
+    },
+    {
+      "id": 39,
+      "slug": "villa-7-spain-2010",
+      "player": "Villa",
+      "number": "7",
+      "team": "Espanha",
+      "section": "selecoes",
+      "year": "2010",
+      "variant": null,
+      "sub": "Espanha · 2010",
+      "price": 189.0,
+      "thumb": "assets/produtos/villa-7-spain-2010/1-t.webp",
+      "img": [
+        "assets/produtos/villa-7-spain-2010/1.webp",
+        "assets/produtos/villa-7-spain-2010/2.webp",
+        "assets/produtos/villa-7-spain-2010/3.webp",
+        "assets/produtos/villa-7-spain-2010/4.webp"
+      ]
+    },
+    {
+      "id": 40,
+      "slug": "gattuso-8-acmilan-2008-09",
+      "player": "Gattuso",
+      "number": "8",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/gattuso-8-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/gattuso-8-acmilan-2008-09/1.webp",
+        "assets/produtos/gattuso-8-acmilan-2008-09/2.webp",
+        "assets/produtos/gattuso-8-acmilan-2008-09/3.webp",
+        "assets/produtos/gattuso-8-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 41,
+      "slug": "kaka-22-acmilan-2013-14",
+      "player": "Kaká",
+      "number": "22",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2013/14",
+      "variant": null,
+      "sub": "AC Milan · 2013/14",
+      "price": 189.0,
+      "thumb": "assets/produtos/kaka-22-acmilan-2013-14/1-t.webp",
+      "img": [
+        "assets/produtos/kaka-22-acmilan-2013-14/1.webp",
+        "assets/produtos/kaka-22-acmilan-2013-14/2.webp",
+        "assets/produtos/kaka-22-acmilan-2013-14/3.webp",
+        "assets/produtos/kaka-22-acmilan-2013-14/4.webp"
+      ]
+    },
+    {
+      "id": 42,
+      "slug": "maldini-ac-milan-1997",
+      "player": "Maldini",
+      "number": "3",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "1997",
+      "variant": null,
+      "sub": "AC Milan · 1997",
+      "price": 189.0,
+      "thumb": "assets/produtos/maldini-ac-milan-1997/1-t.webp",
+      "img": [
+        "assets/produtos/maldini-ac-milan-1997/1.webp",
+        "assets/produtos/maldini-ac-milan-1997/2.webp",
+        "assets/produtos/maldini-ac-milan-1997/3.webp",
+        "assets/produtos/maldini-ac-milan-1997/4.webp"
+      ]
+    },
+    {
+      "id": 43,
+      "slug": "maldini-ac-milan-2007",
+      "player": "Maldini",
+      "number": "3",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2007",
+      "variant": null,
+      "sub": "AC Milan · 2007",
+      "price": 189.0,
+      "thumb": "assets/produtos/maldini-ac-milan-2007/1-t.webp",
+      "img": [
+        "assets/produtos/maldini-ac-milan-2007/1.webp",
+        "assets/produtos/maldini-ac-milan-2007/2.webp",
+        "assets/produtos/maldini-ac-milan-2007/3.webp",
+        "assets/produtos/maldini-ac-milan-2007/4.webp"
+      ]
+    },
+    {
+      "id": 44,
+      "slug": "pirlo-21-acmilan-2008-09",
+      "player": "Pirlo",
+      "number": "21",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/pirlo-21-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/pirlo-21-acmilan-2008-09/1.webp",
+        "assets/produtos/pirlo-21-acmilan-2008-09/2.webp",
+        "assets/produtos/pirlo-21-acmilan-2008-09/3.webp",
+        "assets/produtos/pirlo-21-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 45,
+      "slug": "ronaldinho-80-acmilan-2008-09",
+      "player": "Ronaldinho",
+      "number": "80",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldinho-80-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldinho-80-acmilan-2008-09/1.webp",
+        "assets/produtos/ronaldinho-80-acmilan-2008-09/2.webp",
+        "assets/produtos/ronaldinho-80-acmilan-2008-09/3.webp",
+        "assets/produtos/ronaldinho-80-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 46,
+      "slug": "ronaldo-99-acmilan-2008-09",
+      "player": "Ronaldo",
+      "number": "99",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-99-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-99-acmilan-2008-09/1.webp",
+        "assets/produtos/ronaldo-99-acmilan-2008-09/2.webp",
+        "assets/produtos/ronaldo-99-acmilan-2008-09/3.webp",
+        "assets/produtos/ronaldo-99-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 47,
+      "slug": "seedorf-10-acmilan-2008-09",
+      "player": "Seedorf",
+      "number": "10",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/seedorf-10-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/seedorf-10-acmilan-2008-09/1.webp",
+        "assets/produtos/seedorf-10-acmilan-2008-09/2.webp",
+        "assets/produtos/seedorf-10-acmilan-2008-09/3.webp",
+        "assets/produtos/seedorf-10-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 48,
+      "slug": "shevchenko-7-acmilan-2008-09",
+      "player": "Shevchenko",
+      "number": "7",
+      "team": "AC Milan",
+      "section": "times",
+      "year": "2008/09",
+      "variant": null,
+      "sub": "AC Milan · 2008/09",
+      "price": 189.0,
+      "thumb": "assets/produtos/shevchenko-7-acmilan-2008-09/1-t.webp",
+      "img": [
+        "assets/produtos/shevchenko-7-acmilan-2008-09/1.webp",
+        "assets/produtos/shevchenko-7-acmilan-2008-09/2.webp",
+        "assets/produtos/shevchenko-7-acmilan-2008-09/3.webp",
+        "assets/produtos/shevchenko-7-acmilan-2008-09/4.webp"
+      ]
+    },
+    {
+      "id": 49,
+      "slug": "de-boer-ajax-1999",
+      "player": "De Boer",
+      "number": "4",
+      "team": "Ajax",
+      "section": "times",
+      "year": "1999",
+      "variant": null,
+      "sub": "Ajax · 1999",
+      "price": 189.0,
+      "thumb": "assets/produtos/de-boer-ajax-1999/1-t.webp",
+      "img": [
+        "assets/produtos/de-boer-ajax-1999/1.webp",
+        "assets/produtos/de-boer-ajax-1999/2.webp",
+        "assets/produtos/de-boer-ajax-1999/3.webp",
+        "assets/produtos/de-boer-ajax-1999/4.webp"
+      ]
+    },
+    {
+      "id": 50,
+      "slug": "henry-arsenal-2005",
+      "player": "Henry",
+      "number": "14",
+      "team": "Arsenal",
+      "section": "times",
+      "year": "2005",
+      "variant": null,
+      "sub": "Arsenal · 2005",
+      "price": 189.0,
+      "thumb": "assets/produtos/henry-arsenal-2005/1-t.webp",
+      "img": [
+        "assets/produtos/henry-arsenal-2005/1.webp",
+        "assets/produtos/henry-arsenal-2005/2.webp",
+        "assets/produtos/henry-arsenal-2005/3.webp",
+        "assets/produtos/henry-arsenal-2005/4.webp"
+      ]
+    },
+    {
+      "id": 51,
+      "slug": "messi-10-barcelona-2009",
+      "player": "Messi",
+      "number": "10",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "2009",
+      "variant": null,
+      "sub": "Barcelona · 2009",
+      "price": 189.0,
+      "thumb": "assets/produtos/messi-10-barcelona-2009/1-t.webp",
+      "img": [
+        "assets/produtos/messi-10-barcelona-2009/1.webp",
+        "assets/produtos/messi-10-barcelona-2009/2.webp",
+        "assets/produtos/messi-10-barcelona-2009/3.webp",
+        "assets/produtos/messi-10-barcelona-2009/4.webp"
+      ]
+    },
+    {
+      "id": 52,
+      "slug": "messi-barcelona-2018",
+      "player": "Messi",
+      "number": "10",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "2018",
+      "variant": null,
+      "sub": "Barcelona · 2018",
+      "price": 189.0,
+      "thumb": "assets/produtos/messi-barcelona-2018/1-t.webp",
+      "img": [
+        "assets/produtos/messi-barcelona-2018/1.webp",
+        "assets/produtos/messi-barcelona-2018/2.webp",
+        "assets/produtos/messi-barcelona-2018/3.webp",
+        "assets/produtos/messi-barcelona-2018/4.webp"
+      ]
+    },
+    {
+      "id": 53,
+      "slug": "neymar-barcelona-2015",
+      "player": "Neymar",
+      "number": "11",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "2015",
+      "variant": null,
+      "sub": "Barcelona · 2015",
+      "price": 189.0,
+      "thumb": "assets/produtos/neymar-barcelona-2015/1-t.webp",
+      "img": [
+        "assets/produtos/neymar-barcelona-2015/1.webp",
+        "assets/produtos/neymar-barcelona-2015/2.webp",
+        "assets/produtos/neymar-barcelona-2015/3.webp",
+        "assets/produtos/neymar-barcelona-2015/4.webp"
+      ]
+    },
+    {
+      "id": 54,
+      "slug": "rivaldo-barcelona-1999",
+      "player": "Rivaldo",
+      "number": "10",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "1999",
+      "variant": null,
+      "sub": "Barcelona · 1999",
+      "price": 189.0,
+      "thumb": "assets/produtos/rivaldo-barcelona-1999/1-t.webp",
+      "img": [
+        "assets/produtos/rivaldo-barcelona-1999/1.webp",
+        "assets/produtos/rivaldo-barcelona-1999/2.webp",
+        "assets/produtos/rivaldo-barcelona-1999/3.webp",
+        "assets/produtos/rivaldo-barcelona-1999/4.webp"
+      ]
+    },
+    {
+      "id": 55,
+      "slug": "ronaldo-barcelona-1997",
+      "player": "Ronaldo",
+      "number": "9",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "1997",
+      "variant": null,
+      "sub": "Barcelona · 1997",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-barcelona-1997/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-barcelona-1997/1.webp",
+        "assets/produtos/ronaldo-barcelona-1997/2.webp",
+        "assets/produtos/ronaldo-barcelona-1997/3.webp",
+        "assets/produtos/ronaldo-barcelona-1997/4.webp"
+      ]
+    },
+    {
+      "id": 56,
+      "slug": "ronaldo-barcelona-1998-away",
+      "player": "Ronaldo",
+      "number": "9",
+      "team": "Barcelona",
+      "section": "times",
+      "year": "1998",
+      "variant": "Visitante",
+      "sub": "Barcelona · 1998 (Visitante)",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-barcelona-1998-away/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-barcelona-1998-away/1.webp",
+        "assets/produtos/ronaldo-barcelona-1998-away/2.webp",
+        "assets/produtos/ronaldo-barcelona-1998-away/3.webp",
+        "assets/produtos/ronaldo-barcelona-1998-away/4.webp"
+      ]
+    },
+    {
+      "id": 57,
+      "slug": "matthaus-10-bayern-1997-98",
+      "player": "Matthäus",
+      "number": "10",
+      "team": "Bayern de Munique",
+      "section": "times",
+      "year": "1997/98",
+      "variant": null,
+      "sub": "Bayern de Munique · 1997/98",
+      "price": 189.0,
+      "thumb": "assets/produtos/matthaus-10-bayern-1997-98/1-t.webp",
+      "img": [
+        "assets/produtos/matthaus-10-bayern-1997-98/1.webp",
+        "assets/produtos/matthaus-10-bayern-1997-98/2.webp",
+        "assets/produtos/matthaus-10-bayern-1997-98/3.webp",
+        "assets/produtos/matthaus-10-bayern-1997-98/4.webp"
+      ]
+    },
+    {
+      "id": 58,
+      "slug": "drogba-chelsea-2010",
+      "player": "Drogba",
+      "number": "11",
+      "team": "Chelsea",
+      "section": "times",
+      "year": "2010",
+      "variant": null,
+      "sub": "Chelsea · 2010",
+      "price": 189.0,
+      "thumb": "assets/produtos/drogba-chelsea-2010/1-t.webp",
+      "img": [
+        "assets/produtos/drogba-chelsea-2010/1.webp",
+        "assets/produtos/drogba-chelsea-2010/2.webp",
+        "assets/produtos/drogba-chelsea-2010/3.webp",
+        "assets/produtos/drogba-chelsea-2010/4.webp"
+      ]
+    },
+    {
+      "id": 59,
+      "slug": "hazard-chelsea-2013",
+      "player": "Hazard",
+      "number": "17",
+      "team": "Chelsea",
+      "section": "times",
+      "year": "2013",
+      "variant": null,
+      "sub": "Chelsea · 2013",
+      "price": 189.0,
+      "thumb": "assets/produtos/hazard-chelsea-2013/1-t.webp",
+      "img": [
+        "assets/produtos/hazard-chelsea-2013/1.webp",
+        "assets/produtos/hazard-chelsea-2013/2.webp",
+        "assets/produtos/hazard-chelsea-2013/3.webp",
+        "assets/produtos/hazard-chelsea-2013/4.webp"
+      ]
+    },
+    {
+      "id": 60,
+      "slug": "ibrahimovic-inter-milan-2008",
+      "player": "Ibrahimović",
+      "number": "8",
+      "team": "Inter de Milão",
+      "section": "times",
+      "year": "2008",
+      "variant": null,
+      "sub": "Inter de Milão · 2008",
+      "price": 189.0,
+      "thumb": "assets/produtos/ibrahimovic-inter-milan-2008/1-t.webp",
+      "img": [
+        "assets/produtos/ibrahimovic-inter-milan-2008/1.webp",
+        "assets/produtos/ibrahimovic-inter-milan-2008/2.webp",
+        "assets/produtos/ibrahimovic-inter-milan-2008/3.webp",
+        "assets/produtos/ibrahimovic-inter-milan-2008/4.webp"
+      ]
+    },
+    {
+      "id": 61,
+      "slug": "delpiero-10-juventus-1997-98",
+      "player": "Del Piero",
+      "number": "10",
+      "team": "Juventus",
+      "section": "times",
+      "year": "1997/98",
+      "variant": null,
+      "sub": "Juventus · 1997/98",
+      "price": 189.0,
+      "thumb": "assets/produtos/delpiero-10-juventus-1997-98/1-t.webp",
+      "img": [
+        "assets/produtos/delpiero-10-juventus-1997-98/1.webp",
+        "assets/produtos/delpiero-10-juventus-1997-98/2.webp",
+        "assets/produtos/delpiero-10-juventus-1997-98/3.webp",
+        "assets/produtos/delpiero-10-juventus-1997-98/4.webp"
+      ]
+    },
+    {
+      "id": 62,
+      "slug": "pogba-10-juventus-2015-16",
+      "player": "Pogba",
+      "number": "10",
+      "team": "Juventus",
+      "section": "times",
+      "year": "2015/16",
+      "variant": null,
+      "sub": "Juventus · 2015/16",
+      "price": 189.0,
+      "thumb": "assets/produtos/pogba-10-juventus-2015-16/1-t.webp",
+      "img": [
+        "assets/produtos/pogba-10-juventus-2015-16/1.webp",
+        "assets/produtos/pogba-10-juventus-2015-16/2.webp",
+        "assets/produtos/pogba-10-juventus-2015-16/3.webp",
+        "assets/produtos/pogba-10-juventus-2015-16/4.webp"
+      ]
+    },
+    {
+      "id": 63,
+      "slug": "gerrard-liverpool-2010-11",
+      "player": "Gerrard",
+      "number": "8",
+      "team": "Liverpool",
+      "section": "times",
+      "year": "2010/11",
+      "variant": null,
+      "sub": "Liverpool · 2010/11",
+      "price": 189.0,
+      "thumb": "assets/produtos/gerrard-liverpool-2010-11/1-t.webp",
+      "img": [
+        "assets/produtos/gerrard-liverpool-2010-11/1.webp",
+        "assets/produtos/gerrard-liverpool-2010-11/2.webp",
+        "assets/produtos/gerrard-liverpool-2010-11/3.webp",
+        "assets/produtos/gerrard-liverpool-2010-11/4.webp"
+      ]
+    },
+    {
+      "id": 64,
+      "slug": "beckham-7-manutd-2002",
+      "player": "Beckham",
+      "number": "7",
+      "team": "Manchester United",
+      "section": "times",
+      "year": "2002",
+      "variant": null,
+      "sub": "Manchester United · 2002",
+      "price": 189.0,
+      "thumb": "assets/produtos/beckham-7-manutd-2002/1-t.webp",
+      "img": [
+        "assets/produtos/beckham-7-manutd-2002/1.webp",
+        "assets/produtos/beckham-7-manutd-2002/2.webp",
+        "assets/produtos/beckham-7-manutd-2002/3.webp",
+        "assets/produtos/beckham-7-manutd-2002/4.webp"
+      ]
+    },
+    {
+      "id": 65,
+      "slug": "ronaldo-7-manutd-2008",
+      "player": "Ronaldo",
+      "number": "7",
+      "team": "Manchester United",
+      "section": "times",
+      "year": "2008",
+      "variant": null,
+      "sub": "Manchester United · 2008",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-7-manutd-2008/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-7-manutd-2008/1.webp",
+        "assets/produtos/ronaldo-7-manutd-2008/2.webp",
+        "assets/produtos/ronaldo-7-manutd-2008/3.webp",
+        "assets/produtos/ronaldo-7-manutd-2008/4.webp"
+      ]
+    },
+    {
+      "id": 66,
+      "slug": "ronaldo-7-manutd-2008-away",
+      "player": "Ronaldo",
+      "number": "7",
+      "team": "Manchester United",
+      "section": "times",
+      "year": "2008",
+      "variant": "Visitante",
+      "sub": "Manchester United · 2008 (Visitante)",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-7-manutd-2008-away/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-7-manutd-2008-away/1.webp",
+        "assets/produtos/ronaldo-7-manutd-2008-away/2.webp",
+        "assets/produtos/ronaldo-7-manutd-2008-away/3.webp",
+        "assets/produtos/ronaldo-7-manutd-2008-away/4.webp"
+      ]
+    },
+    {
+      "id": 67,
+      "slug": "shearer-newcastle-2000",
+      "player": "Shearer",
+      "number": "9",
+      "team": "Newcastle",
+      "section": "times",
+      "year": "2000",
+      "variant": null,
+      "sub": "Newcastle · 2000",
+      "price": 189.0,
+      "thumb": "assets/produtos/shearer-newcastle-2000/1-t.webp",
+      "img": [
+        "assets/produtos/shearer-newcastle-2000/1.webp",
+        "assets/produtos/shearer-newcastle-2000/2.webp",
+        "assets/produtos/shearer-newcastle-2000/3.webp",
+        "assets/produtos/shearer-newcastle-2000/4.webp"
+      ]
+    },
+    {
+      "id": 68,
+      "slug": "neymar-10-psg-2018-19-away",
+      "player": "Neymar",
+      "number": "10",
+      "team": "PSG",
+      "section": "times",
+      "year": "2018/19",
+      "variant": "Visitante",
+      "sub": "PSG · 2018/19 (Visitante)",
+      "price": 189.0,
+      "thumb": "assets/produtos/neymar-10-psg-2018-19-away/1-t.webp",
+      "img": [
+        "assets/produtos/neymar-10-psg-2018-19-away/1.webp",
+        "assets/produtos/neymar-10-psg-2018-19-away/2.webp",
+        "assets/produtos/neymar-10-psg-2018-19-away/3.webp",
+        "assets/produtos/neymar-10-psg-2018-19-away/4.webp"
+      ]
+    },
+    {
+      "id": 69,
+      "slug": "casillas-real-madrid-2011",
+      "player": "Casillas",
+      "number": "1",
+      "team": "Real Madrid",
+      "section": "times",
+      "year": "2011",
+      "variant": null,
+      "sub": "Real Madrid · 2011",
+      "price": 189.0,
+      "thumb": "assets/produtos/casillas-real-madrid-2011/1-t.webp",
+      "img": [
+        "assets/produtos/casillas-real-madrid-2011/1.webp",
+        "assets/produtos/casillas-real-madrid-2011/2.webp",
+        "assets/produtos/casillas-real-madrid-2011/3.webp",
+        "assets/produtos/casillas-real-madrid-2011/4.webp"
+      ]
+    },
+    {
+      "id": 70,
+      "slug": "kaka-8-real-madrid-2011-12",
+      "player": "Kaká",
+      "number": "8",
+      "team": "Real Madrid",
+      "section": "times",
+      "year": "2011/12",
+      "variant": null,
+      "sub": "Real Madrid · 2011/12",
+      "price": 189.0,
+      "thumb": "assets/produtos/kaka-8-real-madrid-2011-12/1-t.webp",
+      "img": [
+        "assets/produtos/kaka-8-real-madrid-2011-12/1.webp",
+        "assets/produtos/kaka-8-real-madrid-2011-12/2.webp",
+        "assets/produtos/kaka-8-real-madrid-2011-12/3.webp",
+        "assets/produtos/kaka-8-real-madrid-2011-12/4.webp"
+      ]
+    },
+    {
+      "id": 71,
+      "slug": "neymar-santos-2012",
+      "player": "Neymar",
+      "number": "11",
+      "team": "Santos",
+      "section": "times",
+      "year": "2012",
+      "variant": null,
+      "sub": "Santos · 2012",
+      "price": 189.0,
+      "thumb": "assets/produtos/neymar-santos-2012/1-t.webp",
+      "img": [
+        "assets/produtos/neymar-santos-2012/1.webp",
+        "assets/produtos/neymar-santos-2012/2.webp",
+        "assets/produtos/neymar-santos-2012/3.webp",
+        "assets/produtos/neymar-santos-2012/4.webp"
+      ]
+    },
+    {
+      "id": 72,
+      "slug": "ronaldo-sporting-2003",
+      "player": "Cristiano Ronaldo",
+      "number": "28",
+      "team": "Sporting",
+      "section": "times",
+      "year": "2003",
+      "variant": null,
+      "sub": "Sporting · 2003",
+      "price": 189.0,
+      "thumb": "assets/produtos/ronaldo-sporting-2003/1-t.webp",
+      "img": [
+        "assets/produtos/ronaldo-sporting-2003/1.webp",
+        "assets/produtos/ronaldo-sporting-2003/2.webp",
+        "assets/produtos/ronaldo-sporting-2003/3.webp",
+        "assets/produtos/ronaldo-sporting-2003/4.webp"
+      ]
+    }
+  ]
 }
