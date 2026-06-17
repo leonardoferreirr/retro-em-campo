@@ -143,11 +143,11 @@ function viewHome(){
   const selFeat=pick(['maradona-argentina-1994','ronaldo-9-brazil-1998','cristiano-ronaldo-17-portugal-2006','nakata-8-japan-1998']);
   const timFeat=pick(['cantona-7-manutd-1995','ronaldo-barcelona-1998-away','matthaus-10-bayern-1997-98','de-boer-ajax-1999']);
   const slides=[
-    {img:'assets/brand/hero-1.jpg',v:'assets/brand/hero-1-v.jpg',
+    {img:'assets/brand/hero-1.webp',v:'assets/brand/hero-1-v.webp',
      h:'As camisetas mais|icônicas de todas',sub:'Da laranja holandesa de 88 aos mantos eternos, reunidos aqui.',cta:'Ver todas as camisetas',href:'#/todas'},
-    {img:'assets/brand/hero-2.jpg',v:'assets/brand/hero-2-v.jpg',
+    {img:'assets/brand/hero-2.webp',v:'assets/brand/hero-2-v.webp',
      h:'As seleções que|pararam o mundo',sub:'Rivalidades eternas, recriadas em peça.',cta:'Ver seleções',href:'#/selecoes'},
-    {img:'assets/brand/hero-3.jpg',v:'assets/brand/hero-3-v.jpg',
+    {img:'assets/brand/hero-3.webp',v:'assets/brand/hero-3-v.webp',
      h:'Clube no peito,|história nas cores',sub:'Os mantos que marcaram época nos maiores clubes.',cta:'Ver times',href:'#/times'}
   ];
   const slidesHTML=slides.map((s,i)=>`
